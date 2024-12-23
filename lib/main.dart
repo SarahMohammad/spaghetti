@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,10 @@ import 'package:untitled3/service_locator.dart';
 import 'package:untitled3/utils/global_bindings.dart';
 import 'package:untitled3/utils/translation_keys.dart';
 
+import 'package:flutter/services.dart';
+
 import 'globalServices/localization_service.dart';
+
 
 
 bool isFlutterLocalNotificationsInitialized = false;
@@ -24,24 +28,21 @@ void main() async {
   await GetStorage.init();
   await Get.find<ILocalizationService>().loadTranslationsFiles();
 
-
-
-
   runApp(
-     const Budget(),
+     const EVC(),
   );
 
 }
 
 
-class Budget extends StatefulWidget {
-  const Budget({Key? key}) : super(key: key);
+class EVC extends StatefulWidget {
+  const EVC({Key? key}) : super(key: key);
 
   @override
-  State<Budget> createState() => _BudgetState();
+  State<EVC> createState() => _EVCState();
 }
 
-class _BudgetState extends State<Budget> with WidgetsBindingObserver {
+class _EVCState extends State<EVC> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {

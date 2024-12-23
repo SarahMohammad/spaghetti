@@ -10,6 +10,7 @@ import 'package:untitled3/utils/constant.dart';
 
 import '../../../UIHelpers/icons.dart';
 import '../../../UIHelpers/images.dart';
+import '../../../commonWidgets/sliver_app_bar_container.dart';
 import '../../../commonWidgets/state_indicator.dart';
 import '../../../core/app_states/app_state_handler_widget.dart';
 import '../controller/systems_controller.dart';
@@ -44,62 +45,10 @@ class SystemsScreen extends StatelessWidget {
                     ),
                   ),
                   Positioned.fill(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        left: 25.getWidth(),
-                        top: 60.getHeight(),
-                        right: 28.getHeight(),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Systems",
-                                style: FontTextStyle.headingX.copyWith(color: Colors.white),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  systemController.toggleSearch();
-                                },
-                                child: Container(
-                                  width: 40.getWidth(),
-                                  height: 40.getHeight(),
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: SvgPicture.asset(
-                                      AllIcons.searchIcon,
-                                      color: Colors.yellow,
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                              height: systemController.isSearching
-                                  ? 20.getHeight()
-                                  : 10),
-                          // Show search box only when in search mode and app bar is expanded
-                          if (systemController.isSearching)
-                            SearchBox(
-                              onChanged: null,
-                              prefixIconExist: true ,
-                              suffixColor: Colors.white,
-                              backgroundColor: AppColors.brand700,
-                              title: "Search",
-                              prefixIconColor: Colors.white,
-                              titleStyle: FontTextStyle.paragraphLarge.copyWith(color: Colors.white)
-                            ),
-                        ],
-                      ),
+                    child: SliverAppBarContainer(
+                      isSearching: systemController.isSearching,
+                      onSearchIconClick: systemController.toggleSearch,
+                      title: "Systems",
                     ),
                   ),
                 ],

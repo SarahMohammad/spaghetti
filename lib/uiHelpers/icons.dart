@@ -39,5 +39,6 @@ class AllIcons {
   static const String sendIcon = "assets/images/icon_send.svg";
   static const String attachmentIcon = "assets/images/icon_attachment.svg";
   static const String mentionIcon = "assets/images/icon_mention.svg";
+  static const String settingsIcon = "assets/images/icon_settings.svg";
 
 }

@@ -1,3 +1,3 @@
 class Fonts {
-  static const String DINNextLTArabic = "DINNextLTArabicRegular";
+  static const String DINNextLTArabic = "DINNextLTArabic";
 }

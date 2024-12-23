@@ -9,7 +9,8 @@ import '../../../UIHelpers/images.dart';
 import '../../../uiHelpers/font_text_style.dart';
 
 class RequestCard extends StatelessWidget {
-  const RequestCard({super.key});
+  final Function()? onSettingsClick;
+  const RequestCard({super.key,  this.onSettingsClick});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,8 @@ class RequestCard extends StatelessWidget {
                   'Administrative Services',
                   style: FontTextStyle.paragraphLarge.copyWith(color: AppColors.primary100),
                 ),
-                SvgPicture.asset(AllIcons.systemSmallIcon),
+                GestureDetector(child: SvgPicture.asset(AllIcons.settingsIcon),
+                onTap: onSettingsClick,),
               ],
             ),
              SizedBox(height: AppSpacing.m.getHeight()),

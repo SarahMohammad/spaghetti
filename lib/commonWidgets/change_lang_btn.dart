@@ -43,9 +43,9 @@ class CustomLangButton extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Get.locale.toString() ==
-            ConstantKeys.arabicLang
-            ?changeLangToEnglish():changeLangToArabic();
+        // Get.locale.toString() ==
+        //     ConstantKeys.arabicLang
+        //     ?changeLangToEnglish():changeLangToArabic();
 
       },
     );

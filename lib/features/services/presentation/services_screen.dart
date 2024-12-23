@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:untitled3/commonWidgets/search_box.dart';
+import 'package:untitled3/commonWidgets/sliver_app_bar_container.dart';
 import 'package:untitled3/features/services/widgets/service_card_widget.dart';
 import 'package:untitled3/features/systems/widgets/system_card_widget.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
@@ -46,63 +47,10 @@ class ServicesScreen extends StatelessWidget {
                     ),
                   ),
                   Positioned.fill(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        left: 25.getWidth(),
-                        top: 60.getHeight(),
-                        right: 28.getHeight(),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Services",
-                                style: FontTextStyle.headingX
-                                    .copyWith(color: Colors.white),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  servicesController.toggleSearch();
-                                },
-                                child: Container(
-                                  width: 40.getWidth(),
-                                  height: 40.getHeight(),
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: SvgPicture.asset(
-                                      AllIcons.searchIcon,
-                                      color: Colors.yellow,
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                              height: servicesController.isSearching
-                                  ? 20.getHeight()
-                                  : 10),
-                          // Show search box only when in search mode and app bar is expanded
-                          if (servicesController.isSearching)
-                            SearchBox(
-                                onChanged: null,
-                                prefixIconExist: true,
-                                suffixColor: Colors.white,
-                                backgroundColor: AppColors.brand700,
-                                title: "Search",
-                                prefixIconColor: Colors.white,
-                                titleStyle: FontTextStyle.paragraphLarge
-                                    .copyWith(color: Colors.white)),
-                        ],
-                      ),
+                    child: SliverAppBarContainer(
+                      isSearching: servicesController.isSearching,
+                      onSearchIconClick: servicesController.toggleSearch,
+                      title: "Services",
                     ),
                   ),
                 ],

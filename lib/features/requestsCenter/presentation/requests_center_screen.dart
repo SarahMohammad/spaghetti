@@ -11,6 +11,7 @@ import 'package:untitled3/utils/constant.dart';
 
 import '../../../UIHelpers/icons.dart';
 import '../../../UIHelpers/images.dart';
+import '../../../commonWidgets/sliver_app_bar_container.dart';
 import '../../../commonWidgets/state_indicator.dart';
 import '../../../core/app_states/app_state_handler_widget.dart';
 import '../controller/requests_center_controller.dart';
@@ -30,7 +31,7 @@ class RequestsCenterScreen extends StatelessWidget {
               pinned: true,
               floating: false,
               snap: false,
-              expandedHeight: requestsCenterController.isSearching ? 150.0 : 110.0,
+              expandedHeight: requestsCenterController.isSearching ? 120 : 100.0,
               collapsedHeight: requestsCenterController.isSearching ?150.0 :80,
               leading: SizedBox(),
               flexibleSpace: Stack(
@@ -46,62 +47,10 @@ class RequestsCenterScreen extends StatelessWidget {
                     ),
                   ),
                   Positioned.fill(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        left: 25.getWidth(),
-                        top: 60.getHeight(),
-                        right: 28.getHeight(),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "requests centers",
-                                style: FontTextStyle.headingX.copyWith(color: Colors.white),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  requestsCenterController.toggleSearch();
-                                },
-                                child: Container(
-                                  width: 40.getWidth(),
-                                  height: 40.getHeight(),
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: SvgPicture.asset(
-                                      AllIcons.searchIcon,
-                                      color: Colors.yellow,
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                              height: requestsCenterController.isSearching
-                                  ? 20.getHeight()
-                                  : 10),
-                          // Show search box only when in search mode and app bar is expanded
-                          if (requestsCenterController.isSearching)
-                            SearchBox(
-                              onChanged: null,
-                              prefixIconExist: true ,
-                              suffixColor: Colors.white,
-                              backgroundColor: AppColors.brand700,
-                              title: "Search",
-                              prefixIconColor: Colors.white,
-                              titleStyle: FontTextStyle.paragraphLarge.copyWith(color: Colors.white)
-                            ),
-                        ],
-                      ),
+                    child: SliverAppBarContainer(
+                      isSearching: requestsCenterController.isSearching,
+                      onSearchIconClick: requestsCenterController.toggleSearch,
+                      title: "Request center",
                     ),
                   ),
                 ],
@@ -142,7 +91,7 @@ class RequestsCenterScreen extends StatelessWidget {
                     vertical: AppSpacing.m.getHeight(),
                     horizontal: AppSpacing.l.getWidth(),
                   ),
-                  child: RequestCard(),
+                  child: RequestCard(onSettingsClick: requestsCenterController.openSettingsSheet,),
                 ),
                 childCount: 10, // Number of items in the list
               ),
