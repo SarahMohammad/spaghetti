@@ -1,0 +1,51 @@
+const String login = "Login";
+const String  userName = "userName";
+const String password = "password";
+const String forgetPassword = "forgetPasswordQ";
+
+const String verifyIdentity ="verifyIdentity";
+const String otpSelectionMethod = "otpSelectionMethod";
+const String sendMobile ="sendMobile";
+const String sendEmail = "sendEmail";
+const String sendCode = "sendCode";
+const String enterDigitsText ="enterDigitsText";
+const String verifyByMobile ="verifyByMobile";
+const String verifyByEmail ="verifyByEmail";
+const String verify = "verify";
+const String resendCode ="resendCode";
+const String enterUserName ="enterUser";
+const String enterPassword ="enterPass";
+const String employeePortal ="empPortal";
+const String loginToContinue ="loginToContinue";
+const String incorrectUserNameOrPass ="incorrectUserNameOrPass";
+const String userTypeValues ="userTypeValues";
+const String enterUserTypeValues ="enterUserTypeValues";
+const String dateOfBirth ="dateOfBirth";
+const String enterDateOfBirth ="enterDateOfBirth";
+const String forgetPass ="forgetPass";
+const String sendRequest ="sendRequest";
+const String resetPassword ="resetPassword";
+const String newPassword ="newPassword";
+const String createNewPassword ="createNewPass";
+const String confirmNewPassword ="confirmNewPass";
+const String codeSentTo ="codeSentTo";
+const String projectRequestForm ="projectRequestForm";
+
+const String projectName ="projectName";
+const String projectDuration ="projectDuration";
+const String projectOwner ="projectOwner";
+const String projectImplYear ="projectImplYear";
+const String closingDate ="closingDate";
+const String value ="value";
+const String approvalAuth ="approvalAuth";
+const String managementApproval ="managementApproval";
+const String externalApproval ="externalApproval";
+const String projectDescription ="projectDescription";
+const String structure ="structure";
+const String paymentStructure ="paymentStructure";
+const String parties ="parties";
+const String authorizedPersonnel ="authorizedPersonnel";
+const String similarProjects ="similarProjects";
+const String addParty ="addParty";
+
+
