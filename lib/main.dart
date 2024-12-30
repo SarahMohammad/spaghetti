@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -12,8 +13,6 @@ import 'package:untitled3/service_locator.dart';
 import 'package:untitled3/utils/global_bindings.dart';
 import 'package:untitled3/utils/translation_keys.dart';
 
-import 'package:flutter/services.dart';
-
 import 'globalServices/localization_service.dart';
 
 
@@ -21,7 +20,8 @@ import 'globalServices/localization_service.dart';
 bool isFlutterLocalNotificationsInitialized = false;
 
 void main() async {
-
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   WidgetsFlutterBinding.ensureInitialized();
   GlobalBindings().dependencies();
   setupLocator();

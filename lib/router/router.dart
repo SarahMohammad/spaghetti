@@ -2,10 +2,11 @@ import 'package:get/get.dart';
 import 'package:untitled3/features/createPassword/presentation/screens/create_password_screen.dart';
 import 'package:untitled3/features/forgetPassword/presentation/screens/request_sent_screen.dart';
 import 'package:untitled3/features/forgetPassword/presentation/screens/forget_password_screen.dart';
-import 'package:untitled3/features/home/presentation/home_screen.dart';
+import 'package:untitled3/features/home/presentation/screens/home_screen.dart';
 import 'package:untitled3/features/mainScreen/presentation/main_screen.dart';
+import 'package:untitled3/features/requestsCenter/presentation/request_center_details.dart';
 import 'package:untitled3/features/requestsCenter/presentation/requests_center_screen.dart';
-import 'package:untitled3/features/services/presentation/services_screen.dart';
+import 'package:untitled3/features/services/presentation/screens/services_screen.dart';
 import 'package:untitled3/router/routes_constants.dart';
 import '../features/login/presentation/screens/login_screen.dart';
 import '../features/otp/presentation/screens/otp_screen.dart';
@@ -114,6 +115,13 @@ class AppRouter {
  GetPage(
       name: RoutesConstants.requestsCenterScreen,
       page: () => RequestsCenterScreen(),
+      transition: Transition.fade,
+      binding: GlobalBindings(),
+    ),
+
+ GetPage(
+      name: RoutesConstants.requestCenterDetailsScreen,
+      page: () => RequestCenterDetails(),
       transition: Transition.fade,
       binding: GlobalBindings(),
     ),

@@ -70,13 +70,13 @@ class FontTextStyle {
       fontFamily: Fonts.DINNextLTArabic,
       fontSize: 16.getFontSize(),
       color: AppColors.neutral700,
-      fontWeight: FontWeight.w500);
+      fontWeight: FontWeight.w400);
 
   static TextStyle paragraphMedium = TextStyle(
       fontFamily: Fonts.DINNextLTArabic,
       fontSize: 14.getFontSize(),
       color: AppColors.neutral700,
-      fontWeight: FontWeight.w500);
+      fontWeight: FontWeight.w400);
 
   static TextStyle paragraphSmall = TextStyle(
       fontFamily: Fonts.DINNextLTArabic,

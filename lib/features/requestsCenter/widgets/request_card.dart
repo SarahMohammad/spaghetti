@@ -10,7 +10,7 @@ import '../../../uiHelpers/font_text_style.dart';
 
 class RequestCard extends StatelessWidget {
   final Function()? onSettingsClick;
-  const RequestCard({super.key,  this.onSettingsClick});
+  const RequestCard({super.key,  this.onSettingsClick ,});
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class RequestCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(width: AppSpacing.l.getWidth()),
+                SizedBox(width: AppSpacing.xl.getWidth()),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

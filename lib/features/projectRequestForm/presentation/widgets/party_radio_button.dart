@@ -43,7 +43,7 @@ class PartyRadioButton extends StatelessWidget {
                 child: Container(
                   // height: 12,
                   // width: 12,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColors.brand500,
                   ),
@@ -65,7 +65,6 @@ class PartyRadioButton extends StatelessWidget {
             Text(
                 label,
                 style: FontTextStyle.labelLarge.copyWith(
-                  fontWeight: FontWeight.normal,
                   color: AppColors.neutral900,
                 )
             ),

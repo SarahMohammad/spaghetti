@@ -8,58 +8,29 @@ import 'package:untitled3/utils/constant.dart';
 import '../../../../commonWidgets/bottomSheet/bottom_sheet_action.dart';
 import '../../../../commonWidgets/search_box.dart';
 import '../../../../core/base_controller.dart';
+import '../../../../functions/helper_classes.dart';
 import '../../../../globalServices/ILocalizationService.dart';
 import '../../../../uiHelpers/app_spacing.dart';
 import '../../../../utils/service_enum.dart';
 import '../widgets/details_widget.dart';
 import '../widgets/label_value_row.dart';
 
-class Party {
-  String type;
-  String name;
-  String category;
 
-  Party({this.type = "person", this.name = "", this.category = ""});
-}
-
-class UploadFile {
-
-  String name;
-  String size;
-
-  UploadFile({this.name = "", this.size = ""});
-}
-
-class Comment {
-
-  final String name;
-  final String role;
-  final String date;
-  final String message;
-  final String? attachment;
-  final String? fileSize;
-
-  Comment({this.name = "", this.role="",
-  this.attachment="", this.date="", this.fileSize="", this.message=""});
-}
 
 class RequestFormController extends BaseController {
   final localization = Get.find<ILocalizationService>();
   late ServiceType serviceType;
   final FormFieldHandler formFieldHandler = FormFieldHandler();
-
+  String screenTitle= "";
   final names = [
-    "name",
-    "name1",
-    "name2",
-    "name3",
-    "name4",
-    "name5",
-    "name6",
-    "name7",
-    "name8",
-    "name9",
-    "name10"
+    "The Royal Commission for Al Ula",
+    "Option",
+    "Option",
+    "Option",
+    "Option",
+    "Option",
+    "Option",
+    "Option",
   ];
   final categories = [
     "None",
@@ -72,21 +43,7 @@ class RequestFormController extends BaseController {
     "Seller"
   ];
 
-  // var isSendButtonActive = false.obs;
-  // TextEditingController projectNameController = TextEditingController();
-  // TextEditingController projectDurationController = TextEditingController();
-  // TextEditingController projectOwnerController = TextEditingController();
-  // TextEditingController valueController = TextEditingController();
-  // TextEditingController approvalAuthorityController = TextEditingController();
-  // TextEditingController managementApprovalController = TextEditingController();
-  // TextEditingController externalApprovalController = TextEditingController();
-  // TextEditingController  projectDescriptionController = TextEditingController();
-  // TextEditingController  structureController = TextEditingController();
-  // TextEditingController  paymentStructureController = TextEditingController();
-  // TextEditingController  authorizedPersonnelController = TextEditingController();
-  // TextEditingController  similarProjectsController = TextEditingController();
 
-  // var parties = <PartyWidget>[].obs;
   var partiesValues = <Party>[Party()].obs;
 
   var uploadFilesList = <UploadFile>[UploadFile()].obs;
@@ -166,7 +123,7 @@ class RequestFormController extends BaseController {
             ),
           ],
         ),
-        title: "Project implementation year",
+        title: "Party Type Name",
         isScrollControlled: true,
         contentHeight: Get.size.height / 1.4
     );
@@ -208,7 +165,7 @@ class RequestFormController extends BaseController {
           );
         },
       ),
-      title: "Cat1",
+      title: "Category 1",
 
     );
   }
@@ -217,6 +174,8 @@ class RequestFormController extends BaseController {
   void onInit() async {
     super.onInit();
     serviceType = Get.arguments;
+    screenTitle = serviceType == ServiceType.projectRequestForm ? "projrct request from" :
+    serviceType == ServiceType.newTemplateRequestFrom ? "new template request form" :"Non-rcu template review request";
     print("coming from ${Get.arguments}");
   }
 

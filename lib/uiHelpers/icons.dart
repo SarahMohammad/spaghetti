@@ -40,5 +40,7 @@ class AllIcons {
   static const String attachmentIcon = "assets/images/icon_attachment.svg";
   static const String mentionIcon = "assets/images/icon_mention.svg";
   static const String settingsIcon = "assets/images/icon_settings.svg";
+  static const String arrowUpIcon = "assets/images/icon_arrow_up.svg";
+  static const String outLookIcon = "assets/images/icon_outlook.svg";
 
 }

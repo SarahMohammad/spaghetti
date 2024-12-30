@@ -31,8 +31,8 @@ class RequestsCenterScreen extends StatelessWidget {
               pinned: true,
               floating: false,
               snap: false,
-              expandedHeight: requestsCenterController.isSearching ? 120 : 100.0,
-              collapsedHeight: requestsCenterController.isSearching ?150.0 :80,
+              expandedHeight: requestsCenterController.isSearching ?  Get.size.height * 0.2 :Get.size.height * 0.13,
+              collapsedHeight: requestsCenterController.isSearching ? Get.size.height * 0.13 : Get.size.height * 0.11,
               leading: SizedBox(),
               flexibleSpace: Stack(
                 children: <Widget>[
@@ -58,7 +58,7 @@ class RequestsCenterScreen extends StatelessWidget {
             ),
             requestsCenterController.isSearching && requestsCenterController.searchResult.length == 0?
         SliverFillRemaining(
-          hasScrollBody: false, // Ensures it doesn't allow internal scrolling
+          hasScrollBody: false,
           child: StateIndicator(
             title: "No search results",
             description: "We couldn't find what you're looking for. Try using different phrases or words.",
@@ -84,6 +84,8 @@ class RequestsCenterScreen extends StatelessWidget {
                 )),
               ),
             ),
+            requestsCenterController.isSearching && requestsCenterController.searchResult.length == 0?
+            SliverToBoxAdapter(child: SizedBox(),):
             SliverList(
               delegate: SliverChildBuilderDelegate(
                     (context, index) => Padding(
@@ -91,7 +93,9 @@ class RequestsCenterScreen extends StatelessWidget {
                     vertical: AppSpacing.m.getHeight(),
                     horizontal: AppSpacing.l.getWidth(),
                   ),
-                  child: RequestCard(onSettingsClick: requestsCenterController.openSettingsSheet,),
+                  child: RequestCard(
+                    onSettingsClick: requestsCenterController.openOptionsSheet,
+                  ),
                 ),
                 childCount: 10, // Number of items in the list
               ),

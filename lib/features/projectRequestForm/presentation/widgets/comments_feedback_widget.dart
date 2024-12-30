@@ -12,16 +12,20 @@ import 'package:untitled3/utils/constant.dart';
 import '../../../../UIHelpers/icons.dart';
 import '../../../../UIHelpers/images.dart';
 import '../../../../commonWidgets/buttons/custom_button.dart';
+import '../../../../functions/helper_classes.dart';
 import '../../../../uiHelpers/app_spacing.dart';
 import '../../../../utils/button_enum.dart';
 import 'attachment_list_tile.dart';
+import 'feedback_widget.dart';
 
 class CommentsAndFeedbackWidget extends StatelessWidget {
   final RxList<Comment> commentsList;
+  final bool? hideCommentHeader;
   final void Function()? onAddCommentPressed;
 
   const CommentsAndFeedbackWidget(
-      {super.key, required this.commentsList, this.onAddCommentPressed});
+      {super.key, required this.commentsList, this.onAddCommentPressed ,
+      this.hideCommentHeader = false });
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +33,12 @@ class CommentsAndFeedbackWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Comments Header
-        Padding(
-          padding: const EdgeInsets.all(16.0),
+        hideCommentHeader! ?SizedBox():Padding(
+          padding:  EdgeInsets.all(16.getHeight()),
           child: Obx(() {
             return Text(
               'Comments (${commentsList.length})',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: FontTextStyle.headingLarge.copyWith(color: AppColors.neutral900),
             );
           }),
         ),
@@ -160,90 +164,7 @@ class CommentsAndFeedbackWidget extends StatelessWidget {
           height: 8,
           color: AppColors.neutral100,
         ),
-        // Feedback Section
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Feedback',
-                style: FontTextStyle.headingLarge.copyWith(
-                    color: AppColors.neutral900),
-              ),
-              SizedBox(height: AppSpacing.l.getHeight()),
-              Text(
-                'How would you rate our service?',
-                style: FontTextStyle.headingMedium.copyWith(
-                    color: AppColors.neutral900),
-              ),
-              SizedBox(height: AppSpacing.l.getHeight()),
-              // Row(
-              //   children: List.generate(
-              //     5,
-              //     (index) => IconButton(
-              //       onPressed: () {},
-              //       icon: Icon(
-              //         Icons.star_border,
-              //         size: 32.0,
-              //         color: Colors.grey,
-              //       ),
-              //     ),
-              //   ),
-              // ),
 
-              Center(
-                child: RatingBar.builder(
-                  initialRating: 3,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 12.getWidth()),
-                  itemBuilder: (context, _) =>
-                      Icon(
-                        Icons.star_border,
-                        color: Colors.amber,
-                      ),
-                  onRatingUpdate: (rating) {
-                    //print(rating);
-                  },
-                ),
-              ),
-
-
-              SizedBox(height: AppSpacing.l.getHeight()),
-              CustomFormField(
-                maxLines: 3,
-                maxLength: 300,
-                labelText: "Add review",
-                isRequired: false,
-              ),
-              // TextField(
-              //   maxLines: 3,
-              //   maxLength: 300,
-              //   decoration: InputDecoration(
-              //     border: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(8.0),
-              //     ),
-              //   ),
-              // ),
-              const SizedBox(height: 16.0),
-              Container(
-                height: 52.getHeight(),
-                width: double.infinity,
-                child: CustomButton(
-                  key,
-                  buttonTitle: "Submit",
-                  padding: EdgeInsets.zero,
-                  onPressed: () {},
-                  isDisabled: true,
-                  buttonType: ButtonType.primary,
-                ),
-              ),
-            ],
-          ),
-        ),
       ],
     );
   }

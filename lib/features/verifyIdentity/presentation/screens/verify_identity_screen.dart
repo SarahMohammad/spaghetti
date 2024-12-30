@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled3/commonWidgets/buttons/custom_button.dart';
 import 'package:untitled3/features/verifyIdentity/presentation/controller/verify_identity_controller.dart';
+import 'package:untitled3/uiHelpers/app_spacing.dart';
 import 'package:untitled3/utils/constant.dart';
 
 import '../../../../commonWidgets/back_button.dart';
@@ -32,73 +33,91 @@ class VerifyIdentityScreen extends StatelessWidget {
             state: verifyIdentityController.loadingState,
             child:
             SafeArea(
-              child: Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              child: Column(
                   children: [
-                    CustomBackButton(),
-                    SizedBox(height: 20.getHeight()),
-                    Text(
-                      verifyIdentity.tr,
-                      style: FontTextStyle.heading2X ,
+                    Expanded(
+                      child: Padding(
+                        padding:  EdgeInsets.symmetric(
+                            horizontal:  AppSpacing.l.getWidth(),
+                            vertical: AppSpacing.xs.getHeight()),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomBackButton(),
+                            SizedBox(height: 20.getHeight()),
+                            Text(
+                              verifyIdentity.tr,
+                              style: FontTextStyle.heading2X ,
 
-                    ),
-                    SizedBox(height: 5.getHeight()),
-                    Text(
-                      otpSelectionMethod.tr,
-                      style: FontTextStyle.paragraphLarge.copyWith(color: AppColors.neutral800),
-                    ),
+                            ),
+                            SizedBox(height: 5.getHeight()),
+                            Text(
+                              otpSelectionMethod.tr,
+                              style: FontTextStyle.paragraphLarge.copyWith(color: AppColors.neutral800),
+                            ),
 
 
-                    SizedBox(height: 25.getHeight()),
+                            SizedBox(height: 25.getHeight()),
 
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        CustomRadioButton(
-                            label: sendMobile.tr,
-                            icon: AllIcons.mobileIcon
-                                ,
-                            isSelected:
-                            verifyIdentityController.selectedOption == ConstantKeys.sendMobileOption ,
-                            onTap: () {
-                              verifyIdentityController.clickMobileBtn();
-                            }
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                CustomRadioButton(
+                                    label: sendMobile.tr,
+                                    icon: AllIcons.mobileIcon
+                                        ,
+                                    isSelected:
+                                    verifyIdentityController.selectedOption == ConstantKeys.sendMobileOption ,
+                                    onTap: () {
+                                      verifyIdentityController.clickMobileBtn();
+                                    }
+                                ),
+                                SizedBox(height: 15.getHeight(),),
+                                CustomRadioButton(
+                                    label: sendEmail.tr,
+                                    icon: AllIcons.emailIcon,
+                                    isSelected:
+                                    verifyIdentityController.selectedOption == ConstantKeys.sendEmailOption,
+                                    onTap: () {
+                                      verifyIdentityController.clickEmailBtn();
+                                    }
+                                ),
+                              ],
+                            ),
+
+                            const Spacer(),
+
+                          ],
                         ),
-                        SizedBox(height: 15.getHeight(),),
-                        CustomRadioButton(
-                            label: sendEmail.tr,
-                            icon: AllIcons.emailIcon,
-                            isSelected:
-                            verifyIdentityController.selectedOption == ConstantKeys.sendEmailOption,
-                            onTap: () {
-                              verifyIdentityController.clickEmailBtn();
-                            }
-                        ),
-                      ],
-                    ),
-
-                    const Spacer(),
-                    SizedBox(
-                      height: 52.getHeight(),
-                      width: double.infinity,
-                      child:  Obx(() =>CustomButton(
-                        key,
-                        buttonTitle: sendCode.tr,
-                        padding: EdgeInsets.zero,
-
-                        onPressed: () {
-                          verifyIdentityController.selectedOption != 0 ? Get.toNamed(
-                              RoutesConstants.otpScreen , arguments: verifyIdentityController.selectedOption  ) : null;
-                        },
-                        isDisabled:verifyIdentityController.isSendButtonActive.value? false: true,
-                        buttonType: ButtonType.primary,
-                      )
                       ),
                     ),
+                    Column(children: [
+                      Divider(height: 1.getHeight(),color: AppColors.neutral500,),
+                      Padding(
+                        padding:  EdgeInsets.symmetric(
+                            horizontal:  AppSpacing.l.getWidth(),
+                            vertical: AppSpacing.xs.getHeight()),
+                        child: SizedBox(
+                          height: 52.getHeight(),
+                          width: double.infinity,
+                          child:  Obx(() =>CustomButton(
+                            key,
+                            buttonTitle: sendCode.tr,
+                            padding: EdgeInsets.zero,
+
+                            onPressed: () {
+                              verifyIdentityController.selectedOption != 0 ? Get.toNamed(
+                                  RoutesConstants.otpScreen , arguments: verifyIdentityController.selectedOption  ) : null;
+                            },
+                            isDisabled:verifyIdentityController.isSendButtonActive.value? false: true,
+                            buttonType: ButtonType.primary,
+                          )
+                          ),
+                        ),
+                      ),
+                    ],)
+
                   ],
                 ),
               ),
@@ -106,7 +125,7 @@ class VerifyIdentityScreen extends StatelessWidget {
 
           ),
         ),
-      ),
+
     );
   }
 }

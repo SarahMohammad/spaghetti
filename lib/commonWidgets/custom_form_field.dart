@@ -75,7 +75,7 @@ class CustomFormField extends StatelessWidget {
         RequiredLabel(labelText: labelText, isRequired: isRequired,),
         SizedBox(height: AppSpacing.s.getHeight(),),
         TextFormField(
-          style: FontTextStyle.paragraphLarge.copyWith(color: AppColors.neutral700),
+          style: FontTextStyle.paragraphLarge.copyWith(color:  AppColors.neutral900),
           maxLength: maxLength,
           onFieldSubmitted: onFieldSubmitted,
           readOnly: readOnly,
@@ -137,7 +137,7 @@ class CustomFormField extends StatelessWidget {
                 12.0,
               ),
             ),
-            hintStyle: FontTextStyle.paragraphLarge.copyWith(color: AppColors.neutral800)
+            hintStyle: FontTextStyle.paragraphLarge.copyWith(color:  AppColors.neutral800)
           ),
         ),
       ],

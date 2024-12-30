@@ -20,6 +20,7 @@ import '../controller/request_form_controller.dart';
 import '../widgets/attachment_list_tile.dart';
 import '../widgets/comments_feedback_widget.dart';
 import '../widgets/details_widget.dart';
+import '../widgets/feedback_widget.dart';
 import '../widgets/label_value_row.dart';
 import '../widgets/party_details_card.dart';
 
@@ -82,7 +83,9 @@ class ProjectRequestFormDetails extends StatelessWidget {
 
 
                         CommentsAndFeedbackWidget(commentsList : requestFormController.commentsList ,
-                        onAddCommentPressed : requestFormController.addComment)
+                        onAddCommentPressed : requestFormController.addComment),
+                        // Feedback Section
+                        FeedbackWidget()
                       ],
                     ),
                   ],

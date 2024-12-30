@@ -1,3 +1,4 @@
+import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -49,7 +50,7 @@ class FormFieldHandler {
       SizedBox(height: AppSpacing.l.getHeight()),
       CustomFormField(
         //  controller: loginController.userNameController,
-        hintText: enterDateOfBirth.tr,
+       //hintText: enterDateOfBirth.tr,
         readOnly: true,
         onTap: () {
           showProjectImplYears();
@@ -62,10 +63,10 @@ class FormFieldHandler {
       SizedBox(height: AppSpacing.l.getHeight()),
       CustomFormField(
         //  controller: loginController.userNameController,
-        hintText: enterDateOfBirth.tr,
+        // hintText: enterDateOfBirth.tr,
         readOnly: true,
         onTap: () {
-          //    forgetPasswordController.openDatePicker(context);
+             openDatePicker(Get.context as BuildContext);
         },
         suffix: SvgPicture.asset(AllIcons.calendarIcon,
             fit: BoxFit.scaleDown),
@@ -224,7 +225,7 @@ class FormFieldHandler {
 
 
   showProjectImplYears() {
-    final years = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    List<String> years = List.generate(7, (index) => (2024 + index).toString());
 
     showBottomActionModelSheet(
       Get.context!,
@@ -402,6 +403,28 @@ class FormFieldHandler {
 
           ],
         )
+    );
+  }
+
+  Future<void> openDatePicker(BuildContext context) async {
+    await showDatePickerDialog(
+      context: context,
+      initialDate: DateTime(2024, 12, 4),
+      minDate: DateTime(2020, 10, 10),
+      maxDate: DateTime(2025, 10, 30),
+      selectedDate: DateTime(2024, 12, 20),
+      selectedCellTextStyle: TextStyle(color: Color(0xFF007AFF)),
+      selectedCellDecoration: BoxDecoration(shape: BoxShape.circle,
+          color: Color(0x2F007AFF)),
+      currentDateTextStyle: TextStyle(color: Color(0xFF007AFF)),
+      currentDateDecoration: BoxDecoration(shape: BoxShape.circle,
+          border: Border.all(color: Color(0xFFFFFF))),
+      enabledCellsTextStyle: const TextStyle(color: Colors.black),
+      leadingDateTextStyle:  TextStyle(color: Colors.black,
+        fontSize: 17,),
+      slidersColor: Colors.black,
+
+
     );
   }
 

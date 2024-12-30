@@ -35,97 +35,103 @@ class ForgetPasswordScreen extends StatelessWidget {
             SafeArea(
               child: Form(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: SingleChildScrollView(
-                  child: IntrinsicHeight(
-                    child: Container(
-                      height: Get.size.height - 70.getHeight(),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 25.getWidth(), vertical: 2.getHeight()),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: IntrinsicHeight(
+                          child: Container(
+                            height: Get.size.height*0.7,
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                CustomBackButton(),
-                                SizedBox(height: 20.getHeight(),),
-                                Text(
-                                  forgetPass.tr,
-                                  style: FontTextStyle.heading2X ,
-                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 25.getWidth(), vertical: 2.getHeight()),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      CustomBackButton(),
+                                      SizedBox(height: 20.getHeight(),),
+                                      Text(
+                                        forgetPass.tr,
+                                        style: FontTextStyle.heading2X ,
+                                      ),
 
-                                SizedBox(height: 20.getHeight()),
+                                      SizedBox(height: 20.getHeight()),
 
-                                CustomFormField(
-                                 controller: forgetPasswordController.userNameController,
-                                  hintText: enterUserName.tr,
-                                  isRequired: true,
-                                  labelText: userName.tr,
-                                ),
-                                SizedBox(height: AppSpacing.l.getHeight()),
+                                      CustomFormField(
+                                       controller: forgetPasswordController.userNameController,
+                                        hintText: enterUserName.tr,
+                                        isRequired: true,
+                                        labelText: userName.tr,
+                                      ),
+                                      SizedBox(height: AppSpacing.l.getHeight()),
 
-                                CustomFormField(
-                                   controller: forgetPasswordController.userTypeController,
-                                  hintText: enterUserTypeValues.tr,
-                                  isRequired: true,
-                                  labelText: userTypeValues.tr,
-                                ),
-                                SizedBox(height: AppSpacing.l.getHeight()),
+                                      CustomFormField(
+                                         controller: forgetPasswordController.userTypeController,
+                                        hintText: enterUserTypeValues.tr,
+                                        isRequired: true,
+                                        labelText: userTypeValues.tr,
+                                      ),
+                                      SizedBox(height: AppSpacing.l.getHeight()),
 
-                                CustomFormField(
-                                  //  controller: loginController.userNameController,
-                                  hintText: enterDateOfBirth.tr,
-                                  readOnly: true,
-                                  onTap: (){
-                                    forgetPasswordController.openDatePicker(context);
-                                    },
-                                  suffix: SvgPicture.asset(AllIcons.calendarIcon ,
-                                      fit: BoxFit.scaleDown),
+                                      CustomFormField(
+                                        //  controller: loginController.userNameController,
+                                        hintText: enterDateOfBirth.tr,
+                                        readOnly: true,
+                                        onTap: (){
+                                          forgetPasswordController.openDatePicker(context);
+                                          },
+                                        suffix: SvgPicture.asset(AllIcons.calendarIcon ,
+                                            fit: BoxFit.scaleDown),
 
-                                  isRequired: true,
-                                  labelText: dateOfBirth.tr,
+                                        isRequired: true,
+                                        labelText: dateOfBirth.tr,
+                                      ),
+
+                                    ],
+                                  ),
                                 ),
 
                               ],
                             ),
                           ),
-                          const Spacer(),
-                          Column(children: [
-
-                            InkWell(
-                              child: Text("create new pass"),
-                              onTap: (){
-                                Get.toNamed(
-                                    RoutesConstants.createPasswordScreen);
-                              },
-                            ),
-                            Divider(height: 1.getHeight(),color: AppColors.neutral500,),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: AppSpacing.l.getWidth(), vertical: AppSpacing.m.getHeight()),
-                              child: SizedBox(
-                                height: 52.getHeight(),
-                                width: double.infinity,
-                                child:  Obx(() =>CustomButton(
-                                  key,
-                                  buttonTitle: sendRequest.tr,
-                                  padding: EdgeInsets.zero,
-                                  onPressed: () {
-                                    // forgetPasswordController.isSendRequestButtonActive.value?
-                                    Get.toNamed(
-                                        RoutesConstants.requestSentScreen);
-                                    // loginController.toggleSnackBarVisibility() ;
-                                  },
-                                  isDisabled: forgetPasswordController.isSendRequestButtonActive.value?false:true,
-                                  buttonType: ButtonType.primary,
-                                )
-                                ),
-                              ),
-                            ),
-                          ],)
-                        ],
+                        ),
                       ),
                     ),
-                  ),
+                    Column(children: [
+
+                      // InkWell(
+                      //   child: Text("create new pass"),
+                      //   onTap: (){
+                      //
+                      //   },
+                      // ),
+                      Divider(height: 1.getHeight(),color: AppColors.neutral500,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: AppSpacing.l.getWidth(), vertical: AppSpacing.m.getHeight()),
+                        child: SizedBox(
+                          height: 52.getHeight(),
+                          width: double.infinity,
+                          child:  Obx(() =>CustomButton(
+                            key,
+                            buttonTitle: sendRequest.tr,
+                            padding: EdgeInsets.zero,
+                            onPressed: () {
+                              // forgetPasswordController.isSendRequestButtonActive.value?
+
+                              Get.toNamed(
+                                  RoutesConstants.createPasswordScreen);
+                              // loginController.toggleSnackBarVisibility() ;
+                            },
+                            isDisabled: forgetPasswordController.isSendRequestButtonActive.value?false:true,
+                            buttonType: ButtonType.primary,
+                          )
+                          ),
+                        ),
+                      ),
+                    ],)
+                  ],
                 ),
               ),
             ),

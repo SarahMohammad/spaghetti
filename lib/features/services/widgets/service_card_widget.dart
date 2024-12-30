@@ -27,7 +27,7 @@ class ServiceCardWidget extends StatelessWidget {
       GestureDetector(
         onTap: onPress,
         child: Container(
-          height: Get.size.height/5.7,
+          height: Get.size.height/5.8,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             border: Border.all(color: Colors.black.withOpacity(0.15)),

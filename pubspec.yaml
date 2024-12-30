@@ -46,6 +46,7 @@ dependencies:
   flutter_countdown_timer: ^4.1.0
   dotted_border: ^2.1.0
   flutter_rating_bar: ^4.0.1
+  firebase_core: ^3.9.0
 
 dev_dependencies:
   flutter_test:
@@ -75,4 +76,10 @@ flutter:
         - asset: assets/fonts/DINNextLTArabic-Regular.ttf
           weight: 400
         - asset: assets/fonts/DINNextLTArabic-Medium.ttf
+          weight: 500
+    - family: SalmaArabic
+      fonts:
+        - asset: assets/fonts/SalmaArabic-Regular.otf
+          weight: 400
+        - asset: assets/fonts/SalmaArabic-Medium.otf
           weight: 500

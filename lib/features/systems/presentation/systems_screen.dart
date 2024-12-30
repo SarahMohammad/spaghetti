@@ -29,8 +29,8 @@ class SystemsScreen extends StatelessWidget {
               pinned: true,
               floating: false,
               snap: false,
-              expandedHeight: systemController.isSearching ? 150.0 : 110.0,
-              collapsedHeight: systemController.isSearching ?150.0 :80,
+              expandedHeight: systemController.isSearching ?  Get.size.height * 0.2 :Get.size.height * 0.13,
+              collapsedHeight: systemController.isSearching ? Get.size.height * 0.13 : Get.size.height * 0.11,
               leading: SizedBox(),
               flexibleSpace: Stack(
                 children: <Widget>[

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:untitled3/router/routes_constants.dart';
+import 'package:untitled3/uiHelpers/font_text_style.dart';
+import 'package:untitled3/utils/constant.dart';
 
+import '../../../UIHelpers/images.dart';
 import '../../../commonWidgets/bottomSheet/bottom_sheet_action.dart';
 import '../../../core/base_controller.dart';
 
 import 'package:get/get.dart';
 
+import '../../../functions/helper_classes.dart';
 import '../../../uiHelpers/app_colors.dart';
+import '../../../uiHelpers/app_spacing.dart';
 
 class RequestsCenterController extends BaseController {
   // State variables
@@ -13,6 +19,27 @@ class RequestsCenterController extends BaseController {
   String searchQuery = ""; // Holds the current search query
   List<String> searchResult = [];
   RxString selectedChoice = ''.obs;
+  var isCommentsExpanded = false;
+
+  void updateExpansionCommentsState(bool expanded) {
+    isCommentsExpanded = expanded;
+    update();
+  }
+
+  var isSummeryExpanded = false;
+
+  void updateExpansionSummeryState(bool expanded) {
+    isSummeryExpanded = expanded;
+    update();
+  }
+
+  var commentsList = <Comment>[Comment()].obs;
+
+
+
+  void addComment() {
+    commentsList.add(Comment());
+  }
 
   void selectChoice(String choice) {
     selectedChoice.value = choice;
@@ -21,7 +48,6 @@ class RequestsCenterController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-
   }
 
   void toggleSearch() {
@@ -32,7 +58,74 @@ class RequestsCenterController extends BaseController {
     update();
   }
 
-  openSettingsSheet() {
+  openOptionsSheet() {
+    showBottomActionModelSheet(
+      Get.context!,
+      showCloseIcon: false,
+      isScrollControlled: true,
+      bottomSheetHeight: Get.size.height / 4,
+      contentHeight: Get.size.height / 6,
+      content: ListView(children: [
+             GestureDetector(
+              onTap: (){
+                Get.toNamed(
+                    RoutesConstants.requestCenterDetailsScreen
+                );
+              },
+              child: Container(
+                color: Colors.transparent,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: AppSpacing.m.getWidth(),
+                      vertical: AppSpacing.l.getHeight()),
+                  child: Text(
+                'View details',
+                style: TextStyle(
+                  color: Color(0xFF212121),
+                  fontSize: 16,
+                  fontFamily: 'DIN Next LT Arabic',
+                  fontWeight: FontWeight.w500,
+                  height: 0.09,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 7.getWidth()),
+          child: const Divider(
+            color: AppColors.neutral500,
+            thickness: 1,
+          ),
+        ),
+        GestureDetector(
+          onTap: (){
+            openApprovalLineSheet();
+            },
+          child: Container(
+            color: Colors.transparent,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: AppSpacing.m.getWidth(),
+                  vertical: AppSpacing.l.getHeight()),
+              child: Text(
+                'View approval line',
+                style: TextStyle(
+                  color: Color(0xFF212121),
+                  fontSize: 16,
+                  fontFamily: 'DIN Next LT Arabic',
+                  fontWeight: FontWeight.w500,
+                  height: 0.09,
+                ),
+              ),
+            ),
+          ),
+        )
+      ]),
+    );
+  }
+
+  openApprovalLineSheet() {
     final List<Map<String, dynamic>> approvals = [
       {
         "name": "Ahmed Elhawari",
@@ -76,8 +169,6 @@ class RequestsCenterController extends BaseController {
         shrinkWrap: true,
         itemCount: 5,
         itemBuilder: (context, index) {
-
-
           final approval = approvals[index];
           final isApproved = approval['status'] == "approved";
           final isPending = approval['status'] == "pending";
@@ -91,34 +182,49 @@ class RequestsCenterController extends BaseController {
                     children: [
                       CircleAvatar(
                         radius: 24,
-                       // backgroundImage: NetworkImage(imageUrl), // Replace with your asset path
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          height: 16,
-                          width: 16,
-                          decoration: BoxDecoration(
-                            color: Colors.green,
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 2),
-                          ),
-                          child: const Icon(
-                            Icons.check,
-                            color: Colors.white,
-                            size: 12,
-                          ),
+                        child: Image.asset(
+                          Images.avatar,
+                          fit: BoxFit.cover,
+                          width: 48,
+                          height: 48,
                         ),
                       ),
+                      isApproved
+                          ? Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: Container(
+                                height: 16,
+                                width: 16,
+                                decoration: BoxDecoration(
+                                  color: AppColors.darkGreen,
+                                  shape: BoxShape.circle,
+                                  border:
+                                      Border.all(color: AppColors.darkGreen, width: 2),
+                                ),
+                                child: const Icon(
+                                  Icons.check,
+                                  color: Colors.white,
+                                  size: 12,
+                                ),
+                              ),
+                            )
+                          : const SizedBox.shrink(),
                     ],
                   ),
                   // Green Vertical Line
-                  Container(
-                    width: 2,
-                    height: 40,
-                    color: Colors.green,
-                  ),
+                  index != 4
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 6.0),
+                          child: Container(
+                            width: 3,
+                            height: 35,
+                            color: isApproved
+                                ? AppColors.darkGreen
+                                : AppColors.neutral200,
+                          ),
+                        )
+                      : const SizedBox.shrink(),
                 ],
               ),
               const SizedBox(width: 16),
@@ -130,75 +236,63 @@ class RequestsCenterController extends BaseController {
                   children: [
                     Text(
                       approval['name'],
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                      style: FontTextStyle.labelLarge
+                          .copyWith(color: AppColors.neutral900),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       approval['title'],
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
+                      style: FontTextStyle.paragraphMedium
+                          .copyWith(color: AppColors.neutral800),
                     ),
                   ],
                 ),
               ),
 
               // Status and Date
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  if (isApproved)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        const Text(
-                          "Approved on:",
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontSize: 14,
-                          ),
-                        ),
-                        Text(
-                          approval['date'],
-                          style: const TextStyle(
-                            color: Colors.green,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    )
-                  else if (isPending)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.orange.shade100,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Text(
-                        "Pending",
-                        style: TextStyle(
-                          color: Colors.orange,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+              if (isApproved)
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      "Approved on:",
+                      style: FontTextStyle.paragraphMedium
+                          .copyWith(color: AppColors.darkGreen),
                     ),
-
-
-                ],
-              ),
+                    Text(
+                      approval['date'],
+                      style: FontTextStyle.paragraphMedium
+                          .copyWith(color: AppColors.neutral800),
+                    ),
+                  ],
+                )
+              else if (isPending)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  decoration: ShapeDecoration(
+                    color: AppColors.warning100,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: AppSpacing.xs.getWidth(),
+                        vertical: AppSpacing.xs.getHeight()),
+                    child: Text(
+                      'Pending',
+                      style: FontTextStyle.labelMedium
+                          .copyWith(color: AppColors.warning500),
+                    ),
+                  ),
+                ),
             ],
           );
-        }, separatorBuilder: (BuildContext context, int index) { return SizedBox(); },
-
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return const SizedBox.shrink();
+        },
       ),
-      title: "Cat1",
-
+      title: "Approval line",
     );
   }
-
 }

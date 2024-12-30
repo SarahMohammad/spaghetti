@@ -44,7 +44,7 @@ class RequestFormScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       CustomAppBar(
-                        title: projectRequestForm.tr,
+                        title: requestFormController.screenTitle,
                         showBackBtn: true,
                       ),
                       SizedBox(

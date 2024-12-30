@@ -14,4 +14,5 @@ class RoutesConstants {
   static const servicesScreen = "/servicesScreen";
   static const requestSubmitScreen = "/requestSubmitScreen";
   static const projectRequestFormDetails = "/projectRequestFormDetails";
+  static const requestCenterDetailsScreen = "/requestCenterDetailsScreen";
 }

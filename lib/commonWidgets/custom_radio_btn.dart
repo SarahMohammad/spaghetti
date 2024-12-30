@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
 import 'package:untitled3/uiHelpers/font_text_style.dart';
+import 'package:untitled3/utils/constant.dart';
 
 class CustomRadioButton extends StatelessWidget {
   final bool isSelected;
@@ -40,16 +41,25 @@ class CustomRadioButton extends StatelessWidget {
               width: 20,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: Colors.grey, width: 2.0),
+                border: Border.all(color: AppColors.neutral500, width: 1.0),
+                color: Colors.white,
               ),
               child: isSelected
                   ? Center(
                 child: Container(
-                  height: 12,
-                  width: 12,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColors.brand500,
+                  ),
+                  child: Center(
+                    child: Container(
+                      height: 8.getHeight(),
+                      width: 8.getWidth(),
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               )
@@ -59,7 +69,6 @@ class CustomRadioButton extends StatelessWidget {
             Text(
               label,
               style: FontTextStyle.labelLarge.copyWith(
-                fontWeight: FontWeight.normal,
                 color: AppColors.neutral900,
               )
             ),

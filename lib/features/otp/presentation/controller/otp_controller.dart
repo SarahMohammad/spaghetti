@@ -19,6 +19,8 @@ class OtpController extends BaseController {
 
   bool isValidRetrySendOtp = false;
 
+  RxBool isErrorState= false.obs;
+
   void showTimer() {
     otpDurationSec = _retrySendCounter > 1 ? 90 : 100;
     isValidRetrySendOtp = !isValidRetrySendOtp;

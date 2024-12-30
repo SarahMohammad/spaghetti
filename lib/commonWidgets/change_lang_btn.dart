@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:untitled3/core/app_states/app_state_handler_widget.dart';
 import 'package:untitled3/uiHelpers/font_text_style.dart';
 import 'package:untitled3/utils/constant.dart';
 
@@ -8,10 +7,11 @@ import '../../core/localstorage_manager.dart';
 import '../../utils/constant_keywords.dart';
 import '../globalServices/ILocalizationService.dart';
 import '../uiHelpers/app_colors.dart';
+import '../uiHelpers/fonts.dart';
 
 class CustomLangButton extends StatelessWidget {
-
   String? currentLang;
+
   CustomLangButton({
     Key? key,
   }) : super(key: key);
@@ -21,7 +21,7 @@ class CustomLangButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-          padding:  EdgeInsets.symmetric(horizontal:17.getWidth(), vertical: 4.0),
+        padding: EdgeInsets.symmetric(horizontal: 17.getWidth(), vertical: 4.0),
         decoration: ShapeDecoration(
           color: Colors.white,
           shape: RoundedRectangleBorder(
@@ -29,28 +29,36 @@ class CustomLangButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(999),
           ),
         ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(Get.locale.toString() == ConstantKeys.arabicLang ? " English"   : "العربية " ,
-           style:  FontTextStyle.labelSmall.copyWith(color: AppColors.neutral900))
-            ,const Icon(Icons.language ,
+            Text(
+                Get.locale.toString() == ConstantKeys.arabicLang
+                    ? " English"
+                    : "العربية ",
+                style: FontTextStyle.labelMedium
+                    .copyWith(color: AppColors.neutral900 ,
+                fontFamily:Get.locale.toString() == ConstantKeys.arabicLang
+                    ? Fonts.DINNextLTArabic
+                    :Fonts.SalmaArabic
+                    ),
+            ),
+            const Icon(
+              Icons.language,
               color: AppColors.neutral900,
-              size: 16,),
+              size: 16,
+            ),
           ],
-
         ),
       ),
       onTap: () {
         // Get.locale.toString() ==
         //     ConstantKeys.arabicLang
         //     ?changeLangToEnglish():changeLangToArabic();
-
       },
     );
   }
-
 
   void saveLanguageToDisk(String lang) {
     LocalStorageManager.saveLanguageToDisk(lang);
@@ -64,9 +72,9 @@ class CustomLangButton extends StatelessWidget {
   }
 
   void changeLangToArabic() {
-      saveLanguageToDisk(ConstantKeys.arabic);
-      localization.changeLocale(ConstantKeys.arabic);
-      Get.updateLocale(const Locale('ar', 'AR'));
-      currentLang = localization.getCurrentLocal();
+    saveLanguageToDisk(ConstantKeys.arabic);
+    localization.changeLocale(ConstantKeys.arabic);
+    Get.updateLocale(const Locale('ar', 'AR'));
+    currentLang = localization.getCurrentLocal();
   }
 }

@@ -4,6 +4,7 @@ import 'package:untitled3/uiHelpers/font_text_style.dart';
 import 'package:untitled3/utils/constant.dart';
 
 import '../UIHelpers/images.dart';
+import '../uiHelpers/app_spacing.dart';
 import '../utils/constant_keywords.dart';
 import 'back_button.dart';
 
@@ -39,7 +40,7 @@ class CustomAppBar extends StatelessWidget {
           right: 10.getWidth(),
         ),
         child: child ??
-            Stack(
+            Row(
               children: [
                 showBackBtn == true
                     ? Align(
@@ -54,11 +55,15 @@ class CustomAppBar extends StatelessWidget {
                   ),
                 )
                     : const SizedBox(),
+                SizedBox(width: AppSpacing.xs.getWidth(),),
                 Align(
                   alignment: Alignment.center,
-                  child: Text(
-                      title ?? "",
-                      style: FontTextStyle.headingX.copyWith(color: Colors.white)
+                  child: Container(
+                    width: Get.size.width*0.8,
+                    child: Text(
+                        title ?? "",
+                        style: FontTextStyle.headingX.copyWith(color: Colors.white)
+                    ),
                   ),
                 ),
 

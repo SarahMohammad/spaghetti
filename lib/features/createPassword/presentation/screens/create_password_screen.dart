@@ -34,116 +34,117 @@ class CreatePasswordScreen  extends StatelessWidget {
               child: Form(
                 key: loginFormKey,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: SingleChildScrollView(
-                  child: IntrinsicHeight(
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.height - 70.getHeight(),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 25.getWidth(), vertical: 2.getHeight()),
-                            child: IntrinsicHeight(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CustomBackButton(),
-                                  SizedBox(height: 20.getHeight(),),
-                                  Text(
-                                    createNewPassword.tr,
-                                    style: FontTextStyle.heading2X ,
-                                  ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: IntrinsicHeight(
+                          child: Column(children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 25.getWidth(), vertical: 2.getHeight()),
+                              child: IntrinsicHeight(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CustomBackButton(),
+                                    SizedBox(height: 20.getHeight(),),
+                                    Text(
+                                      createNewPassword.tr,
+                                      style: FontTextStyle.heading2X ,
+                                    ),
 
-                                  SizedBox(height: 10.getHeight()),
-                                  Visibility(
-                                visible: createPasswordController.errorSnackBarVisibility,
-                                child: ErrorMsgView(title: incorrectUserNameOrPass.tr ),
-                              ),
-                                  SizedBox(height: 7.getHeight()),
-                                  CustomFormField(
-                                    controller: createPasswordController.newPasswordController,
-                                    hintText: enterUserName.tr,
-                                    obscureText: createPasswordController.hidePassword,
-                                    suffix: InkWell(
-                                      onTap: () => createPasswordController.showPassword(),
-                                      child: Padding(
-                                        padding:
-                                        const EdgeInsets.symmetric(horizontal: 16),
-                                        child: SvgPicture.asset(
-                                          createPasswordController.hidePassword
-                                              ? AllIcons.hidePassword
-                                              : AllIcons.eye,
-                                          fit: BoxFit.contain,
+                                    SizedBox(height: 10.getHeight()),
+                                    Visibility(
+                                      visible: createPasswordController.errorSnackBarVisibility,
+                                      child: ErrorMsgView(title: incorrectUserNameOrPass.tr ),
+                                    ),
+                                    SizedBox(height: 7.getHeight()),
+                                    CustomFormField(
+                                      controller: createPasswordController.newPasswordController,
+                                      hintText: enterUserName.tr,
+                                      obscureText: createPasswordController.hidePassword,
+                                      suffix: InkWell(
+                                        onTap: () => createPasswordController.showPassword(),
+                                        child: Padding(
+                                          padding:
+                                          const EdgeInsets.symmetric(horizontal: 16),
+                                          child: SvgPicture.asset(
+                                            createPasswordController.hidePassword
+                                                ? AllIcons.hidePassword
+                                                : AllIcons.eye,
+                                            fit: BoxFit.contain,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    isRequired: true,
-                                    labelText: newPassword.tr,
+                                      isRequired: true,
+                                      labelText: newPassword.tr,
 
-                                  ),
-                                  SizedBox(height: AppSpacing.l.getHeight()),
-                                  CustomFormField(
-                                    controller: createPasswordController.confirmNewPasswordController,
-                                    hintText: enterPassword.tr,
-                                    obscureText: createPasswordController.hidePassword,
-                                    suffix: InkWell(
-                                      onTap: () => createPasswordController.showPassword(),
-                                            child: Padding(
-                                    padding:
-                                    const EdgeInsets.symmetric(horizontal: 16),
-                                    child: SvgPicture.asset(
-                                      createPasswordController.hidePassword
-                                          ? AllIcons.hidePassword
-                                          : AllIcons.eye,
-                                      fit: BoxFit.contain,
                                     ),
-                                  ),
+                                    SizedBox(height: AppSpacing.l.getHeight()),
+                                    CustomFormField(
+                                      controller: createPasswordController.confirmNewPasswordController,
+                                      hintText: enterPassword.tr,
+                                      obscureText: createPasswordController.hidePassword,
+                                      suffix: InkWell(
+                                        onTap: () => createPasswordController.showPassword(),
+                                        child: Padding(
+                                          padding:
+                                          const EdgeInsets.symmetric(horizontal: 16),
+                                          child: SvgPicture.asset(
+                                            createPasswordController.hidePassword
+                                                ? AllIcons.hidePassword
+                                                : AllIcons.eye,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                      labelText: confirmNewPassword.tr,
+                                      isRequired: true,
+                                    ),
+                                  ],
                                 ),
-                                    labelText: confirmNewPassword.tr,
-                                    isRequired: true,
-                                  ),
-                                ],
-                              ),
 
+                              ),
                             ),
-                          ),
-                          const Spacer(),
-
-                          Column(
-                            children: [
-
-                              Divider(height: 1.getHeight(),color: AppColors.neutral500,),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: AppSpacing.l.getWidth(), vertical: AppSpacing.m.getHeight()),
-                                child: SizedBox(
-                                  height: 52.getHeight(),
-                                  width: double.infinity,
-                                  child:  Obx(() =>CustomButton(
-                                    key,
-                                    radius: 40,
-                                    buttonTitle: resetPassword.tr,
-                                    padding: EdgeInsets.zero,
-                                    // backgroundColor: createPasswordController.isLoginButtonActive.value?
-                                    // AppColors.primary100 :
-                                    // AppColors.neutral500,
-                                    onPressed: () {
-                                      createPasswordController.isLoginButtonActive.value?
-                                      Get.toNamed(
-                                          RoutesConstants.verifyIdentityScreen):
-                                      createPasswordController.toggleSnackBarVisibility() ;
-                                    },
-                                    buttonType: ButtonType.secondary,
-                                    isDisabled:createPasswordController.isLoginButtonActive.value? false:true,
-                                  )
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                            const Spacer(),
+                          ],),
+                        ),
                       ),
                     ),
-                  ),
+
+                    Column(
+                      children: [
+
+                        Divider(height: 1.getHeight(),color: AppColors.neutral500,),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: AppSpacing.l.getWidth(), vertical: AppSpacing.m.getHeight()),
+                          child: SizedBox(
+                            height: 52.getHeight(),
+                            width: double.infinity,
+                            child:  Obx(() =>CustomButton(
+                              key,
+                              radius: 40,
+                              buttonTitle: resetPassword.tr,
+                              padding: EdgeInsets.zero,
+                              // backgroundColor: createPasswordController.isLoginButtonActive.value?
+                              // AppColors.primary100 :
+                              // AppColors.neutral500,
+                              onPressed: () {
+                                createPasswordController.isLoginButtonActive.value?
+                                Get.toNamed(
+                                    RoutesConstants.requestSentScreen):
+                                createPasswordController.toggleSnackBarVisibility() ;
+                              },
+                              buttonType: ButtonType.primary,
+                              isDisabled:createPasswordController.isLoginButtonActive.value? false:true,
+                            )
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),

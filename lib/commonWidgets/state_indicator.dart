@@ -37,11 +37,12 @@ class StateIndicator extends StatelessWidget {
         Container(
           width: 120.getWidth(),
           height: 120.getWidth(),
-          padding:  EdgeInsets.all(36.getWidth()),
+          padding:  EdgeInsets.all(30.getWidth()),
           decoration: ShapeDecoration(
             color: fillColor ?? AppColors.primary100,
             shape: RoundedRectangleBorder(
-              side: BorderSide(width: 8.getWidth(), color: borderColor ?? AppColors.brand200),
+              side: BorderSide(width: 8.getWidth(),
+                  color: borderColor ?? AppColors.brand200),
               borderRadius: BorderRadius.circular(999),
             ),
           ),

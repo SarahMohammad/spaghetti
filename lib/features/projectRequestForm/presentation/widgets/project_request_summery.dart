@@ -11,7 +11,8 @@ import '../../../../UIHelpers/images.dart';
 
 class ProjectRequestSummery extends StatelessWidget {
   final bool isCard;
-   const ProjectRequestSummery({Key? key,  this.isCard = true}) : super(key: key);
+  final bool isHeaderVisibile;
+   const ProjectRequestSummery({Key? key,  this.isCard = true, this.isHeaderVisibile =true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +35,11 @@ class ProjectRequestSummery extends StatelessWidget {
           // Text('Request Details',
           //     style: FontTextStyle.headingLarge),
           // Header
-          Text(
+          isHeaderVisibile ?Text(
             'Summary',
             style: FontTextStyle.headingLarge,
-          ),
-           SizedBox(height: AppSpacing.xl.getHeight()),
+          ) :  const SizedBox() ,
+          isHeaderVisibile ? SizedBox(height: AppSpacing.xl.getHeight()):const SizedBox(),
 
           Row(
             children: [

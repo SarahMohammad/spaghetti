@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:untitled3/commonWidgets/search_box.dart';
 import 'package:untitled3/commonWidgets/sliver_app_bar_container.dart';
+import 'package:untitled3/features/services/presentation/controller/services_controller.dart';
 import 'package:untitled3/features/services/widgets/service_card_widget.dart';
-import 'package:untitled3/features/systems/widgets/system_card_widget.dart';
-import 'package:untitled3/uiHelpers/app_colors.dart';
+
 import 'package:untitled3/uiHelpers/app_spacing.dart';
-import 'package:untitled3/uiHelpers/font_text_style.dart';
 import 'package:untitled3/utils/constant.dart';
 
-import '../../../UIHelpers/icons.dart';
-import '../../../UIHelpers/images.dart';
-import '../../../commonWidgets/state_indicator.dart';
-import '../../../core/app_states/app_state_handler_widget.dart';
-import '../controller/services_controller.dart';
-import '../widgets/service_category_widget.dart';
+import '../../../../UIHelpers/icons.dart';
+import '../../../../UIHelpers/images.dart';
+import '../../../../commonWidgets/state_indicator.dart';
+import '../../../../core/app_states/app_state_handler_widget.dart';
+import '../../widgets/service_category_widget.dart';
 
 class ServicesScreen extends StatelessWidget {
   ServicesScreen({Key? key}) : super(key: key);
@@ -31,8 +28,12 @@ class ServicesScreen extends StatelessWidget {
               pinned: true,
               floating: false,
               snap: false,
-              expandedHeight: servicesController.isSearching ? 150.0 : 110.0,
-              collapsedHeight: servicesController.isSearching ? 150.0 : 80,
+              expandedHeight: servicesController.isSearching
+                  ? Get.size.height * 0.2
+                  : Get.size.height * 0.13,
+              collapsedHeight: servicesController.isSearching
+                  ? Get.size.height * 0.13
+                  : Get.size.height * 0.11,
               leading: SizedBox(),
               flexibleSpace: Stack(
                 children: <Widget>[
@@ -86,22 +87,28 @@ class ServicesScreen extends StatelessWidget {
                     ),
                   ),
             // The list of ServiceCardWidget
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: AppSpacing.m.getHeight(),
-                    horizontal: AppSpacing.l.getWidth(),
+            servicesController.isSearching &&
+                    servicesController.searchResult.length == 0
+                ? SliverToBoxAdapter(
+                    child: SizedBox(),
+                  )
+                : SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) => Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: AppSpacing.m.getHeight(),
+                          horizontal: AppSpacing.l.getWidth(),
+                        ),
+                        child: ServiceCardWidget(
+                          title: servicesController.services[index],
+                          onPress: () {
+                            servicesController.handleServicePress(index);
+                          },
+                        ),
+                      ),
+                      childCount: servicesController.services.length,
+                    ),
                   ),
-                  child: ServiceCardWidget(title: servicesController.services[index] ,
-                  onPress: (){
-                    servicesController.handleServicePress(index);
-                  },),
-                ),
-                childCount: servicesController.services.length,
-              ),
-            ),
-
           ],
         ),
       ),

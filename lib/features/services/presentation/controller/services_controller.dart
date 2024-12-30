@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:untitled3/utils/constant.dart';
 
-import '../../../commonWidgets/bottomSheet/bottom_sheet_action.dart';
-import '../../../core/base_controller.dart';
 
 import 'package:get/get.dart';
+import 'package:untitled3/utils/constant.dart';
 
-import '../../../router/routes_constants.dart';
-import '../../../uiHelpers/app_spacing.dart';
-import '../../../utils/service_enum.dart';
-import '../widgets/category_grid_tile.dart';
+import '../../../../commonWidgets/bottomSheet/bottom_sheet_action.dart';
+import '../../../../core/base_controller.dart';
+import '../../../../router/routes_constants.dart';
+import '../../../../uiHelpers/app_spacing.dart';
+import '../../../../utils/service_enum.dart';
+import '../../widgets/category_grid_tile.dart';
+
 
 class ServicesController extends BaseController {
   // State variables
@@ -24,7 +25,8 @@ class ServicesController extends BaseController {
 
   void handleServicePress(int index) {
     Get.toNamed(
-        RoutesConstants.requestFormScreen , arguments: ServiceType.values[index]);
+        RoutesConstants.requestFormScreen ,
+        arguments: ServiceType.values[index]);
   }
 
   @override
@@ -70,4 +72,30 @@ class ServicesController extends BaseController {
     );
   }
 
+
+
+
+
+
+  //refactored part
+  final Map<String, TextEditingController> textControllers = {};
+
+  // Initialize controllers dynamically based on fields
+  void initializeControllers(List<String> fieldNames) {
+    for (var name in fieldNames) {
+      textControllers[name] = TextEditingController();
+    }
+  }
+
+  // Dispose of controllers
+  @override
+  void onClose() {
+    textControllers.values.forEach((controller) => controller.dispose());
+    super.onClose();
+  }
+
+  // Retrieve text values
+  Map<String, String> getFormData() {
+    return textControllers.map((key, controller) => MapEntry(key, controller.text));
+  }
 }

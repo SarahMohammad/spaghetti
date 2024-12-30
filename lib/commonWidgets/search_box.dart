@@ -20,6 +20,7 @@ class SearchBox extends StatelessWidget {
   final Color? suffixColor;
   final Color? prefixIconColor;
   final Color? backgroundColor;
+  final Color? borderColor;
   final TextStyle? titleStyle;
   final void Function()? onTap;
   final void Function(String?)? onSearch;
@@ -37,6 +38,7 @@ class SearchBox extends StatelessWidget {
     this.suffixIconSize,
     this.suffixIcon,
     this.suffixColor,
+    this.borderColor,
     this.onSearch,
     this.isPrefixIconVisible = true,
     this.suffixIconExist = false,
@@ -53,7 +55,7 @@ class SearchBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor ?? Colors.white,
         border: Border.all(
-          color: AppColors.brand500,
+          color: borderColor ?? AppColors.brand500,
         ),
         borderRadius: BorderRadius.circular(50),
       ),
