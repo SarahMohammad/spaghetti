@@ -35,9 +35,13 @@ class AppColors {
   static const brand100 = Color(0xffF8F4EF);
   static const brand200 = Color(0xffECE2D4);
   static const brand500 = Color(0xffBA9863);
+  static const brand400 = Color(0xFF805E45);
   static const brand600 = Color(0xff9C7A45);
   static const brand700 = Color(0xff7F6438);
   static const brand900 = Color(0xff443636);
+
+  static const brand300 = Color(0xFF70523C);
+  static const darkBrown = Color(0xFF332929);
 
 }
 

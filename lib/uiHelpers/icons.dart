@@ -15,6 +15,7 @@ class AllIcons {
   static const String plusIcon = "assets/images/icon_plus.svg";
   static const String deleteIcon = "assets/images/icon_delete.svg";
   static const String searchBoxIcon = "assets/images/icon_search_box.svg";
+  static const String notificationIcon = "assets/images/icon_notification.svg";
   //bottom navigation icons
   static const String homeIcon = "assets/images/icon_home.svg";
   static const String serviceIcon = "assets/images/icon_service.svg";
@@ -42,5 +43,8 @@ class AllIcons {
   static const String settingsIcon = "assets/images/icon_settings.svg";
   static const String arrowUpIcon = "assets/images/icon_arrow_up.svg";
   static const String outLookIcon = "assets/images/icon_outlook.svg";
+  static const String heartIcon = "assets/images/icon_heart.svg";
+  static const String filledHeartIcon = "assets/images/icon_heart_filled.svg";
+  static const String closeIcon = "assets/images/icon_close.svg";
 
 }

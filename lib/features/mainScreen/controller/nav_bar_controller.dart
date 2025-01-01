@@ -42,9 +42,6 @@ class NavBarController extends BaseController {
 
   void setCurrentNavIndexState(int val) {
     _currentNavIndex = val;
-    if (kDebugMode) {
-      debugPrint(_currentNavIndex.toString());
-    }
     update();
   }
 }

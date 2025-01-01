@@ -28,9 +28,12 @@ void main() async {
   await GetStorage.init();
   await Get.find<ILocalizationService>().loadTranslationsFiles();
 
-  runApp(
-     const EVC(),
-  );
+  // Lock the screen orientation to portrait mode
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((_) {
+    runApp(const EVC(),);
+  });
 
 }
 

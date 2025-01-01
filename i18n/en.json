@@ -48,6 +48,13 @@
     "parties": "Parties",
     "authorizedPersonnel": "Authorized Personnel",
     "similarProjects": "Similar Projects",
-    "addParty": "Add party"
+    "addParty": "Add party",
+    "favorites": "Favorites",
+    "systems": "Systems",
+    "services": "Sevices",
+    "home": "Home",
+    "viewAll": "View all",
+    "showMore": "Show more",
+    "showLess": "Show less"
 
 }

@@ -48,7 +48,15 @@
     "parties": "Parties",
     "authorizedPersonnel": "authorized personnel",
     "similarProjects": "similar projects",
-    "addParty": "Add party"
+    "addParty": "Add party",
+    "forgetPasswordQ": "هل نسيت كلمة السر؟",
+    "favorites": "المفضلة",
+    "systems": "الأنظمة",
+    "services": "الخدمات",
+    "home": "الرئيسية",
+    "viewAll": "عرض الكل",
+    "showMore": "إظهار المزيد",
+    "showLess": "إظهار أقل"
 
 
 }

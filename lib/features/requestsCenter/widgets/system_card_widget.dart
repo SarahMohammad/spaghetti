@@ -9,8 +9,8 @@ import '../../../UIHelpers/icons.dart';
 
 
 class SystemCardWidget extends StatelessWidget {
-  final void Function()? onClose;
-  const SystemCardWidget({Key? key, this.onClose}) : super(key: key);
+  final String? title;
+  const SystemCardWidget({Key? key, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +43,14 @@ class SystemCardWidget extends StatelessWidget {
            SizedBox(height: AppSpacing.m.getHeight(),),
            Row(
              children: [
-               Text("SAP Arabia",
+               Text(title ??"SAP Arabia",
                style: FontTextStyle.labelLarge.copyWith(color: AppColors.neutral900),),
                SvgPicture.asset(
                  AllIcons.systemSmallIcon,
                  fit: BoxFit.contain,
                ),
            ],),
-            SizedBox(height: AppSpacing.m.getHeight(),),
+            SizedBox(height: AppSpacing.s.getHeight(),),
             Text("Lorem ipsum dolor sit amet consectetur. Ridiculus orci gravida adipiscing venenatis accumsan enim.",
             style: FontTextStyle.paragraphMedium,),
            Text("read more" ,

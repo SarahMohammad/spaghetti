@@ -104,6 +104,8 @@ class ServicesScreen extends StatelessWidget {
                           onPress: () {
                             servicesController.handleServicePress(index);
                           },
+                          onFavPressed: (){},
+                          isFav: false,
                         ),
                       ),
                       childCount: servicesController.services.length,

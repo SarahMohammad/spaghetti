@@ -47,5 +47,13 @@ const String parties ="parties";
 const String authorizedPersonnel ="authorizedPersonnel";
 const String similarProjects ="similarProjects";
 const String addParty ="addParty";
+const String favorites ="favorites";
+const String systems ="systems";
+const String services ="services";
+const String home ="home";
+const String viewAll ="viewAll";
+const String showMore ="showMore";
+const String showLess ="showLess";
+
 
 

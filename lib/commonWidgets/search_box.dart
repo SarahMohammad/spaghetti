@@ -62,7 +62,6 @@ class SearchBox extends StatelessWidget {
       child: Center(
         child: TextFormField(
           // controller: searchController,
-
             style: FontTextStyle.labelMedium,
             controller: controller,
             textAlignVertical: TextAlignVertical.center,

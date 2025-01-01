@@ -11,12 +11,18 @@ import '../../../UIHelpers/icons.dart';
 
 class ServiceCardWidget extends StatelessWidget {
   final String title;
+  final bool isFav;
   final VoidCallback onPress;
+  final void Function() onFavPressed;
+  final void Function()? onShowDescriptionPress;
 
   const ServiceCardWidget({
     Key? key,
     required this.title,
     required this.onPress,
+    required this.onFavPressed,
+    this.onShowDescriptionPress,
+  required this.isFav
   }) : super(key: key);
 
 
@@ -51,25 +57,33 @@ class ServiceCardWidget extends StatelessWidget {
                         style: FontTextStyle.labelX.copyWith(color: AppColors.neutral900),
                       ),
                     ),
-                    SvgPicture.asset(AllIcons.favIcon),
+                    InkWell(
+                        onTap: onFavPressed,
+                        child: isFav ?
+                            SvgPicture.asset(AllIcons.filledHeartIcon):
+                        SvgPicture.asset(AllIcons.favIcon),
+                    ),
 
                   ]),
                 // SizedBox(height: AppSpacing.l.getHeight(),),
                 const Spacer(),
-                Row(
-                  children: [
+                InkWell(
+                  onTap: onShowDescriptionPress ,
+                  child: Row(
+                    children: [
 
-                    SvgPicture.asset(AllIcons.infoIcon),
-                    SizedBox(width:AppSpacing.xxs.getWidth()),
-                    Text(
-                      'Show Description',
-                      style: FontTextStyle.labelMedium.copyWith(
-                          color: AppColors.neutral800,
-                          decoration: TextDecoration.underline,
-                          decorationColor: AppColors.neutral800
+                      SvgPicture.asset(AllIcons.infoIcon),
+                      SizedBox(width:AppSpacing.xxs.getWidth()),
+                      Text(
+                        'Show Description',
+                        style: FontTextStyle.labelMedium.copyWith(
+                            color: AppColors.neutral800,
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.neutral800
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),

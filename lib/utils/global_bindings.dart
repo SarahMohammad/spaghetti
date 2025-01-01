@@ -1,10 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled3/features/createPassword/presentation/controllers/create_password_controller.dart';
 import 'package:untitled3/features/forgetPassword/presentation/controller/forget_password_controller.dart';
+import 'package:untitled3/features/home/presentation/controller/services_systems_search_controller.dart';
 import 'package:untitled3/features/mainScreen/controller/nav_bar_controller.dart';
 import 'package:untitled3/features/requestsCenter/controller/requests_center_controller.dart';
 import 'package:untitled3/features/verifyIdentity/presentation/controller/verify_identity_controller.dart';
 import '../features/home/presentation/controller/home_controller.dart';
+import '../features/home/presentation/controller/search_result_controller.dart';
 import '../features/login/presentation/controllers/login_controller.dart';
 import '../features/otp/presentation/controller/otp_controller.dart';
 import '../features/projectRequestForm/presentation/controller/request_form_controller.dart';
@@ -29,5 +32,7 @@ class GlobalBindings extends Bindings {
     Get.lazyPut<SystemsController>(() => SystemsController(), fenix: true);
     Get.lazyPut<ServicesController>(() => ServicesController(), fenix: true);
     Get.lazyPut<RequestsCenterController>(() => RequestsCenterController(), fenix: true);
+    Get.lazyPut<ServicesSystemsSearchController>(() => ServicesSystemsSearchController(), fenix: true);
+    Get.lazyPut<SearchResultController>(() => SearchResultController(), fenix: true);
     }
 }

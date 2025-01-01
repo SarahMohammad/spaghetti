@@ -3,6 +3,8 @@ import 'package:untitled3/features/createPassword/presentation/screens/create_pa
 import 'package:untitled3/features/forgetPassword/presentation/screens/request_sent_screen.dart';
 import 'package:untitled3/features/forgetPassword/presentation/screens/forget_password_screen.dart';
 import 'package:untitled3/features/home/presentation/screens/home_screen.dart';
+import 'package:untitled3/features/home/presentation/screens/recent_search_screen.dart';
+import 'package:untitled3/features/home/presentation/screens/search_result_screen.dart';
 import 'package:untitled3/features/mainScreen/presentation/main_screen.dart';
 import 'package:untitled3/features/requestsCenter/presentation/request_center_details.dart';
 import 'package:untitled3/features/requestsCenter/presentation/requests_center_screen.dart';
@@ -122,6 +124,20 @@ class AppRouter {
  GetPage(
       name: RoutesConstants.requestCenterDetailsScreen,
       page: () => RequestCenterDetails(),
+      transition: Transition.fade,
+      binding: GlobalBindings(),
+    ),
+
+GetPage(
+      name: RoutesConstants.recentSearchScreen,
+      page: () => RecentSearchScreen(),
+      transition: Transition.fade,
+      binding: GlobalBindings(),
+    ),
+
+GetPage(
+      name: RoutesConstants.searchResultScreen,
+      page: () => SearchResultScreen(),
       transition: Transition.fade,
       binding: GlobalBindings(),
     ),
