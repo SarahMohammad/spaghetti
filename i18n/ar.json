@@ -56,7 +56,10 @@
     "home": "الرئيسية",
     "viewAll": "عرض الكل",
     "showMore": "إظهار المزيد",
-    "showLess": "إظهار أقل"
+    "showLess": "إظهار أقل",
+    "requestService": "طلب الخدمة",
+    "goToSystem": "انتقل إلى النظام"
+
 
 
 }

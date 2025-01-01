@@ -55,6 +55,8 @@
     "home": "Home",
     "viewAll": "View all",
     "showMore": "Show more",
-    "showLess": "Show less"
+    "showLess": "Show less",
+    "requestService": "Request service",
+    "goToSystem": "Go to system"
 
 }

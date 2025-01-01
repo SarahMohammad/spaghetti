@@ -54,6 +54,8 @@ const String home ="home";
 const String viewAll ="viewAll";
 const String showMore ="showMore";
 const String showLess ="showLess";
+const String requestService ="requestService";
+const String goToSystem ="goToSystem";
 
 
 

@@ -9,119 +9,79 @@ import 'bottom_sheet_top_line.dart';
 import 'close_button.dart';
 
 showBottomActionModelSheet(
-    BuildContext context, {
-      String? title,
-      Color? titleColor,
-      required Widget content,
-      Widget buttonSection = const SizedBox(),
-      bool showTopLine = true,
-      Function? onClose,
-      bool hasScrolling = true,
-      bool isScrollControlled = false,
-      bool isDismissible = true,
-      bool enableDrag = true,
-      bool showCloseIcon = false,
-      Color backgroundColor = Colors.white,
-      double? height,
-      double? bottomSheetHeight,
-      double? contentHeight,
-      TextStyle? titleStyle,
-      //    String? headerImage,
-    }) {
+  BuildContext context, {
+  String? title,
+  Color? titleColor,
+  double? height,
+  double? bottomSheetHeight,
+  double? contentHeight,
+  required Widget content,
+  Widget buttonSection = const SizedBox(),
+  bool showTopLine = true,
+  Function? onClose,
+  bool hasScrolling = true,
+  bool isScrollControlled = false,
+  bool isDismissible = true,
+  bool enableDrag = true,
+  bool showCloseIcon = false,
+  Color backgroundColor = Colors.white,
+  TextStyle? titleStyle,
+}) {
   return showModalBottomSheet(
-      context: context,
-      isDismissible: isDismissible,
-      enableDrag: enableDrag,
-      isScrollControlled: isScrollControlled,
-      backgroundColor: backgroundColor,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25), topRight: Radius.circular(25)),
+    context: context,
+    isDismissible: isDismissible,
+    enableDrag: enableDrag,
+    isScrollControlled: true,
+    // Allow the bottom sheet to take flexible height
+    backgroundColor: backgroundColor,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(25),
+        topRight: Radius.circular(25),
       ),
-      builder: (context) {
-        return Container(
-          height : bottomSheetHeight ?? Get.size.height - 60.getHeight(),
-          child: Padding(
-            padding: EdgeInsets.only(
-                left: 24.getWidth(),
-                right: 24.getWidth(),
-                top: 15.getHeight(),
-                bottom: MediaQuery.of(context).viewInsets.bottom + 10),
-            child: Wrap(
-              children: [
-                showTopLine ? const BottomSheetTopLine() : const SizedBox(),
-                SizedBox(height: 20.getHeight()),
-                Container(
-                  margin:  EdgeInsets.only(
-                    top: 1.getHeight(),
-                    bottom: 7.getHeight(),
-                  ),
-                  child: title != null
-                      ? Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Text(
-                          title,
-                          style: titleStyle ??
-                              FontTextStyle.labelX.copyWith(color: AppColors.neutral800),
-                        ),
-                      ),
-                      showCloseIcon
-                          ? Align(
-                        alignment: Get.locale.toString() ==
-                            ConstantKeys.arabicLang
-                            ? Alignment.centerLeft
-                            : Alignment.centerRight,
-                        child: CustomCloseButton(
-                          onClose: () {
-                            onClose ?? Get.back();
-                          },
-                        ),
-                      )
-                          : const SizedBox(),
-                    ],
-                  )
-                      : const SizedBox(),
-                ),
-                // hasScrolling
-                //     ?
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      height: height ?? Get.height * 0.60,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 9.getWidth(),
-                            right: 9.getWidth(),
-                            top: 9.getHeight(),
-                            bottom: MediaQuery.of(Get.context!).viewInsets.bottom + 10),
-                        child: Wrap(
-                          children: [
-                            const SizedBox(),
-                            SizedBox(height: 25.getHeight()),
-                            Container(
-                                width: Get.width,
-                                height: contentHeight ?? Get.size.height/3,
-                                margin:  EdgeInsets.only(
-                                  top: 12.getHeight(),
-                                  bottom: 25.getHeight(),
-                                ),
-                                child: content
-                            ),
-                          ],
-                        ),
-                      ),
+    ),
+    builder: (context) {
+      return Padding(
+        padding: EdgeInsets.only(
+          left: 24.getWidth(),
+          right: 24.getWidth(),
+          top: 15.getHeight(),
+          bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+        ),
+        child: Wrap(
+          children: [
+            // Optional top line
+            showTopLine ? const BottomSheetTopLine() : const SizedBox(),
+            SizedBox(height: 20.getHeight()),
+            // Title Section
+            if (title != null)
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      title,
+                      textAlign: TextAlign.center,
+                      style: titleStyle ??
+                          FontTextStyle.labelX
+                              .copyWith(color: AppColors.neutral800),
                     ),
-                    buttonSection,
-                  ],
-                ),
-                    // : content,
-                hasScrolling ? const SizedBox() : buttonSection,
-              ],
-            ),
-          ),
-        );
-      });
+                  ),
+                  if (showCloseIcon)
+                    CustomCloseButton(
+                      onClose: () {
+                        onClose != null ? onClose() : Get.back();
+                      },
+                    ),
+                ],
+              ),
+            const SizedBox(height: 12),
+            // Content Section
+            content,
+            // Button Section
+            buttonSection,
+          ],
+        ),
+      );
+    },
+  );
 }
