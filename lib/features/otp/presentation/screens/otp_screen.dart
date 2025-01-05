@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:untitled3/commonWidgets/buttons/custom_button.dart';
+import 'package:untitled3/uiHelpers/app_radius.dart';
 import 'package:untitled3/utils/constant.dart';
 
 import '../../../../commonWidgets/back_button.dart';
@@ -100,7 +101,7 @@ class OtpScreen extends StatelessWidget {
                                                 MainAxisAlignment.spaceBetween,
                                                 //textStyle:
                                                 //  FontTextStyle.title32MuseoSans_700,
-                                                length: 4,
+                                                length: 5,
                                                 obscureText: false,
                                                 blinkWhenObscuring: true,
                                                 animationType: AnimationType.fade,
@@ -140,10 +141,10 @@ class OtpScreen extends StatelessWidget {
                                                   // disabledColor: oTPController.isValid.value
                                                   //     ? DefaultThemeColors.blueGrey
                                                   //     : Colors.red,
-                                                  borderWidth: 2,
+                                                  borderWidth: 1,
                                                   borderRadius: BorderRadius
-                                                      .circular(8),
-                                                  fieldHeight: 62,
+                                                      .circular(AppRadius.m),
+                                                  fieldHeight: 56,
                                                   fieldWidth: 48,
                                                 ),
                                                 errorTextSpace: 24.getHeight(),
@@ -158,9 +159,10 @@ class OtpScreen extends StatelessWidget {
                                                       .value = true;
                                                 },
                                                 onChanged: (value) {
-                                                  if (value.length != 4)
+                                                  if (value.length != 4) {
                                                     otpController.isSendButtonActive
                                                         .value = false;
+                                                  }
                                                 },
                                                 beforeTextPaste: (text) {
                                                   return true;
@@ -211,9 +213,9 @@ class OtpScreen extends StatelessWidget {
                                           ),
                                         ),
                                   )
-                                      : const SizedBox(),
+                                      : const SizedBox.shrink(),
 
-                                  SizedBox(height: AppSpacing.m.getHeight(),),
+                                  SizedBox(height: AppSpacing.l.getHeight(),),
                                   Row(
                                     children: [
                                       SvgPicture.asset(

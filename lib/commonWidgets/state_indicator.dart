@@ -55,6 +55,7 @@ class StateIndicator extends StatelessWidget {
             style: titleStyle ?? FontTextStyle.heading2X,
           ),
         ),
+        SizedBox(height:AppSpacing.l.getHeight() ,),
         SizedBox(
           child: Text(
             description ?? "",

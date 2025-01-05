@@ -37,8 +37,7 @@ class CountDownTimerWidget extends StatelessWidget {
               Duration(
                 seconds: seconds,
               ).inMilliseconds,
-          textStyle: FontTextStyle.labelMedium
-              .copyWith(color: AppColors.neutral900),
+          textStyle: FontTextStyle.labelMedium,
           widgetBuilder: (_, time) {
             if (time == null) {
               return Text(
@@ -52,7 +51,7 @@ class CountDownTimerWidget extends StatelessWidget {
                   ? '00:${time.sec.toString().padLeft(2, '0')}'
                   : '${time.min.toString().padLeft(2, '0')}:${time.sec.toString().padLeft(2, '0')}',
               style: FontTextStyle.labelLarge
-                  .copyWith(color: AppColors.neutral900),
+                  .copyWith(color: AppColors.neutral700),
             );
           },
           endWidget: Text(

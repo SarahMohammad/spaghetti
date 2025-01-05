@@ -29,11 +29,11 @@ class ServicesScreen extends StatelessWidget {
               floating: false,
               snap: false,
               expandedHeight: servicesController.isSearching
-                  ? Get.size.height * 0.2
-                  : Get.size.height * 0.13,
+                  ? Get.size.height * 0.19
+                  : Get.size.height * 0.12,
               collapsedHeight: servicesController.isSearching
-                  ? Get.size.height * 0.13
-                  : Get.size.height * 0.11,
+                  ? Get.size.height * 0.19
+                  : Get.size.height * 0.12,
               leading: SizedBox(),
               flexibleSpace: Stack(
                 children: <Widget>[
@@ -89,8 +89,8 @@ class ServicesScreen extends StatelessWidget {
             // The list of ServiceCardWidget
             servicesController.isSearching &&
                     servicesController.searchResult.length == 0
-                ? SliverToBoxAdapter(
-                    child: SizedBox(),
+                ? const SliverToBoxAdapter(
+                    child: SizedBox.shrink(),
                   )
                 : SliverList(
                     delegate: SliverChildBuilderDelegate(
@@ -100,15 +100,19 @@ class ServicesScreen extends StatelessWidget {
                           horizontal: AppSpacing.l.getWidth(),
                         ),
                         child: ServiceCardWidget(
-                          title: servicesController.services[index],
+                          title: servicesController.serviceList[index].title,
                           onPress: () {
                             servicesController.handleServicePress(index);
                           },
                           onFavPressed: (){},
                           isFav: false,
+                          onShowDescriptionPress: (){
+                            servicesController.showServiceDescriptionBottomSheet(
+                                servicesController.serviceList[index], key);
+                          },
                         ),
                       ),
-                      childCount: servicesController.services.length,
+                      childCount: servicesController.serviceList.length,
                     ),
                   ),
           ],

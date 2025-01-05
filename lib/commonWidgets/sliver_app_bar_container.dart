@@ -77,7 +77,8 @@ class SliverAppBarContainer extends StatelessWidget {
                   title: "Search",
                   prefixIconColor: Colors.white,
                   titleStyle: FontTextStyle.paragraphLarge
-                      .copyWith(color: Colors.white)),
+                      .copyWith(color: Colors.white),
+              ),
           ],
         ),
       ),

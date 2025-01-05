@@ -37,6 +37,7 @@ class ErrorMsgView extends StatelessWidget {
               AllIcons.errorIcon,
             ),
           ),
+          SizedBox(width: AppSpacing.xs.getWidth(),),
           Text(title,
               style: FontTextStyle.headingMedium.copyWith(
                 color: AppColors.errorMsgTextColor,

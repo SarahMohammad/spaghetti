@@ -85,9 +85,7 @@ class VerifyIdentityScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-
                             const Spacer(),
-
                           ],
                         ),
                       ),
@@ -97,7 +95,7 @@ class VerifyIdentityScreen extends StatelessWidget {
                       Padding(
                         padding:  EdgeInsets.symmetric(
                             horizontal:  AppSpacing.l.getWidth(),
-                            vertical: AppSpacing.xs.getHeight()),
+                            vertical: AppSpacing.m.getHeight()),
                         child: SizedBox(
                           height: 52.getHeight(),
                           width: double.infinity,

@@ -47,7 +47,6 @@ class RequestSentScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomBackButton(),
                         Container(
                           height:
                               MediaQuery.of(context).size.height - 140.getHeight(),

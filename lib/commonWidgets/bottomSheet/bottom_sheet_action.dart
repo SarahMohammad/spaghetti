@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:untitled3/UIHelpers/icons.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
 import 'package:untitled3/utils/constant.dart';
 
@@ -12,9 +14,6 @@ showBottomActionModelSheet(
   BuildContext context, {
   String? title,
   Color? titleColor,
-  double? height,
-  double? bottomSheetHeight,
-  double? contentHeight,
   required Widget content,
   Widget buttonSection = const SizedBox(),
   bool showTopLine = true,
@@ -24,7 +23,9 @@ showBottomActionModelSheet(
   bool isDismissible = true,
   bool enableDrag = true,
   bool showCloseIcon = false,
+  bool showPrefixIcon = false,
   Color backgroundColor = Colors.white,
+  TextAlign? titleAlignment ,
   TextStyle? titleStyle,
 }) {
   return showModalBottomSheet(
@@ -57,10 +58,12 @@ showBottomActionModelSheet(
             if (title != null)
               Row(
                 children: [
+                  if(showPrefixIcon)
+                    SvgPicture.asset(AllIcons.userIcon),
                   Expanded(
                     child: Text(
                       title,
-                      textAlign: TextAlign.center,
+                      textAlign: titleAlignment ?? TextAlign.start,
                       style: titleStyle ??
                           FontTextStyle.labelX
                               .copyWith(color: AppColors.neutral800),

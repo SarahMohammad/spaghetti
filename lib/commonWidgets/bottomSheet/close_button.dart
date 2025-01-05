@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:untitled3/UIHelpers/icons.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
 
 
@@ -14,7 +16,9 @@ class CustomCloseButton extends StatelessWidget {
           () {
             Get.back();
           },
-      child:  const Icon(Icons.close , color: AppColors.neutral900,),
+      child:  SvgPicture.asset(AllIcons.closeBsIcon ,
+        colorFilter: const ColorFilter.mode( AppColors.neutral900, BlendMode.srcIn)
+        ),
     );
   }
 }

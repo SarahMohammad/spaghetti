@@ -58,8 +58,19 @@
     "showMore": "إظهار المزيد",
     "showLess": "إظهار أقل",
     "requestService": "طلب الخدمة",
-    "goToSystem": "انتقل إلى النظام"
-
-
+    "goToSystem": "انتقل إلى النظام",
+    "readMore": "اقرأ المزيد",
+    "selectCategory": "اختر الفئة",
+    "submit" : "إرسال",
+    "cancel": "إلغاء",
+    "addReview": "أضف تعليق",
+    "trackRequest": "تتبع الطلب",
+    "goToHome": "انتقل إلى الرئيسية",
+    "requestSent": "تم إرسال الطلب",
+    "summary": "الملخص",
+    "requestFor": "طلب لـ",
+    "pendingOn": "معلق على",
+    "requestCenter": "مركز الطلب",
+    "approvalLine": "خط الموافقة"
 
 }

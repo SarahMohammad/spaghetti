@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:untitled3/commonWidgets/bottomSheet/bottom_sheet_action.dart';
 import 'package:untitled3/router/routes_constants.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
 import 'package:untitled3/uiHelpers/app_spacing.dart';
@@ -15,8 +14,8 @@ import '../../../../core/app_states/app_state_handler_widget.dart';
 import '../../../../uiHelpers/font_text_style.dart';
 import '../../../../utils/button_enum.dart';
 import '../../../../utils/translation_keys.dart';
-import '../../../mainScreen/controller/nav_bar_controller.dart';
-import '../../../requestsCenter/widgets/system_card_widget.dart';
+import '../../../../commonWidgets/system_card_widget.dart';
+import '../../../mainScreen/presentation/controller/nav_bar_controller.dart';
 import '../../../services/widgets/service_card_widget.dart';
 import '../../../services/widgets/service_category_widget.dart';
 import '../controller/home_controller.dart';
@@ -239,7 +238,7 @@ class HomeScreen extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(), // Prevents independent scrolling
             itemCount: homeController.visibleItems.length,
             itemBuilder: (context, index) {
-              final item = homeController.visibleItems[index].title;
+              final item = homeController.visibleItems[index];
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: AppSpacing.s.getHeight()),
                 child: Container(
@@ -254,7 +253,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   child: ListTile(
                     title: Text(
-                      item,
+                      item.title,
                       style: FontTextStyle.labelLarge.copyWith(
                         color: AppColors.neutral900,
                       ),
@@ -262,8 +261,9 @@ class HomeScreen extends StatelessWidget {
                     trailing: InkWell(
                         child: SvgPicture.asset(AllIcons.filledHeartIcon),
                       onTap: (){
-                        homeController.removeFromFavorites(index);
-
+                        // homeController.removeFromFavorites(index);
+                        homeController.toggleFavoriteStatus(
+                            item, context);
                       },
                     ),
                   ),
@@ -313,13 +313,16 @@ class HomeScreen extends StatelessWidget {
         SizedBox(height: AppSpacing.xs.getHeight()),
         ServiceCategoryWidget(
           title: "Administrative Services",
-          onTap: () {},
+          onTap: () {
+            homeController.openCategoryBottomSheet();
+          },
         ),
 
         SizedBox(height: AppSpacing.l.getHeight()),
         ListView.builder(
+          padding: EdgeInsets.zero,
           shrinkWrap: true, // Ensures the ListView does not take infinite height
-          physics: NeverScrollableScrollPhysics(), // Prevents ListView from scrolling independently
+          physics: const NeverScrollableScrollPhysics(), // Prevents ListView from scrolling independently
           itemCount: homeController.serviceList.length,
           itemBuilder: (context, index) {
             return Padding(
@@ -331,8 +334,7 @@ class HomeScreen extends StatelessWidget {
                 },
                 onFavPressed:(){
                   homeController.toggleFavoriteStatus(
-                      homeController.serviceList[index],
-                      index);
+                      homeController.serviceList[index], context);
                   },
                 isFav: homeController.serviceList[index].isFavorite ?? false,
                 onShowDescriptionPress:(){
@@ -383,13 +385,18 @@ class HomeScreen extends StatelessWidget {
         //   }).toList(),
         // ),
         ListView.builder(
-          shrinkWrap: true, // Ensures the ListView does not take infinite height
-          physics: NeverScrollableScrollPhysics(), // Prevents ListView from scrolling independently
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: homeController.systemsList.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.only(bottom: AppSpacing.m.getHeight()),
-              child: SystemCardWidget(title: homeController.systemsList[index].title,),
+              child: SystemCardWidget(title: homeController.systemsList[index].title,
+                  onReadMorePress:(){
+                    homeController.showServiceDescriptionBottomSheet(
+                        homeController.systemsList[index], key);
+                  }
+              ),
             );
           },
         ),

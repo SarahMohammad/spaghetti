@@ -6,7 +6,7 @@ class RoutesConstants {
   static const otpScreen = "/otpScreen";
   static const createPasswordScreen = "/createPasswordScreen";
   static const requestSentScreen = "/requestSentScreen";
-  static const requestFormScreen = "/requestFormScreen";
+  static const projectRequestFormScreen = "/requestFormScreen";
   static const homeScreen = "/homeScreen";
   static const mainScreen = "/mainScreen";
   static const systemsScreen = "/systemsScreen";
@@ -17,4 +17,8 @@ class RoutesConstants {
   static const requestCenterDetailsScreen = "/requestCenterDetailsScreen";
   static const recentSearchScreen = "/recentSearchScreen";
   static const searchResultScreen = "/searchResultScreen";
+  static const newTemplateRequestFromScreen = "/newTemplateRequestFromScreen";
+  static const nonRcuTemplateReviewRequestScreen = "/nonRcuTemplateReviewRequestScreen";
+  static const nonRcuFormDetailsScreen = "/nonRcuFormDetailsScreen";
+  static const newTemplateRequestFormDetails = "/newTemplateRequestFormDetails";
 }

@@ -12,6 +12,9 @@ class AppColors {
   static const errorMsgViewColor = Color(0xffF6DFDE);
   static const errorMsgTextColor = Color(0xffAB332A);
   static const darkWhite = Color(0xFFF4F4F4);
+  static const lightOrange = Color(0xFFFCEED8);
+  static const lightRed = Color(0xFFF4E2E0);
+  static const darkRed = Color(0xFFBC4A42);
 
 
 
@@ -19,6 +22,7 @@ class AppColors {
   static const positive100 = Color(0xffDBFAE2);
   static const positive500 = Color(0xff138C2E);
   static const lightGreen = Color(0xFFAEF3BD);
+  static const lightGreenShade = Color(0xFFD6FEED);
   static const darkGreen = Color(0xFF01AD64);
 
   static const warning100 = Color(0xffFCEED9);

@@ -10,8 +10,10 @@ class UploadFile {
 
   String name;
   String size;
+  String path;
+  String fileExtension;
 
-  UploadFile({this.name = "", this.size = ""});
+  UploadFile({this.name = "", this.size = "", this.path = "", this.fileExtension = ""});
 }
 
 class Comment {

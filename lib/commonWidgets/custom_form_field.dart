@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:untitled3/commonWidgets/required_label.dart';
+import 'package:untitled3/uiHelpers/app_radius.dart';
 import 'package:untitled3/uiHelpers/app_spacing.dart';
 import 'package:untitled3/uiHelpers/font_text_style.dart';
 import 'package:untitled3/utils/constant.dart';
@@ -116,7 +117,7 @@ class CustomFormField extends StatelessWidget {
               borderSide: const BorderSide(
                   color: AppColors.neutral500),
               borderRadius: BorderRadius.circular(
-                12.0,
+                AppRadius.m,
               ),
             ),
             focusedBorder: OutlineInputBorder(
@@ -126,7 +127,7 @@ class CustomFormField extends StatelessWidget {
                     : AppColors.brand500,
               ),
               borderRadius: BorderRadius.circular(
-                12.0,
+                AppRadius.m,
               ),
             ),
             errorBorder: OutlineInputBorder(
@@ -134,7 +135,7 @@ class CustomFormField extends StatelessWidget {
                 color: AppColors.errorColor,
               ),
               borderRadius: BorderRadius.circular(
-                12.0,
+                AppRadius.m,
               ),
             ),
             hintStyle: FontTextStyle.paragraphLarge.copyWith(color:  AppColors.neutral800)

@@ -28,7 +28,7 @@ class FilterTabs extends StatelessWidget {
     List<MapEntry<String, String>> tabOptions = [
       MapEntry("", AllIcons.filterIcon),
       MapEntry("All", AllIcons.requestIcon),
-      MapEntry("InProgress", AllIcons.timeIcon),
+      MapEntry("In Progress", AllIcons.timeIcon),
       MapEntry("Approved", AllIcons.checkCircleIcon),
       MapEntry("Rejected", AllIcons.closeCircleIcon),
       MapEntry("Cancelled", AllIcons.cancelIcon),

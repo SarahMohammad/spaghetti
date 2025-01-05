@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:untitled3/commonWidgets/bottomSheet/bottom_sheet_action.dart';
+import 'package:untitled3/uiHelpers/app_spacing.dart';
+import 'package:untitled3/utils/constant.dart';
 
 import '../../uiHelpers/app_colors.dart';
 import '../../uiHelpers/font_text_style.dart';
@@ -13,6 +17,8 @@ class CustomButton extends StatelessWidget {
   final Widget? child;
   final EdgeInsetsGeometry? padding;
   final bool isDisabled;
+  final bool? showSuffixIcon;
+  final SvgPicture? suffixIcon;
 
   const CustomButton(Key? key,
       {this.onPressed,
@@ -21,6 +27,8 @@ class CustomButton extends StatelessWidget {
       this.radius,
       this.child,
       this.padding,
+      this.showSuffixIcon = false,
+      this.suffixIcon,
       this.isDisabled = false,
       required this.buttonType })
       : super(key: key);
@@ -56,18 +64,28 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed ?? () {},
       splashColor: !isDisabled ? buttonType == ButtonType.primary ? AppColors.brand700 :
       buttonType == ButtonType.secondary  ?  AppColors.brand200 : AppColors.neutral200  : Colors.transparent,
-      child: child ??
-          Text(
-            buttonTitle ?? "",
-           style: FontTextStyle.labelMedium.copyWith(   color: isDisabled
-               ? AppColors.neutral700
-               : buttonType == ButtonType.primary
-               ? Colors.white
-               : buttonType == ButtonType.secondary
-               ? AppColors.brand500
-               : AppColors.neutral900,)
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          child ??
+              Text(
+                buttonTitle ?? "",
+               style: FontTextStyle.labelMedium.copyWith(
+                 color: isDisabled
+                   ? AppColors.neutral700
+                   : buttonType == ButtonType.primary
+                   ? Colors.white
+                   : buttonType == ButtonType.secondary
+                   ? AppColors.brand500
+                   : AppColors.neutral900,)
 
-          ),
+              ),
+          if(showSuffixIcon!)
+            SizedBox(width: AppSpacing.xs.getWidth(),),
+          if(showSuffixIcon!)
+            suffixIcon!
+        ],
+      ),
     );
   }
 }

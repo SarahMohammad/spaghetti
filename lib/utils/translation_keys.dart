@@ -56,6 +56,20 @@ const String showMore ="showMore";
 const String showLess ="showLess";
 const String requestService ="requestService";
 const String goToSystem ="goToSystem";
+const String readMore ="readMore";
+const String selectCategory ="selectCategory";
+const String submit ="submit";
+const String cancel ="cancel";
+const String addReview ="addReview";
+const String trackRequest ="trackRequest";
+const String goToHome ="goToHome";
+const String requestSent ="requestSent";
+const String summary ="summary";
+const String pendingOn ="pendingOn";
+const String requestFor ="requestFor";
+const String requestCenter ="requestCenter";
+const String approvalLine ="approvalLine";
+
 
 
 

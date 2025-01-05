@@ -61,7 +61,6 @@ class ForgetPasswordScreen extends StatelessWidget {
 
                                       CustomFormField(
                                        controller: forgetPasswordController.userNameController,
-                                        hintText: enterUserName.tr,
                                         isRequired: true,
                                         labelText: userName.tr,
                                       ),
@@ -69,7 +68,6 @@ class ForgetPasswordScreen extends StatelessWidget {
 
                                       CustomFormField(
                                          controller: forgetPasswordController.userTypeController,
-                                        hintText: enterUserTypeValues.tr,
                                         isRequired: true,
                                         labelText: userTypeValues.tr,
                                       ),
@@ -77,7 +75,6 @@ class ForgetPasswordScreen extends StatelessWidget {
 
                                       CustomFormField(
                                         //  controller: loginController.userNameController,
-                                        hintText: enterDateOfBirth.tr,
                                         readOnly: true,
                                         onTap: (){
                                           forgetPasswordController.openDatePicker(context);

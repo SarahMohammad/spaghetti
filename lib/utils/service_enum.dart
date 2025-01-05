@@ -1,1 +1,0 @@
-enum ServiceType {projectRequestForm , newTemplateRequestFrom, nonRcu}

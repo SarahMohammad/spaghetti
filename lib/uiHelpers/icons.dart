@@ -46,5 +46,6 @@ class AllIcons {
   static const String heartIcon = "assets/images/icon_heart.svg";
   static const String filledHeartIcon = "assets/images/icon_heart_filled.svg";
   static const String closeIcon = "assets/images/icon_close.svg";
+  static const String closeBsIcon = "assets/images/icon_bs_close.svg";
 
 }

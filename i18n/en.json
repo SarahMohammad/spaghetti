@@ -51,12 +51,27 @@
     "addParty": "Add party",
     "favorites": "Favorites",
     "systems": "Systems",
-    "services": "Sevices",
+    "services": "Services",
     "home": "Home",
     "viewAll": "View all",
     "showMore": "Show more",
     "showLess": "Show less",
     "requestService": "Request service",
-    "goToSystem": "Go to system"
+    "goToSystem": "Go to system",
+    "readMore": "Read more",
+    "selectCategory" : "Select category",
+    "submit" : "Submit",
+    "cancel": "Cancel",
+    "addReview": "Add review",
+    "trackRequest": "Track request",
+    "goToHome": "Go to Home",
+    "requestSent": "Request sent",
+    "summary": "Summary",
+    "requestFor": "Request for",
+    "requestCenter": "Request center",
+    "pendingOn": "Pending on",
+    "approvalLine": "Approval line"
+
+
 
 }

@@ -10,7 +10,21 @@ import '../../../uiHelpers/font_text_style.dart';
 
 class RequestCard extends StatelessWidget {
   final Function()? onSettingsClick;
-  const RequestCard({super.key,  this.onSettingsClick ,});
+  bool inProgress;
+  String category;
+  String status;
+  String date;
+  String? statusTime;
+  String title;
+  String? requestId;
+  String? pendingOn;
+
+  RequestCard({super.key,  this.onSettingsClick ,
+  this.inProgress = false, required  this.category,
+    required this.title, required this.status,
+    this.statusTime, required  this.date,
+     this.requestId, this.pendingOn ,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +44,7 @@ class RequestCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Administrative Services',
+                  category,
                   style: FontTextStyle.paragraphLarge.copyWith(color: AppColors.primary100),
                 ),
                 GestureDetector(child: SvgPicture.asset(AllIcons.settingsIcon),
@@ -39,16 +53,17 @@ class RequestCard extends StatelessWidget {
             ),
              SizedBox(height: AppSpacing.m.getHeight()),
             Text(
-              'Source For Real Estate / Committee Evaluation',
+              title,
               style: FontTextStyle.labelX.copyWith(color: AppColors.neutral900),
             ),
             SizedBox(height: AppSpacing.m.getHeight()),
             Text(
-              '29 Sep, 12:30 PM',
+              date,
               style: FontTextStyle.paragraphMedium.copyWith(color: AppColors.neutral800),
             ),
             SizedBox(height: AppSpacing.xl.getHeight()),
-            Row(
+
+            inProgress ? Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
@@ -63,7 +78,7 @@ class RequestCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Req 1218421',
+                          requestId!,
                           style:FontTextStyle.paragraphMedium.copyWith(color: AppColors.neutral900),
                         ),
                        SvgPicture.asset(AllIcons.systemSmallIcon)
@@ -84,7 +99,7 @@ class RequestCard extends StatelessWidget {
                       children: [
                         Center(child: Image.asset(Images.avatar,height: 35,)),
                         Text(
-                          'Ahmed Elhawari',
+                          pendingOn!,
                           style: FontTextStyle.paragraphMedium.copyWith(color: AppColors.neutral900),
                         ),
                       ],
@@ -92,10 +107,63 @@ class RequestCard extends StatelessWidget {
                   ],
                 ),
               ],
-            ),
+            ) : SizedBox.shrink(),
+
+
+            Container(
+
+              padding:  EdgeInsets.symmetric(horizontal: AppSpacing.xs.getWidth(),
+              vertical:AppSpacing.xs.getHeight() ),
+              decoration: ShapeDecoration(
+                color: _getStatusBackgroundColor(status),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                      '${status}${statusTime != null ? ": $statusTime" : ""}',
+                      style: FontTextStyle.labelMedium.copyWith(color: _getStatusTextColor(status))
+                  ),
+                ],
+              ),
+            )
+
           ],
         ),
       ),
     );
   }
+  Color _getStatusBackgroundColor(String status) {
+    switch (status.toLowerCase()) {
+      case "in progress":
+        return AppColors.lightOrange;
+      case "approved on":
+        return AppColors.lightGreenShade;
+      case "rejected on":
+        return AppColors.lightRed;
+      case "cancelled on":
+        return AppColors.darkWhite;
+      default:
+        return AppColors.neutral500;
+    }
+  }
+
+  Color _getStatusTextColor(String status) {
+    switch (status.toLowerCase()) {
+      case "in progress":
+        return AppColors.warning500;
+      case "approved on":
+        return AppColors.darkGreen;
+      case "rejected on":
+        return AppColors.darkRed;
+      case "cancelled on":
+        return AppColors.neutral900;
+      default:
+        return AppColors.neutral900;
+    }
+  }
+
 }

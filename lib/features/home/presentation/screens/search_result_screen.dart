@@ -13,7 +13,7 @@ import '../../../../commonWidgets/sliver_app_bar_container.dart';
 import '../../../../core/app_states/app_state_handler_widget.dart';
 import '../../../../uiHelpers/app_colors.dart';
 import '../../../../uiHelpers/font_text_style.dart';
-import '../../../requestsCenter/widgets/system_card_widget.dart';
+import '../../../../commonWidgets/system_card_widget.dart';
 import '../../../services/widgets/service_card_widget.dart';
 import '../controller/search_result_controller.dart';
 import '../controller/services_systems_search_controller.dart';

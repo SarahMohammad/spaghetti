@@ -71,12 +71,15 @@ class LoginScreen extends StatelessWidget {
                                             loginToContinue.tr,
                                             style: FontTextStyle.paragraphLarge.copyWith(color: AppColors.neutral800) ,
                                           ),
-                                          SizedBox(height: 10.getHeight()),
-                                          Visibility(
-                                        visible: loginController.errorSnackBarVisibility,
-                                        child: ErrorMsgView(title: incorrectUserNameOrPass.tr ),
-                                      ),
-                                          SizedBox(height: 7.getHeight()),
+                                          loginController.errorSnackBarVisibility? Column(children: [
+                                            SizedBox(height: 10.getHeight()),
+                                            Visibility(
+                                              visible: loginController.errorSnackBarVisibility,
+                                              child: ErrorMsgView(title: incorrectUserNameOrPass.tr ),
+                                            ),
+                                            SizedBox(height: 7.getHeight()),
+
+                                          ],):SizedBox(height: AppSpacing.xl.getHeight(),),
 
                                           CustomFormField(
                                             controller: loginController.userNameController,
@@ -84,7 +87,6 @@ class LoginScreen extends StatelessWidget {
                                             isRequired: true,
                                           ),
                                           SizedBox(height: AppSpacing.l.getHeight()),
-
                                           CustomFormField(
                                             controller: loginController.passwordController,
                                             obscureText: loginController.hidePassword,
