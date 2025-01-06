@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:untitled3/UIHelpers/icons.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
+import 'package:untitled3/uiHelpers/app_spacing.dart';
 import 'package:untitled3/utils/constant.dart';
 
 import '../../uiHelpers/font_text_style.dart';
@@ -60,6 +61,8 @@ showBottomActionModelSheet(
                 children: [
                   if(showPrefixIcon)
                     SvgPicture.asset(AllIcons.userIcon),
+                  if(showPrefixIcon)
+                    SizedBox(width: AppSpacing.xs.getWidth(),),
                   Expanded(
                     child: Text(
                       title,

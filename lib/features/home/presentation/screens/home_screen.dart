@@ -82,11 +82,11 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                         SizedBox(height: AppSpacing.m.getHeight()),
+                        SizedBox(height: AppSpacing.m.getHeight()),
                         // Search Box
                         SearchBox(
                           onChanged: (value) {},
-                          onTap: (){
+                          onTap: () {
                             Get.toNamed(RoutesConstants.recentSearchScreen);
                           },
                           prefixIconExist: true,
@@ -124,41 +124,43 @@ class HomeScreen extends StatelessWidget {
                 right: 0,
                 bottom: 0,
                 child: SingleChildScrollView(
-                  child:Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Favorites Section
-                        Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: AppSpacing.l.getWidth()),
-                          child: _buildFavoritesSection(homeController),
-                        ),
-                         SizedBox(height: AppSpacing.l.getHeight()),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Favorites Section
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: AppSpacing.l.getWidth()),
+                        child: _buildFavoritesSection(homeController),
+                      ),
+                      SizedBox(height: AppSpacing.l.getHeight()),
 
-                        Container(
-                          width: double.infinity,
-                          height: 7.getHeight(),
-                          color: AppColors.neutral100,
-                        ),
-                        SizedBox(height: AppSpacing.m.getHeight()),
-                        // Services Section
-                       Padding(
-                         padding: EdgeInsets.symmetric(horizontal: AppSpacing.l.getWidth()),
-                         child: _buildServicesSection(homeController),
-                       ),
-                        Container(
-                          width: double.infinity,
-                          height: 7.getHeight(),
-                          color: AppColors.neutral100,
-                        ),
-                        SizedBox(height: AppSpacing.l.getHeight()),
+                      Container(
+                        width: double.infinity,
+                        height: 7.getHeight(),
+                        color: AppColors.neutral100,
+                      ),
+                      SizedBox(height: AppSpacing.m.getHeight()),
+                      // Services Section
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: AppSpacing.l.getWidth()),
+                        child: _buildServicesSection(homeController),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 7.getHeight(),
+                        color: AppColors.neutral100,
+                      ),
+                      SizedBox(height: AppSpacing.l.getHeight()),
 
-                        // Systems Section
-                       Padding(
-                         padding: EdgeInsets.symmetric(horizontal: AppSpacing.l.getWidth()),
-                         child: _buildSystemsSection(homeController),
-                       )
-                      ],
-
+                      // Systems Section
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: AppSpacing.l.getWidth()),
+                        child: _buildSystemsSection(homeController),
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -174,10 +176,10 @@ class HomeScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         SquareHomeCard(
-            title: "My Requests",
-            subTitle: "Check your updates",
-            bgColor: AppColors.brand400,
-            count: "5",
+          title: "My Requests",
+          subTitle: "Check your updates",
+          bgColor: AppColors.brand400,
+          count: "5",
           bgCountColor: AppColors.brand300,
           cardIcon: AllIcons.requestIcon,
         ),
@@ -188,7 +190,6 @@ class HomeScreen extends StatelessWidget {
           count: "12",
           bgCountColor: AppColors.darkBrown,
           cardIcon: AllIcons.timeIcon,
-
         )
       ],
     );
@@ -202,45 +203,48 @@ class HomeScreen extends StatelessWidget {
           favorites.tr,
           style: FontTextStyle.headingX,
         ),
-         SizedBox(height: AppSpacing.xs.getHeight()),
-        Obx(
-          () {
-            if (homeController.favoriteItems.isEmpty) {
-              return  Column(
-                  mainAxisSize: MainAxisSize.min,
+        SizedBox(height: AppSpacing.xs.getHeight()),
+        Obx(() {
+          if (homeController.favoriteItems.isEmpty) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(AllIcons.heartIcon),
+                SizedBox(height: AppSpacing.l.getHeight()),
+                Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SvgPicture.asset(AllIcons.heartIcon),
-                     SizedBox(height: AppSpacing.l.getHeight()),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'No favorites yet',
-                          textAlign: TextAlign.center,
-                          style: FontTextStyle.headingLarge,
-                        ),
-                         SizedBox(height: AppSpacing.s.getHeight()),
-                        Text(
-                          'You can add services and systems to your favorite when you press on the heart icon',
-                          textAlign: TextAlign.center,
-                          style: FontTextStyle.paragraphLarge.copyWith(color: AppColors.neutral800),
-                        ),
-                      ],
+                    Text(
+                      'No favorites yet',
+                      textAlign: TextAlign.center,
+                      style: FontTextStyle.headingLarge,
+                    ),
+                    SizedBox(height: AppSpacing.s.getHeight()),
+                    Text(
+                      'You can add services and systems to your favorite when you press on the heart icon',
+                      textAlign: TextAlign.center,
+                      style: FontTextStyle.paragraphLarge
+                          .copyWith(color: AppColors.neutral800),
                     ),
                   ],
-                );
-            }
-            return ListView.builder(
-            shrinkWrap: true, // Ensures the ListView adapts to the parent's constraints
-            physics: NeverScrollableScrollPhysics(), // Prevents independent scrolling
+                ),
+              ],
+            );
+          }
+          return ListView.builder(
+            shrinkWrap: true,
+            // Ensures the ListView adapts to the parent's constraints
+            physics: NeverScrollableScrollPhysics(),
+            // Prevents independent scrolling
             itemCount: homeController.visibleItems.length,
             itemBuilder: (context, index) {
               final item = homeController.visibleItems[index];
               return Padding(
-                padding: EdgeInsets.symmetric(vertical: AppSpacing.s.getHeight()),
+                padding:
+                    EdgeInsets.symmetric(vertical: AppSpacing.s.getHeight()),
                 child: Container(
                   decoration: ShapeDecoration(
                     color: index % 2 == 0
@@ -259,42 +263,38 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     trailing: InkWell(
-                        child: SvgPicture.asset(AllIcons.filledHeartIcon),
-                      onTap: (){
-                        // homeController.removeFromFavorites(index);
-                        homeController.toggleFavoriteStatus(
-                            item, context);
+                      child: SvgPicture.asset(AllIcons.filledHeartIcon),
+                      onTap: () {
+                        homeController.toggleFavoriteStatus(item, context);
                       },
                     ),
                   ),
                 ),
               );
             },
-          );}
-
-        ),
+          );
+        }),
         SizedBox(
           height: AppSpacing.l.getHeight(),
         ),
         Obx(() {
-          if (homeController.favoriteItems.isEmpty){
+          if (homeController.favoriteItems.isEmpty) {
             return SizedBox.shrink();
           }
 
           return SizedBox(
-              height: 52.getHeight(),
-              width: double.infinity,
-              child: CustomButton(key,
-                  buttonTitle: homeController.isExpanded.value
-                      ? showLess.tr
-                      : showMore.tr,
-                  padding: EdgeInsets.zero,
-                  isDisabled: false,
-                  buttonType: ButtonType.tertiary, onPressed: () {
-                homeController.toggleExpansion();
-              }),
-            );}
-        ),
+            height: 52.getHeight(),
+            width: double.infinity,
+            child: CustomButton(key,
+                buttonTitle:
+                    homeController.isExpanded.value ? showLess.tr : showMore.tr,
+                padding: EdgeInsets.zero,
+                isDisabled: false,
+                buttonType: ButtonType.tertiary, onPressed: () {
+              homeController.toggleExpansion();
+            }),
+          );
+        }),
       ],
     );
   }
@@ -304,44 +304,48 @@ class HomeScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding:  EdgeInsets. only(bottom: AppSpacing.m.getHeight()),
+          padding: EdgeInsets.only(bottom: AppSpacing.m.getHeight()),
           child: Text(
             services.tr,
             style: FontTextStyle.headingX,
           ),
         ),
         SizedBox(height: AppSpacing.xs.getHeight()),
-        ServiceCategoryWidget(
-          title: "Administrative Services",
-          onTap: () {
-            homeController.openCategoryBottomSheet();
-          },
-        ),
-
+        Obx(() {
+          return ServiceCategoryWidget(
+            title: homeController.selectedCategoryTitle.value.isEmpty
+                ? "Select a category"
+                : homeController.selectedCategoryTitle.value,
+            onTap: () {
+              homeController.openCategoryBottomSheet();
+            },
+          );
+        }),
         SizedBox(height: AppSpacing.l.getHeight()),
         ListView.builder(
           padding: EdgeInsets.zero,
-          shrinkWrap: true, // Ensures the ListView does not take infinite height
-          physics: const NeverScrollableScrollPhysics(), // Prevents ListView from scrolling independently
+          shrinkWrap: true,
+          // Ensures the ListView does not take infinite height
+          physics: const NeverScrollableScrollPhysics(),
+          // Prevents ListView from scrolling independently
           itemCount: homeController.serviceList.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.only(bottom: AppSpacing.m.getHeight()),
               child: ServiceCardWidget(
-                title: homeController.serviceList[index].title,
-                onPress: () {
-                  // Handle service card press
-                },
-                onFavPressed:(){
-                  homeController.toggleFavoriteStatus(
-                      homeController.serviceList[index], context);
+                  title: homeController.serviceList[index].title,
+                  onPress: () {
+                    // Handle service card press
                   },
-                isFav: homeController.serviceList[index].isFavorite ?? false,
-                onShowDescriptionPress:(){
-                  homeController.showServiceDescriptionBottomSheet(
-                      homeController.serviceList[index], key);
-                }
-              ),
+                  onFavPressed: () {
+                    homeController.toggleFavoriteStatus(
+                        homeController.serviceList[index], context);
+                  },
+                  isFav: homeController.serviceList[index].isFavorite ?? false,
+                  onShowDescriptionPress: () {
+                    homeController.showServiceDescriptionBottomSheet(
+                        homeController.serviceList[index], key);
+                  }),
             );
           },
         ),
@@ -354,27 +358,25 @@ class HomeScreen extends StatelessWidget {
               padding: EdgeInsets.zero,
               isDisabled: false,
               buttonType: ButtonType.tertiary, onPressed: () {
-                final NavBarController navBarController =
+            final NavBarController navBarController =
                 Get.find<NavBarController>();
-                navBarController.setCurrentNavIndexState(1);
-              }),
+            navBarController.setCurrentNavIndexState(1);
+          }),
         ),
         SizedBox(height: AppSpacing.l.getHeight()),
-
       ],
     );
   }
 
-  Widget _buildSystemsSection(HomeController homeController){
+  Widget _buildSystemsSection(HomeController homeController) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-
       children: [
         Text(
           systems.tr,
           style: FontTextStyle.headingX,
         ),
-         SizedBox(height: AppSpacing.l.getHeight()),
+        SizedBox(height: AppSpacing.l.getHeight()),
         // Column(
         //   children:
         //   homeController.services.entries.map((entry) {
@@ -391,12 +393,12 @@ class HomeScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.only(bottom: AppSpacing.m.getHeight()),
-              child: SystemCardWidget(title: homeController.systemsList[index].title,
-                  onReadMorePress:(){
+              child: SystemCardWidget(
+                  title: homeController.systemsList[index].title,
+                  onReadMorePress: () {
                     homeController.showServiceDescriptionBottomSheet(
                         homeController.systemsList[index], key);
-                  }
-              ),
+                  }),
             );
           },
         ),
@@ -409,16 +411,13 @@ class HomeScreen extends StatelessWidget {
               padding: EdgeInsets.zero,
               isDisabled: false,
               buttonType: ButtonType.tertiary, onPressed: () {
-                final NavBarController navBarController =
+            final NavBarController navBarController =
                 Get.find<NavBarController>();
-                navBarController.setCurrentNavIndexState(2);
+            navBarController.setCurrentNavIndexState(2);
           }),
         ),
         SizedBox(height: AppSpacing.l.getHeight()),
-
       ],
     );
   }
-
-
 }

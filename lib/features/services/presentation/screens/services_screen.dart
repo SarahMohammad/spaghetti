@@ -73,17 +73,23 @@ class ServicesScreen extends StatelessWidget {
                   )
                 : SliverToBoxAdapter(
                     child: Padding(
-                      padding: EdgeInsets.only(
-                        bottom: AppSpacing.s.getHeight(),
-                        right: AppSpacing.l.getWidth(),
-                        left: AppSpacing.l.getWidth(),
-                        top: AppSpacing.l.getHeight(),
-                      ),
-                      child: ServiceCategoryWidget(
-                          title: 'human capital',
-                          onTap: () {
-                            servicesController.openCategoryBottomSheet();
-                          }),
+                        padding: EdgeInsets.only(
+                          bottom: AppSpacing.s.getHeight(),
+                          right: AppSpacing.l.getWidth(),
+                          left: AppSpacing.l.getWidth(),
+                          top: AppSpacing.l.getHeight(),
+                        ),
+                        child: Obx(
+                          () {
+                            return ServiceCategoryWidget(
+                                title: servicesController.selectedCategoryTitle.value.isEmpty
+                                    ? "Select a category"
+                                    : servicesController.selectedCategoryTitle.value,
+                                onTap: () {
+                                  servicesController.openCategoryBottomSheet();
+                                });
+                          },
+                        ),
                     ),
                   ),
             // The list of ServiceCardWidget
@@ -104,11 +110,12 @@ class ServicesScreen extends StatelessWidget {
                           onPress: () {
                             servicesController.handleServicePress(index);
                           },
-                          onFavPressed: (){},
+                          onFavPressed: () {},
                           isFav: false,
-                          onShowDescriptionPress: (){
-                            servicesController.showServiceDescriptionBottomSheet(
-                                servicesController.serviceList[index], key);
+                          onShowDescriptionPress: () {
+                            servicesController
+                                .showServiceDescriptionBottomSheet(
+                                    servicesController.serviceList[index], key);
                           },
                         ),
                       ),

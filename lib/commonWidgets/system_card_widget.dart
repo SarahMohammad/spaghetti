@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
+import 'package:untitled3/uiHelpers/app_radius.dart';
 import 'package:untitled3/uiHelpers/app_spacing.dart';
 import 'package:untitled3/uiHelpers/font_text_style.dart';
 import 'package:untitled3/utils/constant.dart';
@@ -25,7 +26,7 @@ class SystemCardWidget extends StatelessWidget {
         decoration: ShapeDecoration(
           color: AppColors.brand100,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(AppRadius.l),
           ),
         ),
         child: Column(
@@ -49,7 +50,9 @@ class SystemCardWidget extends StatelessWidget {
            Row(
              children: [
                Text(title ??"SAP Arabia",
-               style: FontTextStyle.labelLarge.copyWith(color: AppColors.neutral900),),
+               style: FontTextStyle.labelLarge
+                   .copyWith(color: AppColors.neutral900),),
+               SizedBox(width : AppSpacing.xs.getWidth()),
                SvgPicture.asset(
                  AllIcons.systemSmallIcon,
                  fit: BoxFit.contain,

@@ -40,8 +40,8 @@ class CustomButton extends StatelessWidget {
       color: buttonType == ButtonType.primary && !isDisabled
           ? AppColors.brand500
           : buttonType == ButtonType.primary && isDisabled
-              ? AppColors.neutral500
-              : Colors.white,
+          ? AppColors.neutral500
+          : Colors.white,
       disabledColor: buttonType == ButtonType.primary
           ? AppColors.neutral500
           : Colors.white,
@@ -51,10 +51,10 @@ class CustomButton extends StatelessWidget {
           color: buttonType == ButtonType.primary && isDisabled
               ? Colors.transparent
               : buttonType != ButtonType.primary && isDisabled
-                  ? AppColors.neutral500
-                  : buttonType == ButtonType.secondary && !isDisabled
-                      ? AppColors.brand500
-                      : AppColors.neutral500,
+              ? AppColors.neutral500
+              : buttonType == ButtonType.secondary && !isDisabled
+              ? AppColors.brand500
+              : AppColors.neutral500,
         ),
         borderRadius: BorderRadius.all(
           Radius.circular(radius ?? 40),
@@ -62,30 +62,43 @@ class CustomButton extends StatelessWidget {
       ),
       padding: padding ?? const EdgeInsets.all(16),
       onPressed: onPressed ?? () {},
-      splashColor: !isDisabled ? buttonType == ButtonType.primary ? AppColors.brand700 :
-      buttonType == ButtonType.secondary  ?  AppColors.brand200 : AppColors.neutral200  : Colors.transparent,
+      splashColor: !isDisabled
+          ? buttonType == ButtonType.primary
+          ? AppColors.brand700
+          : buttonType == ButtonType.secondary
+          ? AppColors.brand200
+          : AppColors.neutral200
+          : Colors.transparent,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min, // Ensure the Row only takes the necessary space
         children: [
-          child ??
-              Text(
-                buttonTitle ?? "",
-               style: FontTextStyle.labelMedium.copyWith(
-                 color: isDisabled
-                   ? AppColors.neutral700
-                   : buttonType == ButtonType.primary
-                   ? Colors.white
-                   : buttonType == ButtonType.secondary
-                   ? AppColors.brand500
-                   : AppColors.neutral900,)
-
-              ),
-          if(showSuffixIcon!)
-            SizedBox(width: AppSpacing.xs.getWidth(),),
-          if(showSuffixIcon!)
-            suffixIcon!
+          Flexible(
+            child: child ??
+                Text(
+                  buttonTitle ?? "",
+                  style: FontTextStyle.labelMedium.copyWith(
+                    color: isDisabled
+                        ? AppColors.neutral700
+                        : buttonType == ButtonType.primary
+                        ? Colors.white
+                        : buttonType == ButtonType.secondary
+                        ? AppColors.brand500
+                        : AppColors.neutral900,
+                    overflow: TextOverflow.ellipsis, // Prevent text overflow
+                  ),
+                  maxLines: 1, // Restrict to a single line
+                ),
+          ),
+          if (showSuffixIcon!)
+            SizedBox(width: AppSpacing.xs.getWidth()),
+          if (showSuffixIcon!)
+            Flexible(
+              child: suffixIcon!,
+            ),
         ],
       ),
     );
   }
+
 }

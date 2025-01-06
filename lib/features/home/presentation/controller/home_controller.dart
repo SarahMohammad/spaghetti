@@ -246,40 +246,14 @@ class HomeController extends BaseController {
   }
 
 
-  openCategoryBottomSheet() {
-    var selectedIndex = (-1).obs; // Observable variable to track selected index
+  var selectedCategoryTitle = "".obs;
 
-    showBottomActionModelSheet(
-      Get.context!,
-      showCloseIcon: true,
-      content:  ConstrainedBox(
-        constraints: BoxConstraints(
-          maxHeight: Get.size.height * 0.85 // Constrain the height of the GridView
-        ),
-        child: GridView.builder(
-          padding: EdgeInsets.only(top:AppSpacing.m.getHeight()),
-          shrinkWrap: true,
-          itemCount: categoryList.length,
-          scrollDirection: Axis.vertical,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: AppSpacing.m.getHeight(),
-            crossAxisSpacing: AppSpacing.m.getWidth(),
-          ),
-          itemBuilder: (context, index) {
-            return Obx(() =>CategoryGridTile(
-              isSelected: index == selectedIndex.value,
-              onPressed: () {
-                selectedIndex.value = index;
-              },
-              title : categoryList[index].title
-            ),
-            );
-          },
-        ),
-      ),
-      title: selectCategory.tr,
-      isScrollControlled: true,
+  void openCategoryBottomSheet() {
+    BottomSheetManager.openCategoryBottomSheet(
+      categories: categoryList,
+      onCategorySelected: (selectedCategory) {
+        selectedCategoryTitle.value = selectedCategory.title;
+      },
     );
   }
 
