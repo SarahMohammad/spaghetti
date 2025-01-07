@@ -16,6 +16,7 @@ import '../../../../../uiHelpers/app_spacing.dart';
 import '../../../../../uiHelpers/font_text_style.dart';
 import '../../../../../utils/button_enum.dart';
 import '../../../../../utils/translation_keys.dart';
+import '../../../projectRequestForm/presentation/widgets/attachment_list_tile.dart';
 import '../controller/non_rcu_template_review_request_controller.dart';
 
 class NonRcuTemplateReviewRequestScreen extends StatelessWidget {
@@ -114,58 +115,8 @@ class NonRcuTemplateReviewRequestScreen extends StatelessWidget {
                                     .map((entry) => Padding(
                                         padding: EdgeInsets.symmetric(
                                             vertical: AppSpacing.xs.getHeight()),
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: AppSpacing.m.getHeight(),
-                                              horizontal:
-                                                  AppSpacing.m.getWidth()),
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: AppColors.neutral500),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    "File name.pdf",
-                                                    style: FontTextStyle
-                                                        .paragraphLarge
-                                                        .copyWith(
-                                                            color: AppColors
-                                                                .neutral900),
-                                                  ),
-                                                  SizedBox(
-                                                    height:
-                                                        AppSpacing.s.getHeight(),
-                                                  ),
-                                                  Text(
-                                                    "1,2MB",
-                                                    style: FontTextStyle
-                                                        .paragraphMedium
-                                                        .copyWith(
-                                                            color: AppColors
-                                                                .neutral800),
-                                                  ),
-                                                ],
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  controller.uploadFilesList
-                                                      .removeAt(entry.key);
-                                                },
-                                                child: SvgPicture.asset(
-                                                    AllIcons.deleteIcon),
-                                              ),
-                                            ],
-                                          ),
-                                        )))
+                                        child: AttachmentListTile(isMarginRemoved: true, prefixIcon:SvgPicture.asset(AllIcons.deleteIcon))
+                                ),)
                                     .toList(),
                               );
                             }),

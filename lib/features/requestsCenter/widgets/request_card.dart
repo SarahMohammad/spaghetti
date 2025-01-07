@@ -61,57 +61,64 @@ class RequestCard extends StatelessWidget {
               date,
               style: FontTextStyle.paragraphMedium.copyWith(color: AppColors.neutral800),
             ),
-            SizedBox(height: AppSpacing.xl.getHeight()),
+            SizedBox(height: AppSpacing.l.getHeight()),
 
-            inProgress ? Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            inProgress ? Column(
               children: [
-                Column(
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Request ID',
-                      style: FontTextStyle.paragraphLarge.copyWith(color: AppColors.neutral800),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Request ID',
+                            style: FontTextStyle.paragraphLarge.copyWith(color: AppColors.neutral800),
+                          ),
+                          SizedBox(height: AppSpacing.s.getHeight()),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                requestId!,
+                                style:FontTextStyle.paragraphMedium.copyWith(color: AppColors.neutral900),
+                              ),
+                             SvgPicture.asset(AllIcons.systemSmallIcon)
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    SizedBox(height: AppSpacing.s.getHeight()),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          requestId!,
-                          style:FontTextStyle.paragraphMedium.copyWith(color: AppColors.neutral900),
-                        ),
-                       SvgPicture.asset(AllIcons.systemSmallIcon)
-                      ],
+                    SizedBox(width: AppSpacing.xl.getWidth()),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Pending On',
+                            style: FontTextStyle.paragraphLarge.copyWith(color: AppColors.neutral800),
+                          ),
+                          SizedBox(height: AppSpacing.s.getHeight()),
+                          Row(
+                            children: [
+                              Center(child: Image.asset(Images.avatar,height: 35,)),
+                              Text(
+                                pendingOn!,
+                                style: FontTextStyle.paragraphMedium.copyWith(color: AppColors.neutral900),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-                SizedBox(width: AppSpacing.xl.getWidth()),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Pending On',
-                      style: FontTextStyle.paragraphLarge.copyWith(color: AppColors.neutral800),
-                    ),
-                    SizedBox(height: AppSpacing.s.getHeight()),
-                    Row(
-                      children: [
-                        Center(child: Image.asset(Images.avatar,height: 35,)),
-                        Text(
-                          pendingOn!,
-                          style: FontTextStyle.paragraphMedium.copyWith(color: AppColors.neutral900),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                SizedBox(height: AppSpacing.l.getHeight()),
               ],
             ) : SizedBox.shrink(),
 
-
             Container(
-
               padding:  EdgeInsets.symmetric(horizontal: AppSpacing.xs.getWidth(),
               vertical:AppSpacing.xs.getHeight() ),
               decoration: ShapeDecoration(

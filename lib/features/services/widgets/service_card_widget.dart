@@ -8,6 +8,7 @@ import 'package:untitled3/uiHelpers/font_text_style.dart';
 import 'package:untitled3/utils/constant.dart';
 
 import '../../../UIHelpers/icons.dart';
+import '../../../utils/translation_keys.dart';
 
 class ServiceCardWidget extends StatelessWidget {
   final String title;
@@ -75,7 +76,7 @@ class ServiceCardWidget extends StatelessWidget {
                       SvgPicture.asset(AllIcons.infoIcon),
                       SizedBox(width:AppSpacing.xxs.getWidth()),
                       Text(
-                        'Show Description',
+                        showDesc.tr,
                         style: FontTextStyle.labelMedium.copyWith(
                             color: AppColors.neutral800,
                             decoration: TextDecoration.underline,

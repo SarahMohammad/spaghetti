@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:untitled3/uiHelpers/app_spacing.dart';
 import 'package:untitled3/utils/constant.dart';
 
@@ -7,6 +8,7 @@ import '../../../../../commonWidgets/buttons/custom_button.dart';
 import '../../../../../uiHelpers/app_colors.dart';
 import '../../../../../uiHelpers/font_text_style.dart';
 import '../../../../../utils/button_enum.dart';
+import '../../../../../utils/translation_keys.dart';
 
 
 class ProjectStatusWidget extends StatelessWidget {
@@ -26,14 +28,15 @@ class ProjectStatusWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-             Image.asset(Images.avatar ),
+             Image.asset(Images.avatar , height: 48, width: 48,fit: BoxFit.fill, ),
               SizedBox(width : AppSpacing.m.getWidth()),
 
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Ali Al Ghafli',
-                    style: FontTextStyle.labelLarge,
+                    style: FontTextStyle.labelLarge.copyWith(color: AppColors.neutral900),
                   ),
                   Text('HR Manager',
                       style: FontTextStyle.paragraphMedium)
@@ -64,7 +67,7 @@ class ProjectStatusWidget extends StatelessWidget {
             width: double.infinity,
             child: CustomButton(key,
               buttonType: ButtonType.tertiary,
-              buttonTitle: "view approval line",
+              buttonTitle: viewApprovalLine.tr,
               isDisabled: false,
               padding: EdgeInsets.zero,
             ),

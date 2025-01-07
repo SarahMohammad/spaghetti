@@ -8,6 +8,7 @@ import 'package:untitled3/utils/constant.dart';
 
 import '../../uiHelpers/font_text_style.dart';
 import '../../utils/constant_keywords.dart';
+import '../../utils/translation_keys.dart';
 import 'bottom_sheet_top_line.dart';
 import 'close_button.dart';
 
@@ -28,6 +29,8 @@ showBottomActionModelSheet(
   Color backgroundColor = Colors.white,
   TextAlign? titleAlignment ,
   TextStyle? titleStyle,
+  bool isReset = false,
+      Function()? onResetPressed,
 }) {
   return showModalBottomSheet(
     context: context,
@@ -63,6 +66,18 @@ showBottomActionModelSheet(
                     SvgPicture.asset(AllIcons.userIcon),
                   if(showPrefixIcon)
                     SizedBox(width: AppSpacing.xs.getWidth(),),
+                if(isReset)
+                  InkWell(
+                      onTap:onResetPressed ,
+                      child: Text(
+                        reset.tr,
+                        style: FontTextStyle.labelMedium.copyWith(
+                            color: AppColors.primary100,
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.primary100
+                        )
+                      ),
+                  ),
                   Expanded(
                     child: Text(
                       title,

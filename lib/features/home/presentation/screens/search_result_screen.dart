@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:untitled3/uiHelpers/app_spacing.dart';
 import 'package:untitled3/utils/constant.dart';
@@ -9,14 +8,13 @@ import 'package:untitled3/utils/constant.dart';
 import '../../../../UIHelpers/icons.dart';
 import '../../../../UIHelpers/images.dart';
 import '../../../../commonWidgets/search_box.dart';
-import '../../../../commonWidgets/sliver_app_bar_container.dart';
 import '../../../../core/app_states/app_state_handler_widget.dart';
 import '../../../../uiHelpers/app_colors.dart';
 import '../../../../uiHelpers/font_text_style.dart';
 import '../../../../commonWidgets/system_card_widget.dart';
+import '../../../../utils/translation_keys.dart';
 import '../../../services/widgets/service_card_widget.dart';
 import '../controller/search_result_controller.dart';
-import '../controller/services_systems_search_controller.dart';
 
 class SearchResultScreen extends StatelessWidget {
   SearchResultScreen({Key? key}) : super(key: key);
@@ -133,7 +131,7 @@ class SearchResultScreen extends StatelessWidget {
                           children: [
                             // Services Section
                             Text(
-                              'Recent services',
+                              recentServices.tr,
                               style: FontTextStyle.headingLarge,
                             ),
                             SizedBox(height: AppSpacing.l.getHeight()),
@@ -202,7 +200,7 @@ class SearchResultScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Recent systems',
+                              recentSystems.tr,
                               style: FontTextStyle.headingLarge,
                             ),
                             SizedBox(height: AppSpacing.l.getHeight()),

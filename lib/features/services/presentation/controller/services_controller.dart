@@ -27,24 +27,20 @@ class ServicesController extends BaseController {
     return [
       ServiceSystem(
         isFavorite: false,
-        title: "Customs Clearance Permit Request",
+        title: "Project request form",
         description: "Lorem ipsum dolor sit amet consectetur. Ridiculus orci gravida adipiscing venenatis accumsan enim. Lorem ipsum dolor sit amet consectetur. Ridiculus orci gravida adipiscing venenatis accumsan enim.",
       ),
       ServiceSystem(
         isFavorite: false,
-        title: "Organizational Structure Change",
+        title: "New template request form",
         description: "Lorem ipsum dolor sit amet consectetur. Ridiculus orci gravida adipiscing venenatis accumsan enim. Lorem ipsum dolor sit amet consectetur. Ridiculus orci gravida adipiscing venenatis accumsan enim.",
       ),
       ServiceSystem(
         isFavorite: false,
-        title: "Ask Human Capital",
+        title: "Non-RCU template review request",
         description: "Lorem ipsum dolor sit amet consectetur. Ridiculus orci gravida adipiscing venenatis accumsan enim. Lorem ipsum dolor sit amet consectetur. Ridiculus orci gravida adipiscing venenatis accumsan enim.",
       ),
-      ServiceSystem(
-        isFavorite: false,
-        title: "Performance Change",
-        description: "Lorem ipsum dolor sit amet consectetur. Ridiculus orci gravida adipiscing venenatis accumsan enim. Lorem ipsum dolor sit amet consectetur. Ridiculus orci gravida adipiscing venenatis accumsan enim.",
-      ),
+
     ];
   }
   void handleServicePress(int index) {

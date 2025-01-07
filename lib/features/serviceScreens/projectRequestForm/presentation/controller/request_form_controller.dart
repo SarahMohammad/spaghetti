@@ -1,13 +1,8 @@
 import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:untitled3/functions/bottom_sheet_manager.dart';
-import 'package:untitled3/uiHelpers/app_colors.dart';
-import 'package:untitled3/uiHelpers/app_spacing.dart';
-import 'package:untitled3/uiHelpers/font_text_style.dart';
-import 'package:untitled3/utils/constant.dart';
-import '../../../../../commonWidgets/bottomSheet/bottom_sheet_action.dart';
-import '../../../../../commonWidgets/search_box.dart';
 import '../../../../../core/base_controller.dart';
 import '../../../../../functions/helper_classes.dart';
 import '../../../../../globalServices/ILocalizationService.dart';
@@ -28,8 +23,16 @@ class RequestFormController extends BaseController {
   TextEditingController projectDescriptionController = TextEditingController();
   TextEditingController structureController = TextEditingController();
   TextEditingController paymentStructureController = TextEditingController();
+  TextEditingController projectImplYearController = TextEditingController();
+  TextEditingController closingDateController = TextEditingController();
 
-  String screenTitle = "";
+  //  to manage the state of the submit button
+  final isSubmitEnabled = false.obs;
+
+  // Observables for project implementation year and closing date
+  final projectImplementationYear = ''.obs;
+  final expectedClosingDate = ''.obs;
+
   final names = [
     "The Royal Commission for Al Ula",
     "Option1",
@@ -71,7 +74,81 @@ class RequestFormController extends BaseController {
   @override
   void onInit() async {
     super.onInit();
+    _initializeValidation();
+  }
 
+  void _initializeValidation() {
+    // List of controllers
+    final controllers = [
+      authorizedPersonnelController,
+      similarProjectsController,
+      projectNameController,
+      projectDurationController,
+      projectOwnerController,
+      valueController,
+      approvalAuthorityController,
+      managementApprovalController,
+      externalApprovalController,
+      structureController,
+      paymentStructureController,
+    ];
+
+    // Add listeners to all controllers
+    for (var controller in controllers) {
+      controller.addListener(_validateForm);
+    }
+
+    // React to changes in implementation year, closing date, or parties list
+    everAll([projectImplementationYear, expectedClosingDate, partiesValues], (_) {
+      _validateForm();
+    });
+  }
+
+  // Form validation logic
+  void _validateForm() {
+    final areTextFieldsValid = [
+      authorizedPersonnelController.text.trim(),
+      similarProjectsController.text.trim(),
+      projectNameController.text.trim(),
+      projectDurationController.text.trim(),
+      projectOwnerController.text.trim(),
+      valueController.text.trim(),
+      approvalAuthorityController.text.trim(),
+      managementApprovalController.text.trim(),
+      externalApprovalController.text.trim(),
+      structureController.text.trim(),
+      paymentStructureController.text.trim(),
+    ].every((field) => field.isNotEmpty);
+
+    // Check if project implementation year and closing date are valid
+    final areDatesValid = projectImplYearController.text.isNotEmpty &&
+        closingDateController.text.isNotEmpty;
+
+    // Check if at least one party has valid data
+    final isAnyPartyValid = partiesValues.any((party) =>
+    party.name.isNotEmpty &&
+        party.category.isNotEmpty &&
+        party.type.isNotEmpty);
+
+    // Set the submit button state
+    isSubmitEnabled.value = areTextFieldsValid && areDatesValid && isAnyPartyValid;
+
+  }
+
+  @override
+  void onClose() {
+    authorizedPersonnelController.dispose();
+    similarProjectsController.dispose();
+    projectNameController.dispose();
+    projectDurationController.dispose();
+    projectOwnerController.dispose();
+    valueController.dispose();
+    approvalAuthorityController.dispose();
+    managementApprovalController.dispose();
+    externalApprovalController.dispose();
+    structureController.dispose();
+    paymentStructureController.dispose();
+    super.onClose();
   }
 
 
@@ -83,33 +160,28 @@ class RequestFormController extends BaseController {
     return partiesValues[index].category;
   }
 
+  var dateSelected = DateTime.now().obs;
 
-
-  Future<void> openDatePicker(BuildContext context) async {
-    await showDatePickerDialog(
-      context: context,
-      initialDate: DateTime(2024, 12, 4),
-      minDate: DateTime(2020, 10, 10),
-      maxDate: DateTime(2025, 10, 30),
-      selectedDate: DateTime(2024, 12, 20),
-      selectedCellTextStyle: TextStyle(color: Color(0xFF007AFF)),
-      selectedCellDecoration: BoxDecoration(shape: BoxShape.circle,
-          color: Color(0x2F007AFF)),
-      currentDateTextStyle: TextStyle(color: Color(0xFF007AFF)),
-      currentDateDecoration: BoxDecoration(shape: BoxShape.circle,
-          border: Border.all(color: Color(0xFFFFFF))),
-      enabledCellsTextStyle: const TextStyle(color: Colors.black),
-      leadingDateTextStyle:  TextStyle(color: Colors.black,
-        fontSize: 17,),
-      slidersColor: Colors.black,
-
-
-    );
+  openDatePicker(BuildContext context){
+    BottomSheetManager.openDatePicker(context: context,
+    selectedDateObs: dateSelected,
+    onDateSelected: (selectedDate){
+      dateSelected.value = selectedDate;
+      String formattedDate = DateFormat('dd/MM/yyyy').format(selectedDate);
+      closingDateController.text = formattedDate.toString();
+    });
   }
+
 
   void showProjectImplYearsBottomSheet() {
     List<String> years = List.generate(7, (index) => (2024 + index).toString());
-    BottomSheetManager.showProjectImplYears(years: years);
+    BottomSheetManager.showProjectImplYears(
+      years: years,
+      onYearSelected: (selectedYear) {
+        projectImplYearController.text = selectedYear;
+        update();
+      },
+    );
   }
 
   void showPartyCategory(int key) {

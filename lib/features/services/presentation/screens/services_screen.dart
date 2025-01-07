@@ -12,6 +12,7 @@ import '../../../../UIHelpers/icons.dart';
 import '../../../../UIHelpers/images.dart';
 import '../../../../commonWidgets/state_indicator.dart';
 import '../../../../core/app_states/app_state_handler_widget.dart';
+import '../../../../utils/translation_keys.dart';
 import '../../widgets/service_category_widget.dart';
 
 class ServicesScreen extends StatelessWidget {
@@ -51,7 +52,7 @@ class ServicesScreen extends StatelessWidget {
                     child: SliverAppBarContainer(
                       isSearching: servicesController.isSearching,
                       onSearchIconClick: servicesController.toggleSearch,
-                      title: "Services",
+                      title: services.tr,
                     ),
                   ),
                 ],
@@ -83,7 +84,7 @@ class ServicesScreen extends StatelessWidget {
                           () {
                             return ServiceCategoryWidget(
                                 title: servicesController.selectedCategoryTitle.value.isEmpty
-                                    ? "Select a category"
+                                    ? selectCategory.tr
                                     : servicesController.selectedCategoryTitle.value,
                                 onTap: () {
                                   servicesController.openCategoryBottomSheet();

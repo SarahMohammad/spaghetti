@@ -40,7 +40,7 @@ class RequestFormScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       CustomAppBar(
-                        title: requestFormController.screenTitle,
+                        title: "Project request form",
                         showBackBtn: true,
                       ),
                       SizedBox(
@@ -74,8 +74,7 @@ class RequestFormScreen extends StatelessWidget {
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               CustomFormField(
-                                //  controller: loginController.userNameController,
-                                //hintText: enterDateOfBirth.tr,
+                                 controller: requestFormController.projectImplYearController,
                                 readOnly: true,
                                 onTap: () {
                                   requestFormController.showProjectImplYearsBottomSheet();
@@ -87,7 +86,7 @@ class RequestFormScreen extends StatelessWidget {
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               CustomFormField(
-                                //  controller: loginController.userNameController,
+                                 controller: requestFormController.closingDateController,
                                 // hintText: enterDateOfBirth.tr,
                                 readOnly: true,
                                 onTap: () {
@@ -165,8 +164,6 @@ class RequestFormScreen extends StatelessWidget {
                                                     vertical: AppSpacing.m
                                                         .getHeight()),
                                                 child:
-                                                    // PartyWidget(index: entry.key,
-                                                    //     controller: requestFormController),
                                                     PartyWidget(
                                                   index: entry.key,
                                                   partyHeaderTitle:
@@ -250,7 +247,7 @@ class RequestFormScreen extends StatelessWidget {
                               SizedBox(height: AppSpacing.l.getHeight()),
                               const Spacer(),
                               SizedBox(height: AppSpacing.l.getHeight()),
-                              SizedBox(
+                              Obx (()=> SizedBox(
                                   height: 52.getHeight(),
                                   width: double.infinity,
                                   child: CustomButton(
@@ -261,9 +258,10 @@ class RequestFormScreen extends StatelessWidget {
                                       Get.toNamed(
                                           RoutesConstants.requestSubmitScreen);
                                     },
-                                    isDisabled: false,
+                                    isDisabled: !requestFormController.isSubmitEnabled.value,
                                     buttonType: ButtonType.primary,
-                                  )),
+                                  ),
+                              ),),
                               SizedBox(height: AppSpacing.m.getHeight()),
                               SizedBox(
                                   height: 52.getHeight(),

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:untitled3/utils/constant.dart';
 
@@ -9,12 +10,15 @@ import '../../../../../uiHelpers/font_text_style.dart';
 
 
 class AttachmentListTile extends StatelessWidget {
-  const AttachmentListTile({super.key});
+  bool isMarginRemoved;
+  SvgPicture prefixIcon;
+   AttachmentListTile({super.key , this.isMarginRemoved = false,
+     required  this.prefixIcon});
 
   @override
   Widget build(BuildContext context) {
     return  Container(
-      margin: EdgeInsets.symmetric(
+      margin: isMarginRemoved ? EdgeInsets.zero :EdgeInsets.symmetric(
           vertical: AppSpacing.m
               .getHeight(),
           horizontal: AppSpacing
@@ -25,7 +29,8 @@ class AttachmentListTile extends StatelessWidget {
               .getHeight(),
           horizontal: AppSpacing
               .m
-              .getWidth()),
+              .getWidth()
+      ),
       decoration: BoxDecoration(
         border: Border.all(
             color: AppColors
@@ -70,9 +75,7 @@ class AttachmentListTile extends StatelessWidget {
           GestureDetector(
             onTap: (){
             },
-            child: SvgPicture.asset(
-                AllIcons
-                    .downloadIcon),
+            child: prefixIcon,
           ),
         ],
       ),

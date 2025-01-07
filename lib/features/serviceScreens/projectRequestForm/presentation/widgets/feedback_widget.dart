@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:untitled3/utils/constant.dart';
 
+import '../../../../../UIHelpers/icons.dart';
 import '../../../../../commonWidgets/buttons/custom_button.dart';
 import '../../../../../commonWidgets/custom_form_field.dart';
 import '../../../../../uiHelpers/app_colors.dart';
@@ -18,7 +20,9 @@ class FeedbackWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding:  EdgeInsets.symmetric(
+          vertical: 16.getHeight(),
+      horizontal: 16.getWidth()),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,36 +38,29 @@ class FeedbackWidget extends StatelessWidget {
                 color: AppColors.neutral900),
           ),
           SizedBox(height: AppSpacing.l.getHeight()),
-          // Row(
-          //   children: List.generate(
-          //     5,
-          //     (index) => IconButton(
-          //       onPressed: () {},
-          //       icon: Icon(
-          //         Icons.star_border,
-          //         size: 32.0,
-          //         color: Colors.grey,
-          //       ),
-          //     ),
-          //   ),
-          // ),
 
           Center(
-            child: RatingBar.builder(
+            child: RatingBar(
+              ratingWidget: RatingWidget(
+                full: SvgPicture.asset(AllIcons.filledStarIcon),
+                half: SvgPicture.asset(AllIcons.filledStarIcon),
+                empty: SvgPicture.asset(AllIcons.emptyStarIcon),
+              ),
               initialRating: 3,
               minRating: 1,
               direction: Axis.horizontal,
               allowHalfRating: true,
               itemCount: 5,
               itemPadding: EdgeInsets.symmetric(horizontal: 12.getWidth()),
-              itemBuilder: (context, _) =>
-                  Icon(
-                    Icons.star_border,
-                    color: Colors.amber,
-                  ),
+              // itemBuilder: (context, _) =>
+              //     Icon(
+              //       Icons.star,
+              //       color: Colors.amber,
+              //     ),
               onRatingUpdate: (rating) {
                 //print(rating);
               },
+
             ),
           ),
 

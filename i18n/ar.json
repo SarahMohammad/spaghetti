@@ -71,6 +71,22 @@
     "requestFor": "طلب لـ",
     "pendingOn": "معلق على",
     "requestCenter": "مركز الطلب",
-    "approvalLine": "خط الموافقة"
+    "approvalLine": "خط الموافقة",
+    "date": "التاريخ",
+    "category": "الفئة",
+    "reset": "إعادة ضبط",
+    "viewApprovalLine": "عرض خط الموافقة",
+    "approvals": "الموافقات",
+    "myRequests": "طلباتي",
+    "pendingOnMe": "معلق علي",
+    "checkYourUpdates": "تحقق من تحديثاتك",
+    "searchServicesSystems": "البحث عن الخدمات أو الأنظمة",
+    "showDesc": "إظهار الوصف",
+    "recentSystems": "الأنظمة التي تم البحث عنها مؤخرا",
+    "recentServices": "الخدمات التي تم البحث عنها مؤخرا",
+    "viewDetails" : "عرض التفاصيل"
+
+
+
 
 }

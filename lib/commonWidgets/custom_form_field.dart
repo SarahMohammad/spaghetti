@@ -73,8 +73,8 @@ class CustomFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        RequiredLabel(labelText: labelText, isRequired: isRequired,),
-        SizedBox(height: AppSpacing.s.getHeight(),),
+        labelText!=null ? RequiredLabel(labelText: labelText, isRequired: isRequired,): const SizedBox.shrink(),
+        labelText!=null? SizedBox(height: AppSpacing.s.getHeight(),): const SizedBox.shrink(),
         TextFormField(
           style: FontTextStyle.paragraphLarge.copyWith(color:  AppColors.neutral900),
           maxLength: maxLength,

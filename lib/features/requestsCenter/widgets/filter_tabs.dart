@@ -6,6 +6,8 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:untitled3/UIHelpers/icons.dart';
 import 'package:untitled3/commonWidgets/bottomSheet/bottom_sheet_top_line.dart';
+import 'package:untitled3/features/home/data/models/category.dart';
+import 'package:untitled3/functions/bottom_sheet_manager.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
 import 'package:untitled3/uiHelpers/app_spacing.dart';
 import 'package:untitled3/uiHelpers/font_text_style.dart';
@@ -13,12 +15,14 @@ import 'package:untitled3/utils/constant.dart';
 
 class FilterTabs extends StatelessWidget {
   final String selectedChoice;
+  final List<String> categories;
   final Function(String) onSelected;
 
   const FilterTabs({
     super.key,
     required this.selectedChoice,
     required this.onSelected,
+    required this.categories,
   });
 
 
@@ -61,6 +65,8 @@ class FilterTabs extends StatelessWidget {
                 selected: selectedChoice == tabOptions[index].key,
                 onSelected: (selected) {
                   onSelected(tabOptions[index].key);
+                  if(index == 0)
+                  BottomSheetManager.openFilterSheet(categories: categories);
                 },
                 selectedColor: AppColors.brand100,
                 backgroundColor: Colors.white,

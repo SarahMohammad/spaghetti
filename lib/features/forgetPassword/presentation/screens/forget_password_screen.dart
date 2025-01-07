@@ -74,7 +74,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                                       SizedBox(height: AppSpacing.l.getHeight()),
 
                                       CustomFormField(
-                                        //  controller: loginController.userNameController,
+                                         controller: forgetPasswordController.birthDateController,
                                         readOnly: true,
                                         onTap: (){
                                           forgetPasswordController.openDatePicker(context);

@@ -84,6 +84,7 @@ class RequestsCenterScreen extends StatelessWidget {
                             onSelected: (choice) {
                               requestsCenterController.selectChoice(choice);
                             },
+                        categories: requestsCenterController.categories,
                           )),
                     ),
                   ),
@@ -114,7 +115,7 @@ class RequestsCenterScreen extends StatelessWidget {
                         category: request.categoryTitle,
                         title: request.title,
                         date: request.date,
-                        inProgress: request.state.status == "in progress",
+                        inProgress: request.state.status == "In progress",
                         status: request.state.status,
                         statusTime: request.state.statusTime,
                         requestId: request.state.requestId,

@@ -97,15 +97,19 @@ class CommentsAndFeedbackWidget extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(height: 16.0),
+         SizedBox(height: 16.getHeight()),
 
         // Comment List
         Obx(() {
           return Column(
-            children: commentsList
-                .map((comment) =>
-                Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+            children: commentsList.asMap().entries.map((entry) {
+              int index = entry.key;
+              bool isLastItem = index == commentsList.length - 1;
+
+              return Column(
+                children: [
+                  Padding(
+                    padding:  EdgeInsets.only(top: 8.getHeight()),
                     child: _CommentTile(
                       name: 'Ahmed Ammar',
                       role: 'HR Manager',
@@ -114,33 +118,19 @@ class CommentsAndFeedbackWidget extends StatelessWidget {
                       'Hi Mohamed, I can’t approve your request. I need an attachment to further approve your request.',
                       attachment: 'File name.pdf',
                       fileSize: '1.2MB',
-                    )))
-                .toList(),
+                    ),
+                  ),
+                  // Add a divider only if it's not the last item
+                  if (!isLastItem) Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSpacing.m.getWidth()),
+              child: const Divider(),
+              ),
+                ],
+              );
+            }).toList(),
           );
         }),
 
-        // _CommentTile(
-        //   name: 'Ahmed Ammar',
-        //   role: 'HR Manager',
-        //   date: 'Date',
-        //   message:
-        //       'Hi Mohamed, I can’t approve your request. I need an attachment to further approve your request.',
-        // ),
-        // _CommentTile(
-        //   name: 'Mohamed Samer',
-        //   role: 'Employee',
-        //   date: 'Date',
-        //   message:
-        //       'Hello Ahmed, sorry for the trouble. Here is the Attachment you requested.',
-        //   attachment: 'File name.pdf',
-        //   fileSize: '1.2MB',
-        // ),
-        // _CommentTile(
-        //   name: 'Ahmed Ammar',
-        //   role: 'HR Manager',
-        //   date: 'Date',
-        //   message: 'Thank you Mohamed, I approved your request.',
-        // ),
         Container(
           margin: EdgeInsets.symmetric(horizontal: AppSpacing.m.getWidth(),
               vertical: AppSpacing.l.getHeight()),
@@ -226,11 +216,10 @@ class _CommentTile extends StatelessWidget {
                 .copyWith(color: AppColors.neutral800),
           ),
         ),
-        if (attachment != null) AttachmentListTile(),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSpacing.m.getWidth()),
-          child: const Divider(),
-        ),
+        if (attachment != null) AttachmentListTile(prefixIcon: SvgPicture.asset(
+            AllIcons
+                .downloadIcon),),
+
       ],
     );
   }

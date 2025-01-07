@@ -10,6 +10,7 @@ import '../../../../commonWidgets/sliver_app_bar_container.dart';
 import '../../../../commonWidgets/state_indicator.dart';
 import '../../../../commonWidgets/system_card_widget.dart';
 import '../../../../core/app_states/app_state_handler_widget.dart';
+import '../../../../utils/translation_keys.dart';
 import '../controller/systems_controller.dart';
 
 class SystemsScreen extends StatelessWidget {
@@ -49,7 +50,7 @@ class SystemsScreen extends StatelessWidget {
                     child: SliverAppBarContainer(
                       isSearching: systemController.isSearching,
                       onSearchIconClick: systemController.toggleSearch,
-                      title: "Systems",
+                      title: systems.tr,
                     ),
                   ),
                 ],

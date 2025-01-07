@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:untitled3/features/serviceScreens/nonRcuTemplateReviewRequest/presentation/controller/non_rcu_template_review_request_controller.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
 import 'package:untitled3/utils/constant.dart';
 
+import '../../../../../UIHelpers/icons.dart';
 import '../../../../../commonWidgets/custom_app_bar.dart';
 import '../../../../../core/app_states/app_state_handler_widget.dart';
 import '../../../../../uiHelpers/app_spacing.dart';
@@ -75,7 +77,9 @@ class NonRcuFormDetails extends StatelessWidget {
                               ],
                             )
                         ),
-                        AttachmentListTile(),
+                        AttachmentListTile(prefixIcon: SvgPicture.asset(
+                            AllIcons
+                                .downloadIcon),),
                         Container(
                           width: double.infinity,
                           height: 8,

@@ -69,6 +69,19 @@ const String pendingOn ="pendingOn";
 const String requestFor ="requestFor";
 const String requestCenter ="requestCenter";
 const String approvalLine ="approvalLine";
+const String category ="category";
+const String date ="date";
+const String reset ="reset";
+const String viewApprovalLine ="viewApprovalLine";
+const String myRequests ="myRequests";
+const String approvals ="approvals";
+const String checkYourUpdates ="checkYourUpdates";
+const String pendingOnMe ="pendingOnMe";
+const String searchServicesSystems ="searchServicesSystems";
+const String showDesc ="showDesc";
+const String recentServices ="recentServices";
+const String recentSystems ="recentSystems";
+const String viewDetails ="viewDetails";
 
 
 

@@ -47,5 +47,8 @@ class AppColors {
   static const brand300 = Color(0xFF70523C);
   static const darkBrown = Color(0xFF332929);
 
+  static const blue = Color(0xFF007AFF);
+  static const darkBlue = Color(0x2F007AFF);
+
 }
 

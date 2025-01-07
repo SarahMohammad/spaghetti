@@ -6,6 +6,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:untitled3/router/routes_constants.dart';
 import 'package:untitled3/uiHelpers/app_spacing.dart';
 import 'package:untitled3/utils/constant.dart';
+import 'package:untitled3/utils/translation_keys.dart';
 
 import '../../../../UIHelpers/icons.dart';
 import '../../../../UIHelpers/images.dart';
@@ -134,7 +135,7 @@ class RecentSearchScreen extends StatelessWidget {
                           children: [
                             // Services Section
                             Text(
-                              'Recent services',
+                              recentServices.tr,
                               style: FontTextStyle.headingLarge,
                             ),
                             SizedBox(height: AppSpacing.l.getHeight()),
@@ -186,7 +187,7 @@ class RecentSearchScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Recent systems',
+                              recentSystems.tr,
                               style: FontTextStyle.headingLarge,
                             ),
                             SizedBox(height: AppSpacing.l.getHeight()),

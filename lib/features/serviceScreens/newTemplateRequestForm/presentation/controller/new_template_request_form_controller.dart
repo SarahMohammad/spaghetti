@@ -6,6 +6,7 @@ import 'package:untitled3/utils/constant.dart';
 import '../../../../../commonWidgets/bottomSheet/bottom_sheet_action.dart';
 import '../../../../../commonWidgets/search_box.dart';
 import '../../../../../core/base_controller.dart';
+import '../../../../../functions/bottom_sheet_manager.dart';
 import '../../../../../functions/helper_classes.dart';
 import '../../../../../uiHelpers/app_colors.dart';
 import '../../../../../uiHelpers/font_text_style.dart';
@@ -47,103 +48,23 @@ class NewTemplateRequestFormController extends BaseController {
   void addComment() {
     commentsList.add(Comment());
   }
-  showPartyTypeName(int partyIndex) {
-    showBottomActionModelSheet(Get.context!,
-        showCloseIcon: true,
-        content: Column(
-          children: [
-            SearchBox(
-              onChanged: (val) {
-                // if (val.isEmpty) {
-                //   faqController.loadData();
-                // }
-              },
-
-              onSearch: (val) {
-                // faqController.loadData();
-              },
-              controller: null,
-              suffixIconExist: false,
-              isPrefixIconVisible: true,
-              //         onSuffixClick: () {
-              // faqController.loadData();
-              // }
-              prefixIconExist: true,
-            ),
-            SizedBox(height: 15.getHeight()),
-            Expanded(
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemCount: names.length,
-                itemBuilder: (context, index) {
-                  // Display each year
-                  return InkWell(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.getHeight()),
-                      child: Text(
-                        names[index].toString(),
-                        style: FontTextStyle.labelLarge
-                            .copyWith(color: AppColors.neutral900),
-                      ),
-                    ),
-                    onTap: () {
-                      partiesValues[partyIndex].name = names[index];
-                      partiesValues.refresh();
-                      refresh();
-                    },
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  // Add a horizontal line between items
-                  return const Divider(
-                    color: AppColors.neutral500,
-                    thickness: 1,
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-        title: "Party Type Name",
-        isScrollControlled: true,
-    );
+  showPartyTypeName(int key) {
+    BottomSheetManager.showPartyTypeName( names: names, partyIndex: key,
+        onPartyNameSelected: (selectedName){
+          partiesValues[key].name =selectedName;
+          partiesValues.refresh();
+          refresh();
+        });
+    update();
   }
 
-  showPartyCategory(int partyIndex) {
-    showBottomActionModelSheet(
-      Get.context!,
-      showCloseIcon: true,
-      isScrollControlled: true,
-      content: ListView.separated(
-        shrinkWrap: true,
-        itemCount: categories.length,
-        itemBuilder: (context, index) {
-          // Display each year
-          return InkWell(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.getHeight()),
-              child: Text(
-                categories[index].toString(),
-                style: FontTextStyle.labelLarge
-                    .copyWith(color: AppColors.neutral900),
-              ),
-            ),
-            onTap: () {
-              partiesValues[partyIndex].category = categories[index];
-              partiesValues.refresh();
-              refresh();
-            },
-          );
-        },
-        separatorBuilder: (context, index) {
-          // Add a horizontal line between items
-          return const Divider(
-            color: AppColors.neutral500,
-            thickness: 1,
-          );
-        },
-      ),
-      title: "Category 1",
-    );
+  showPartyCategory(int key) {
+    BottomSheetManager.showPartyCategory( categories: categories, partyIndex: key,
+        onPartyCategorySelected: (selectedCategory){
+          partiesValues[key].category =selectedCategory;
+          partiesValues.refresh();
+          refresh();
+        });
+    update();
   }
 }

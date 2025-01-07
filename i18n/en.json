@@ -70,7 +70,21 @@
     "requestFor": "Request for",
     "requestCenter": "Request center",
     "pendingOn": "Pending on",
-    "approvalLine": "Approval line"
+    "approvalLine": "Approval line",
+    "date": "Date",
+    "category": "Category",
+    "reset": "Reset",
+    "viewApprovalLine": "View approval line",
+    "approvals": "Approvals",
+    "myRequests": "My Requests",
+    "pendingOnMe": "Pending on me",
+    "checkYourUpdates": "Check your updates",
+    "searchServicesSystems": "Search services or systems",
+    "showDesc": "Show Description",
+    "recentSystems": "Recent systems",
+    "recentServices": "Recent services",
+    "viewDetails" : "View details"
+
 
 
 

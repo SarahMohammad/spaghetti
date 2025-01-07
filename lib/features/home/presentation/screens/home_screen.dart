@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                           prefixIconExist: true,
                           suffixColor: Colors.white,
                           backgroundColor: Colors.white.withOpacity(0.2),
-                          title: "Search services or systems",
+                          title: searchServicesSystems.tr,
                           prefixIconColor: Colors.white,
                           titleStyle: FontTextStyle.paragraphMedium
                               .copyWith(color: Colors.white),
@@ -176,8 +176,8 @@ class HomeScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         SquareHomeCard(
-          title: "My Requests",
-          subTitle: "Check your updates",
+          title: myRequests.tr,
+          subTitle: checkYourUpdates.tr,
           bgColor: AppColors.brand400,
           count: "5",
           bgCountColor: AppColors.brand300,
@@ -185,8 +185,8 @@ class HomeScreen extends StatelessWidget {
         ),
         SquareHomeCard(
           bgColor: AppColors.brand900,
-          title: "Approvals",
-          subTitle: "Pending on me",
+          title: approvals.tr,
+          subTitle: pendingOnMe.tr,
           count: "12",
           bgCountColor: AppColors.darkBrown,
           cardIcon: AllIcons.timeIcon,
@@ -314,7 +314,7 @@ class HomeScreen extends StatelessWidget {
         Obx(() {
           return ServiceCategoryWidget(
             title: homeController.selectedCategoryTitle.value.isEmpty
-                ? "Select a category"
+                ? selectCategory.tr
                 : homeController.selectedCategoryTitle.value,
             onTap: () {
               homeController.openCategoryBottomSheet();
@@ -377,15 +377,6 @@ class HomeScreen extends StatelessWidget {
           style: FontTextStyle.headingX,
         ),
         SizedBox(height: AppSpacing.l.getHeight()),
-        // Column(
-        //   children:
-        //   homeController.services.entries.map((entry) {
-        //     return  Padding(
-        //       padding:  EdgeInsets.only(bottom: AppSpacing.m.getHeight()),
-        //       child: SystemCardWidget(),
-        //     );
-        //   }).toList(),
-        // ),
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
