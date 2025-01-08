@@ -282,18 +282,14 @@ class HomeScreen extends StatelessWidget {
             return SizedBox.shrink();
           }
 
-          return SizedBox(
-            height: 52.getHeight(),
-            width: double.infinity,
-            child: CustomButton(key,
-                buttonTitle:
-                    homeController.isExpanded.value ? showLess.tr : showMore.tr,
-                padding: EdgeInsets.zero,
-                isDisabled: false,
-                buttonType: ButtonType.tertiary, onPressed: () {
-              homeController.toggleExpansion();
-            }),
-          );
+          return CustomButton(key,
+              buttonTitle:
+                  homeController.isExpanded.value ? showLess.tr : showMore.tr,
+              padding: EdgeInsets.zero,
+              isDisabled: false,
+              buttonType: ButtonType.tertiary, onPressed: () {
+            homeController.toggleExpansion();
+          });
         }),
       ],
     );
@@ -350,19 +346,15 @@ class HomeScreen extends StatelessWidget {
           },
         ),
         SizedBox(height: AppSpacing.m.getHeight()),
-        SizedBox(
-          height: 52.getHeight(),
-          width: double.infinity,
-          child: CustomButton(key,
-              buttonTitle: viewAll.tr,
-              padding: EdgeInsets.zero,
-              isDisabled: false,
-              buttonType: ButtonType.tertiary, onPressed: () {
-            final NavBarController navBarController =
-                Get.find<NavBarController>();
-            navBarController.setCurrentNavIndexState(1);
-          }),
-        ),
+        CustomButton(key,
+            buttonTitle: viewAll.tr,
+            padding: EdgeInsets.zero,
+            isDisabled: false,
+            buttonType: ButtonType.tertiary, onPressed: () {
+          final NavBarController navBarController =
+              Get.find<NavBarController>();
+          navBarController.setCurrentNavIndexState(1);
+        }),
         SizedBox(height: AppSpacing.l.getHeight()),
       ],
     );
@@ -394,19 +386,15 @@ class HomeScreen extends StatelessWidget {
           },
         ),
         SizedBox(height: AppSpacing.m.getHeight()),
-        SizedBox(
-          height: 52.getHeight(),
-          width: double.infinity,
-          child: CustomButton(key,
-              buttonTitle: viewAll.tr,
-              padding: EdgeInsets.zero,
-              isDisabled: false,
-              buttonType: ButtonType.tertiary, onPressed: () {
-            final NavBarController navBarController =
-                Get.find<NavBarController>();
-            navBarController.setCurrentNavIndexState(2);
-          }),
-        ),
+        CustomButton(key,
+            buttonTitle: viewAll.tr,
+            padding: EdgeInsets.zero,
+            isDisabled: false,
+            buttonType: ButtonType.tertiary, onPressed: () {
+          final NavBarController navBarController =
+              Get.find<NavBarController>();
+          navBarController.setCurrentNavIndexState(2);
+        }),
         SizedBox(height: AppSpacing.l.getHeight()),
       ],
     );

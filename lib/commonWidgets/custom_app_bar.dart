@@ -36,8 +36,8 @@ class CustomAppBar extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(
           top: MediaQuery.of(context).padding.top,
-          left: 10.getWidth(),
-          right: 10.getWidth(),
+          left: 20.getWidth(),
+          right: 20.getWidth(),
         ),
         child: child ??
             Row(
@@ -58,8 +58,8 @@ class CustomAppBar extends StatelessWidget {
                 SizedBox(width: AppSpacing.xs.getWidth(),),
                 Align(
                   alignment: Alignment.center,
-                  child: Container(
-                    width: Get.size.width*0.8,
+                  child: SizedBox(
+                    width: Get.size.width*0.65,
                     child: Text(
                         title ?? "",
                         style: FontTextStyle.headingX.copyWith(color: Colors.white)

@@ -62,9 +62,9 @@ class RequestsCenterScreen extends StatelessWidget {
                 ? SliverFillRemaining(
                     hasScrollBody: false,
                     child: StateIndicator(
-                      title: "No search results",
+                      title: noSearchResult.tr,
                       description:
-                          "We couldn't find what you're looking for. Try using different phrases or words.",
+                      noSearchDesc.tr,
                       middleIcon: SvgPicture.asset(AllIcons.searchIcon,
                           colorFilter: const ColorFilter.mode(
                               Colors.white, BlendMode.srcIn)),

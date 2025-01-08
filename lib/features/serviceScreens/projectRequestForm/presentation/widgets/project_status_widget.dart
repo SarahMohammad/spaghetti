@@ -62,16 +62,13 @@ class ProjectStatusWidget extends StatelessWidget {
           ),
           SizedBox(height : AppSpacing.l.getHeight()),
 
-          SizedBox(
-            height: 52.getHeight(),
-            width: double.infinity,
-            child: CustomButton(key,
+          CustomButton(key,
               buttonType: ButtonType.tertiary,
               buttonTitle: viewApprovalLine.tr,
               isDisabled: false,
               padding: EdgeInsets.zero,
             ),
-          ),
+
 
         ],
       ),

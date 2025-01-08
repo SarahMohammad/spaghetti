@@ -64,11 +64,8 @@ class RequestSubmitScreen extends StatelessWidget {
                           ),
                           Spacer(),
                           ProjectRequestSummery(),
-                          Spacer(),
-                          SizedBox(
-                            height: 52.getHeight(),
-                            width: double.infinity,
-                            child: CustomButton(
+                          const Spacer(),
+                           CustomButton(
                               key,
                               buttonTitle: trackRequest.tr,
                               padding: EdgeInsets.zero,
@@ -78,13 +75,10 @@ class RequestSubmitScreen extends StatelessWidget {
                               },
                               isDisabled: false,
                               buttonType: ButtonType.primary,
-                            ),
+
                           ),
                           SizedBox(height: AppSpacing.m.getHeight(),),
-                          SizedBox(
-                            height: 52.getHeight(),
-                            width: double.infinity,
-                            child: CustomButton(
+                          CustomButton(
                               key,
                               buttonTitle: goToHome.tr,
                               padding: EdgeInsets.zero,
@@ -92,7 +86,7 @@ class RequestSubmitScreen extends StatelessWidget {
                               isDisabled: false,
                               buttonType: ButtonType.secondary,
                             ),
-                          )
+
                         ],
                       ),
                     ),

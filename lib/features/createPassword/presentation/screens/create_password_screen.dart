@@ -119,27 +119,23 @@ class CreatePasswordScreen  extends StatelessWidget {
                         Divider(height: 1.getHeight(),color: AppColors.neutral500,),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: AppSpacing.l.getWidth(), vertical: AppSpacing.m.getHeight()),
-                          child: SizedBox(
-                            height: 52.getHeight(),
-                            width: double.infinity,
-                            child:  Obx(() =>CustomButton(
-                              key,
-                              radius: 40,
-                              buttonTitle: resetPassword.tr,
-                              padding: EdgeInsets.zero,
-                              // backgroundColor: createPasswordController.isLoginButtonActive.value?
-                              // AppColors.primary100 :
-                              // AppColors.neutral500,
-                              onPressed: () {
-                                createPasswordController.isLoginButtonActive.value?
-                                Get.toNamed(
-                                    RoutesConstants.requestSentScreen):
-                                createPasswordController.toggleSnackBarVisibility() ;
-                              },
-                              buttonType: ButtonType.primary,
-                              isDisabled:createPasswordController.isLoginButtonActive.value? false:true,
-                            )
-                            ),
+                          child: Obx(() =>CustomButton(
+                            key,
+                            radius: 40,
+                            buttonTitle: resetPassword.tr,
+                            padding: EdgeInsets.zero,
+                            // backgroundColor: createPasswordController.isLoginButtonActive.value?
+                            // AppColors.primary100 :
+                            // AppColors.neutral500,
+                            onPressed: () {
+                              createPasswordController.isLoginButtonActive.value?
+                              Get.toNamed(
+                                  RoutesConstants.requestSentScreen):
+                              createPasswordController.toggleSnackBarVisibility() ;
+                            },
+                            buttonType: ButtonType.primary,
+                            isDisabled:createPasswordController.isLoginButtonActive.value? false:true,
+                          )
                           ),
                         ),
                       ],

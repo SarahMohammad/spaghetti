@@ -122,10 +122,7 @@ class NonRcuTemplateReviewRequestScreen extends StatelessWidget {
                             }),
                             const Spacer(),
                             SizedBox(height: AppSpacing.l.getHeight()),
-                            SizedBox(
-                                height: 52.getHeight(),
-                                width: double.infinity,
-                                child: CustomButton(
+                            CustomButton(
                                   key,
                                   buttonTitle: submit.tr,
                                   padding: EdgeInsets.zero,
@@ -135,19 +132,16 @@ class NonRcuTemplateReviewRequestScreen extends StatelessWidget {
                                   },
                                   isDisabled: false,
                                   buttonType: ButtonType.primary,
-                                )),
+                                ),
                             SizedBox(height: AppSpacing.m.getHeight()),
-                            SizedBox(
-                                height: 52.getHeight(),
-                                width: double.infinity,
-                                child: CustomButton(
+                           CustomButton(
                                   key,
                                   buttonTitle: cancel.tr,
                                   padding: EdgeInsets.zero,
                                   onPressed: () {},
                                   isDisabled: false,
                                   buttonType: ButtonType.tertiary,
-                                )),
+                                ),
                           ],
                         ),
                       ),

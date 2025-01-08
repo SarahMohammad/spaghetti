@@ -134,8 +134,6 @@ class CommentsAndFeedbackWidget extends StatelessWidget {
         Container(
           margin: EdgeInsets.symmetric(horizontal: AppSpacing.m.getWidth(),
               vertical: AppSpacing.l.getHeight()),
-          height: 52.getHeight(),
-          width: double.infinity,
           child: CustomButton(
             key,
             buttonTitle: "View all",

@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:untitled3/commonWidgets/search_box.dart';
 import 'package:untitled3/utils/constant.dart';
 
 import '../UIHelpers/icons.dart';
 import '../uiHelpers/app_colors.dart';
 import '../uiHelpers/font_text_style.dart';
+import '../utils/translation_keys.dart';
 
 class SliverAppBarContainer extends StatelessWidget {
   final void Function()? onSearchIconClick;
+  final void Function(String)? onSearchChanged;
   final bool isSearching;
   final String title;
+  final String? prefixIcon;
 
   const SliverAppBarContainer({super.key,
     this.onSearchIconClick,
+    this.onSearchChanged,
     required this.isSearching,
-  required this.title});
+    required this.title,this.prefixIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +58,7 @@ class SliverAppBarContainer extends StatelessWidget {
                         ),
                       ),
                       child: SvgPicture.asset(
-                        AllIcons.searchIcon,
+                        prefixIcon ?? AllIcons.searchIcon,
                         colorFilter: const ColorFilter.mode(
                             Colors.white, BlendMode.srcIn),
                         // fit: BoxFit.contain,
@@ -70,22 +75,18 @@ class SliverAppBarContainer extends StatelessWidget {
             // Show search box only when in search mode and app bar is expanded
             if (isSearching)
               SearchBox(
-                  onChanged: null,
-                  prefixIconExist: true,
-                  suffixColor: Colors.white,
-                  backgroundColor: Colors.white.withOpacity(0.2),
-                  title: "Search",
-                  prefixIconColor: Colors.white,
-                  titleStyle: FontTextStyle.paragraphLarge
-                      .copyWith(color: Colors.white),
+                onChanged: onSearchChanged ?? (value) {},
+                prefixIconExist: true,
+                suffixColor: Colors.white,
+                backgroundColor: Colors.white.withOpacity(0.2),
+                title: search.tr,
+                prefixIconColor: Colors.white,
+                titleStyle: FontTextStyle.paragraphLarge
+                    .copyWith(color: Colors.white),
               ),
           ],
         ),
       ),
     );
-
-
-
-
   }
 }

@@ -96,10 +96,7 @@ class VerifyIdentityScreen extends StatelessWidget {
                         padding:  EdgeInsets.symmetric(
                             horizontal:  AppSpacing.l.getWidth(),
                             vertical: AppSpacing.m.getHeight()),
-                        child: SizedBox(
-                          height: 52.getHeight(),
-                          width: double.infinity,
-                          child:  Obx(() =>CustomButton(
+                        child:  Obx(() =>CustomButton(
                             key,
                             buttonTitle: sendCode.tr,
                             padding: EdgeInsets.zero,
@@ -110,7 +107,7 @@ class VerifyIdentityScreen extends StatelessWidget {
                             },
                             isDisabled:verifyIdentityController.isSendButtonActive.value? false: true,
                             buttonType: ButtonType.primary,
-                          )
+
                           ),
                         ),
                       ),

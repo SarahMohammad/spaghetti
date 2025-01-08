@@ -10,6 +10,7 @@ import 'package:untitled3/features/requestsCenter/presentation/screens/requests_
 import 'package:untitled3/features/serviceScreens/newTemplateRequestForm/presentation/screens/new_template_request_form_screen.dart';
 import 'package:untitled3/features/serviceScreens/nonRcuTemplateReviewRequest/presentation/screens/non_rcu_template_review_request_screen.dart';
 import 'package:untitled3/features/services/presentation/screens/services_screen.dart';
+import 'package:untitled3/features/services/presentation/screens/services_search_screen.dart';
 import 'package:untitled3/router/routes_constants.dart';
 import '../features/login/presentation/screens/login_screen.dart';
 import '../features/otp/presentation/screens/otp_screen.dart';
@@ -169,6 +170,13 @@ GetPage(
    GetPage(
       name: RoutesConstants.nonRcuFormDetailsScreen,
       page: () => NonRcuFormDetails(),
+      transition: Transition.fade,
+      binding: GlobalBindings(),
+    ),
+
+   GetPage(
+      name: RoutesConstants.servicesSearchScreen,
+      page: () => ServicesSearchScreen(),
       transition: Transition.fade,
       binding: GlobalBindings(),
     ),

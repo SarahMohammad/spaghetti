@@ -56,28 +56,32 @@ class RequestFormScreen extends StatelessWidget {
                             children: [
                               CustomFormField(
                                 controller:
-                                requestFormController.projectNameController,
+                                    requestFormController.projectNameController,
                                 labelText: projectName.tr,
                                 isRequired: true,
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               CustomFormField(
-                                controller: requestFormController.projectDurationController,
+                                controller: requestFormController
+                                    .projectDurationController,
                                 labelText: projectDuration.tr,
                                 isRequired: true,
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               CustomFormField(
-                                controller: requestFormController.projectOwnerController,
+                                controller: requestFormController
+                                    .projectOwnerController,
                                 labelText: projectOwner.tr,
                                 isRequired: true,
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               CustomFormField(
-                                 controller: requestFormController.projectImplYearController,
+                                controller: requestFormController
+                                    .projectImplYearController,
                                 readOnly: true,
                                 onTap: () {
-                                  requestFormController.showProjectImplYearsBottomSheet();
+                                  requestFormController
+                                      .showProjectImplYearsBottomSheet();
                                 },
                                 suffix: SvgPicture.asset(AllIcons.downArrowIcon,
                                     fit: BoxFit.scaleDown),
@@ -86,11 +90,13 @@ class RequestFormScreen extends StatelessWidget {
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               CustomFormField(
-                                 controller: requestFormController.closingDateController,
+                                controller:
+                                    requestFormController.closingDateController,
                                 // hintText: enterDateOfBirth.tr,
                                 readOnly: true,
                                 onTap: () {
-                                  requestFormController.openDatePicker(Get.context as BuildContext);
+                                  requestFormController.openDatePicker(
+                                      Get.context as BuildContext);
                                 },
                                 suffix: SvgPicture.asset(AllIcons.calendarIcon,
                                     fit: BoxFit.scaleDown),
@@ -99,25 +105,29 @@ class RequestFormScreen extends StatelessWidget {
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               CustomFormField(
-                                controller: requestFormController.valueController,
+                                controller:
+                                    requestFormController.valueController,
                                 labelText: value.tr,
                                 isRequired: true,
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               CustomFormField(
-                                controller: requestFormController.approvalAuthorityController,
+                                controller: requestFormController
+                                    .approvalAuthorityController,
                                 labelText: approvalAuth.tr,
                                 isRequired: true,
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               CustomFormField(
-                                controller: requestFormController.managementApprovalController,
+                                controller: requestFormController
+                                    .managementApprovalController,
                                 labelText: managementApproval.tr,
                                 isRequired: true,
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               CustomFormField(
-                                controller: requestFormController.externalApprovalController,
+                                controller: requestFormController
+                                    .externalApprovalController,
                                 labelText: externalApproval.tr,
                                 isRequired: true,
                               ),
@@ -125,18 +135,21 @@ class RequestFormScreen extends StatelessWidget {
                               CustomFormField(
                                 labelText: projectDescription.tr,
                                 maxLines: 4,
-                                controller: requestFormController.projectDescriptionController,
+                                controller: requestFormController
+                                    .projectDescriptionController,
                                 maxLength: 300,
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               CustomFormField(
-                                controller: requestFormController.structureController,
+                                controller:
+                                    requestFormController.structureController,
                                 labelText: structure.tr,
                                 isRequired: true,
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               CustomFormField(
-                                controller: requestFormController.paymentStructureController,
+                                controller: requestFormController
+                                    .paymentStructureController,
                                 labelText: paymentStructure.tr,
                                 isRequired: true,
                               ),
@@ -154,67 +167,62 @@ class RequestFormScreen extends StatelessWidget {
                               ),
 
                               Obx(() {
-                                      return Column(
-                                        children: requestFormController
-                                            .partiesValues
-                                            .asMap()
-                                            .entries
-                                            .map((entry) => Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: AppSpacing.m
-                                                        .getHeight()),
-                                                child:
-                                                    PartyWidget(
-                                                  index: entry.key,
-                                                  partyHeaderTitle:
-                                                      'Party ${entry.key + 1}',
-                                                  partyName: entry.value.name,
-                                                  partyType: entry.value.type,
-                                                  partyCategory:
-                                                      entry.value.category,
-                                                  onUpdatePartyType: (type) {
-                                                    requestFormController
-                                                        .partiesValues[
-                                                            entry.key]
-                                                        .type = type;
-                                                    requestFormController
-                                                        .partiesValues
-                                                        .refresh();
-                                                  },
-                                                  onShowPartyTypeName: () {
-                                                    requestFormController
-                                                        .showPartyTypeName(
-                                                            entry.key);
-                                                  },
-                                                  onShowPartyCategory: () {
-                                                    requestFormController
-                                                        .showPartyCategory(
-                                                            entry.key);
-                                                  },
-                                                  onDelete: () {
-                                                    requestFormController
-                                                        .partiesValues
-                                                        .removeAt(entry.key);
-                                                  },
-                                                )))
-                                            .toList(),
-                                      );
-                                    }),
+                                return Column(
+                                  children: requestFormController.partiesValues
+                                      .asMap()
+                                      .entries
+                                      .map((entry) => Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical:
+                                                  AppSpacing.m.getHeight()),
+                                          child: PartyWidget(
+                                            index: entry.key,
+                                            partyHeaderTitle:
+                                                'Party ${entry.key + 1}',
+                                            partyName: entry.value.name,
+                                            partyType: entry.value.type,
+                                            partyCategory: entry.value.category,
+                                            onUpdatePartyType: (type) {
+                                              requestFormController
+                                                  .partiesValues[entry.key]
+                                                  .type = type;
+                                              requestFormController
+                                                  .partiesValues
+                                                  .refresh();
+                                            },
+                                            onShowPartyTypeName: () {
+                                              requestFormController
+                                                  .showPartyTypeName(entry.key);
+                                            },
+                                            onShowPartyCategory: () {
+                                              requestFormController
+                                                  .showPartyCategory(entry.key);
+                                            },
+                                            onDelete: () {
+                                              requestFormController
+                                                  .partiesValues
+                                                  .removeAt(entry.key);
+                                            },
+                                          )))
+                                      .toList(),
+                                );
+                              }),
                               SizedBox(
                                 height: 10.getHeight(),
                               ),
 
-
-                               CustomButton(
+                              CustomButton(
                                 key,
                                 radius: 100.0,
-                                padding: const EdgeInsets.symmetric(vertical: 1.0),
+                                buttonHeight: 48.getHeight(),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 1.0),
                                 onPressed: () {
                                   requestFormController.addParty();
                                 },
                                 isDisabled: false,
                                 buttonType: ButtonType.secondary,
-                                child:  Container(
+                                child: Container(
                                   width: Get.size.width,
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -232,48 +240,48 @@ class RequestFormScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                                             ),
+                              ),
+                              SizedBox(height: AppSpacing.l.getHeight()),
+
                               CustomFormField(
-                                controller: requestFormController.authorizedPersonnelController,
+                                controller: requestFormController
+                                    .authorizedPersonnelController,
                                 isRequired: true,
                                 labelText: authorizedPersonnel.tr,
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               CustomFormField(
-                                controller: requestFormController.similarProjectsController,
+                                controller: requestFormController
+                                    .similarProjectsController,
                                 labelText: similarProjects.tr,
                                 isRequired: true,
                               ),
                               SizedBox(height: AppSpacing.l.getHeight()),
                               const Spacer(),
                               SizedBox(height: AppSpacing.l.getHeight()),
-                              Obx (()=> SizedBox(
-                                  height: 52.getHeight(),
-                                  width: double.infinity,
-                                  child: CustomButton(
-                                    key,
-                                    buttonTitle: submit.tr,
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {
-                                      Get.toNamed(
-                                          RoutesConstants.requestSubmitScreen);
-                                    },
-                                    isDisabled: !requestFormController.isSubmitEnabled.value,
-                                    buttonType: ButtonType.primary,
-                                  ),
-                              ),),
+                              Obx(
+                                () => CustomButton(
+                                  key,
+                                  buttonTitle: submit.tr,
+                                  padding: EdgeInsets.zero,
+                                  onPressed: () {
+                                    Get.toNamed(
+                                        RoutesConstants.requestSubmitScreen);
+                                  },
+                                  isDisabled: !requestFormController
+                                      .isSubmitEnabled.value,
+                                  buttonType: ButtonType.primary,
+                                ),
+                              ),
                               SizedBox(height: AppSpacing.m.getHeight()),
-                              SizedBox(
-                                  height: 52.getHeight(),
-                                  width: double.infinity,
-                                  child: CustomButton(
-                                    key,
-                                    buttonTitle: cancel.tr,
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {},
-                                    isDisabled: false,
-                                    buttonType: ButtonType.tertiary,
-                                  )),
+                              CustomButton(
+                                key,
+                                buttonTitle: cancel.tr,
+                                padding: EdgeInsets.zero,
+                                onPressed: () {},
+                                isDisabled: false,
+                                buttonType: ButtonType.tertiary,
+                              ),
                             ],
                           ),
                         ),

@@ -82,10 +82,7 @@ class FeedbackWidget extends StatelessWidget {
           //   ),
           // ),
           const SizedBox(height: 16.0),
-          Container(
-            height: 52.getHeight(),
-            width: double.infinity,
-            child: CustomButton(
+          CustomButton(
               key,
               buttonTitle: submit.tr,
               padding: EdgeInsets.zero,
@@ -93,7 +90,6 @@ class FeedbackWidget extends StatelessWidget {
               isDisabled: true,
               buttonType: ButtonType.primary,
             ),
-          ),
         ],
       ),
     );

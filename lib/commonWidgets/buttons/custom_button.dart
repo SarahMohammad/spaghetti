@@ -11,6 +11,8 @@ import '../../utils/button_enum.dart';
 class CustomButton extends StatelessWidget {
   final void Function()? onPressed;
   final double? borderWidth;
+  final double? buttonHeight;
+  final double? buttonWidth;
   final double? radius;
   final String? buttonTitle;
   final ButtonType buttonType;
@@ -27,6 +29,8 @@ class CustomButton extends StatelessWidget {
       this.radius,
       this.child,
       this.padding,
+      this.buttonHeight,
+      this.buttonWidth,
       this.showSuffixIcon = false,
       this.suffixIcon,
       this.isDisabled = false,
@@ -35,68 +39,72 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      elevation: 0,
-      color: buttonType == ButtonType.primary && !isDisabled
-          ? AppColors.brand500
-          : buttonType == ButtonType.primary && isDisabled
-          ? AppColors.neutral500
-          : Colors.white,
-      disabledColor: buttonType == ButtonType.primary
-          ? AppColors.neutral500
-          : Colors.white,
-      shape: OutlineInputBorder(
-        borderSide: BorderSide(
-          width: buttonType == ButtonType.primary ? 0 : 1,
-          color: buttonType == ButtonType.primary && isDisabled
-              ? Colors.transparent
-              : buttonType != ButtonType.primary && isDisabled
-              ? AppColors.neutral500
-              : buttonType == ButtonType.secondary && !isDisabled
-              ? AppColors.brand500
-              : AppColors.neutral500,
-        ),
-        borderRadius: BorderRadius.all(
-          Radius.circular(radius ?? 40),
-        ),
-      ),
-      padding: padding ?? const EdgeInsets.all(16),
-      onPressed: onPressed ?? () {},
-      splashColor: !isDisabled
-          ? buttonType == ButtonType.primary
-          ? AppColors.brand700
-          : buttonType == ButtonType.secondary
-          ? AppColors.brand200
-          : AppColors.neutral200
-          : Colors.transparent,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min, // Ensure the Row only takes the necessary space
-        children: [
-          Flexible(
-            child: child ??
-                Text(
-                  buttonTitle ?? "",
-                  style: FontTextStyle.labelMedium.copyWith(
-                    color: isDisabled
-                        ? AppColors.neutral700
-                        : buttonType == ButtonType.primary
-                        ? Colors.white
-                        : buttonType == ButtonType.secondary
-                        ? AppColors.brand500
-                        : AppColors.neutral900,
-                    overflow: TextOverflow.ellipsis, // Prevent text overflow
-                  ),
-                  maxLines: 1, // Restrict to a single line
-                ),
+    return SizedBox(
+      height: buttonHeight ?? 56.getHeight(),
+      width: buttonWidth ?? double.infinity,
+      child: MaterialButton(
+        elevation: 0,
+        color: buttonType == ButtonType.primary && !isDisabled
+            ? AppColors.brand500
+            : buttonType == ButtonType.primary && isDisabled
+            ? AppColors.neutral500
+            : Colors.white,
+        disabledColor: buttonType == ButtonType.primary
+            ? AppColors.neutral500
+            : Colors.white,
+        shape: OutlineInputBorder(
+          borderSide: BorderSide(
+            width: buttonType == ButtonType.primary ? 0 : 1,
+            color: buttonType == ButtonType.primary && isDisabled
+                ? Colors.transparent
+                : buttonType != ButtonType.primary && isDisabled
+                ? AppColors.neutral500
+                : buttonType == ButtonType.secondary && !isDisabled
+                ? AppColors.brand500
+                : AppColors.neutral500,
           ),
-          if (showSuffixIcon!)
-            SizedBox(width: AppSpacing.xs.getWidth()),
-          if (showSuffixIcon!)
+          borderRadius: BorderRadius.all(
+            Radius.circular(radius ?? 40),
+          ),
+        ),
+        padding: padding ?? const EdgeInsets.all(16),
+        onPressed: onPressed ?? () {},
+        splashColor: !isDisabled
+            ? buttonType == ButtonType.primary
+            ? AppColors.brand700
+            : buttonType == ButtonType.secondary
+            ? AppColors.brand200
+            : AppColors.neutral200
+            : Colors.transparent,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min, // Ensure the Row only takes the necessary space
+          children: [
             Flexible(
-              child: suffixIcon!,
+              child: child ??
+                  Text(
+                    buttonTitle ?? "",
+                    style: FontTextStyle.labelMedium.copyWith(
+                      color: isDisabled
+                          ? AppColors.neutral700
+                          : buttonType == ButtonType.primary
+                          ? Colors.white
+                          : buttonType == ButtonType.secondary
+                          ? AppColors.brand500
+                          : AppColors.neutral900,
+                      overflow: TextOverflow.ellipsis, // Prevent text overflow
+                    ),
+                    maxLines: 1, // Restrict to a single line
+                  ),
             ),
-        ],
+            if (showSuffixIcon!)
+              SizedBox(width: AppSpacing.xs.getWidth()),
+            if (showSuffixIcon!)
+              Flexible(
+                child: suffixIcon!,
+              ),
+          ],
+        ),
       ),
     );
   }

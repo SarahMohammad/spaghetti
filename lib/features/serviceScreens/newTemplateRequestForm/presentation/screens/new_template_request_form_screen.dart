@@ -135,13 +135,14 @@ class NewTemplateRequestFormScreen extends StatelessWidget {
                                CustomButton(
                                 key,
                                 radius: 100.0,
+                                buttonHeight: 48.getHeight() ,
                                 padding: const EdgeInsets.symmetric(vertical: 1.0),
                                 onPressed: () {
                                   controller.addParty();
                                 },
                                 isDisabled: false,
                                 buttonType: ButtonType.secondary,
-                                child:  Container(
+                                child:  SizedBox(
                                   width: Get.size.width,
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -160,6 +161,8 @@ class NewTemplateRequestFormScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              SizedBox(height: AppSpacing.l.getHeight()),
+
                               CustomFormField(
                                 controller: controller.valueController,
                                 labelText: value.tr,
@@ -186,10 +189,7 @@ class NewTemplateRequestFormScreen extends StatelessWidget {
                               SizedBox(height: AppSpacing.l.getHeight()),
                               const Spacer(),
                               SizedBox(height: AppSpacing.l.getHeight()),
-                              SizedBox(
-                                  height: 52.getHeight(),
-                                  width: double.infinity,
-                                  child: CustomButton(
+                               CustomButton(
                                     key,
                                     buttonTitle: submit.tr,
                                     padding: EdgeInsets.zero,
@@ -199,19 +199,16 @@ class NewTemplateRequestFormScreen extends StatelessWidget {
                                     },
                                     isDisabled: false,
                                     buttonType: ButtonType.primary,
-                                  )),
+                                  ),
                               SizedBox(height: AppSpacing.m.getHeight()),
-                              SizedBox(
-                                  height: 52.getHeight(),
-                                  width: double.infinity,
-                                  child: CustomButton(
+                              CustomButton(
                                     key,
                                     buttonTitle: cancel.tr,
                                     padding: EdgeInsets.zero,
                                     onPressed: () {},
                                     isDisabled: false,
                                     buttonType: ButtonType.tertiary,
-                                  )),
+                                  ),
                             ],
                           ),
                         ),

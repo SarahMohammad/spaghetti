@@ -253,30 +253,26 @@ class OtpScreen extends StatelessWidget {
                               padding: EdgeInsets.symmetric(
                                   horizontal: AppSpacing.l.getWidth(),
                                   vertical: AppSpacing.m.getHeight()),
-                              child: SizedBox(
-                                height: 52.getHeight(),
-                                width: double.infinity,
-                                child: Obx(() =>
-                                    CustomButton(
-                                      key,
-                                      buttonTitle: verify.tr,
-                                      padding: EdgeInsets.zero,
+                              child: Obx(() =>
+                                  CustomButton(
+                                    key,
+                                    buttonTitle: verify.tr,
+                                    padding: EdgeInsets.zero,
 
-                                      onPressed: () {
-                                        otpController.isErrorState.value = true;
-                                        Future.delayed(const Duration(seconds: 1), () {
-                                          Get.toNamed(
-                                              RoutesConstants.mainScreen);
-                                           });
+                                    onPressed: () {
+                                      otpController.isErrorState.value = true;
+                                      Future.delayed(const Duration(seconds: 1), () {
+                                        Get.toNamed(
+                                            RoutesConstants.mainScreen);
+                                         });
 
-                                      },
-                                      isDisabled: otpController
-                                          .isSendButtonActive.value
-                                          ? false
-                                          : true,
-                                      buttonType: ButtonType.primary,
-                                    )),
-                              ),
+                                    },
+                                    isDisabled: otpController
+                                        .isSendButtonActive.value
+                                        ? false
+                                        : true,
+                                    buttonType: ButtonType.primary,
+                                  )),
                             ),
                           ],
                         )

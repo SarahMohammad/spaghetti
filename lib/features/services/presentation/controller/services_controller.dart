@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled3/features/services/presentation/controller/services_route_mapping.dart';
 import 'package:untitled3/functions/bottom_sheet_manager.dart';
+import 'package:untitled3/router/routes_constants.dart';
 import '../../../../core/base_controller.dart';
 import '../../../home/data/models/category.dart';
 import '../../../home/data/models/service.dart';
@@ -11,7 +12,6 @@ class ServicesController extends BaseController {
   // State variables
   bool isSearching = false; // Tracks if the search bar is active
   String searchQuery = ""; // Holds the current search query
-  List<String> searchResult = [];
   List<Category> categories = [];
 
   var serviceList = <ServiceSystem>[];
@@ -58,11 +58,12 @@ class ServicesController extends BaseController {
   }
 
   void toggleSearch() {
-    isSearching = !isSearching;
-    if (!isSearching) {
-      searchQuery = ""; // Clear search query when exiting search mode
-    }
-    update();
+    Get.toNamed(RoutesConstants.servicesSearchScreen);
+    // isSearching = !isSearching;
+    // if (!isSearching) {
+    //   searchQuery = "";
+    // }
+    // update();
   }
 
   loadCategories(){
@@ -102,6 +103,14 @@ class ServicesController extends BaseController {
       },
     );
   }
-
+  List<ServiceSystem> searchResult = [];
+  void search(String query) {
+    searchQuery = query;
+    searchResult = serviceList
+        .where((service) =>
+        service.title.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    update();
+  }
 
 }

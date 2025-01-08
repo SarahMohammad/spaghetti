@@ -12,7 +12,6 @@ import '../commonWidgets/buttons/custom_button.dart';
 import '../commonWidgets/custom_form_field.dart';
 import '../commonWidgets/search_box.dart';
 import '../features/home/data/models/service.dart';
-import '../features/serviceScreens/projectRequestForm/presentation/controller/request_form_controller.dart';
 import '../features/services/widgets/category_grid_tile.dart';
 import '../router/routes_constants.dart';
 import '../uiHelpers/app_colors.dart';
@@ -21,7 +20,6 @@ import '../uiHelpers/app_spacing.dart';
 import '../uiHelpers/font_text_style.dart';
 import '../utils/button_enum.dart';
 import '../utils/translation_keys.dart';
-import 'helper_classes.dart';
 
 class BottomSheetManager {
 
@@ -37,24 +35,20 @@ class BottomSheetManager {
           Text(serviceSystem.description ,
             style: FontTextStyle.paragraphMedium.copyWith(color: AppColors.neutral800),),
           SizedBox(height: AppSpacing.xl.getHeight(),),
-          SizedBox(
-            height:52.getHeight(),
-            width: Get.size.width,
-            child: CustomButton(
-              key,
-              //radius: 40,
-              buttonTitle: requestService.tr,
-              padding: EdgeInsets.zero,
-              onPressed: () {
-              },
-              buttonType: ButtonType.primary,
-              isDisabled: false,
-              showSuffixIcon: serviceSystem.isSystem != null &&
-                  serviceSystem.isSystem! ? true :false,
-              suffixIcon: serviceSystem.isSystem != null &&
-                  serviceSystem.isSystem! ? SvgPicture.asset(AllIcons.systemIcon , colorFilter: const ColorFilter.mode( Colors.white, BlendMode.srcIn)
-                ,): null,
-            ),
+          CustomButton(
+            key,
+            //radius: 40,
+            buttonTitle: requestService.tr,
+            padding: EdgeInsets.zero,
+            onPressed: () {
+            },
+            buttonType: ButtonType.primary,
+            isDisabled: false,
+            showSuffixIcon: serviceSystem.isSystem != null &&
+                serviceSystem.isSystem! ? true :false,
+            suffixIcon: serviceSystem.isSystem != null &&
+                serviceSystem.isSystem! ? SvgPicture.asset(AllIcons.systemIcon , colorFilter: const ColorFilter.mode( Colors.white, BlendMode.srcIn)
+              ,): null,
           )
         ],),
       title: serviceSystem.title,
@@ -153,6 +147,7 @@ class BottomSheetManager {
          },
        ),
        title: projectImplYear.tr,
+       titleAlignment: TextAlign.center
      );
    }
 
@@ -192,6 +187,8 @@ class BottomSheetManager {
          },
        ),
        title: "Category 1",
+         titleAlignment: TextAlign.center
+
      );
    }
 
@@ -250,6 +247,7 @@ class BottomSheetManager {
        ),
        title: "Party Type Name",
        isScrollControlled: true,
+       titleAlignment: TextAlign.center
      );
    }
 
@@ -364,6 +362,7 @@ class BottomSheetManager {
   static void openApprovalLineSheet({required List<Map<String, dynamic>> approvals}) {
     showBottomActionModelSheet(
       Get.context!,
+      titleAlignment: TextAlign.center,
       showCloseIcon: true,
       isScrollControlled: true,
       content: Column(
@@ -507,6 +506,7 @@ class BottomSheetManager {
 
   static void openOptionsBottomSheet({required List<Map<String, dynamic>> approvals}) {
     showBottomActionModelSheet(
+      titleAlignment: TextAlign.center,
       Get.context!,
       showCloseIcon: false,
       isScrollControlled: true,

@@ -10,13 +10,16 @@ class LabelValueRow extends StatelessWidget {
   final String value;
   final Widget? prefix;
   final Widget? suffix;
+  final TextStyle? lableStyle;
+  final TextStyle? valueStyle;
 
   const LabelValueRow({
     required this.label,
     required this.value,
     this.prefix,
     this.suffix,
-    Key? key,
+    Key? key,this.lableStyle,
+    this.valueStyle
   }) : super(key: key);
 
   @override
@@ -29,7 +32,7 @@ class LabelValueRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(label,
-                  style: FontTextStyle.paragraphMedium
+                  style: lableStyle ?? FontTextStyle.paragraphMedium
                       .copyWith(color: AppColors.neutral800)),
               SizedBox(height: AppSpacing.m.getHeight()),
               Row(
@@ -39,7 +42,7 @@ class LabelValueRow extends StatelessWidget {
                       ? SizedBox(width: AppSpacing.xs.getWidth())
                       : SizedBox(),
                   Text(value,
-                      style: FontTextStyle.paragraphLarge
+                      style: valueStyle ?? FontTextStyle.paragraphLarge
                           .copyWith(color: AppColors.neutral900)),
                   suffix != null
                       ? SizedBox(width: AppSpacing.xxs.getWidth())

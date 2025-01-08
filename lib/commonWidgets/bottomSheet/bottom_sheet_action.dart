@@ -27,7 +27,7 @@ showBottomActionModelSheet(
   bool showCloseIcon = false,
   bool showPrefixIcon = false,
   Color backgroundColor = Colors.white,
-  TextAlign? titleAlignment ,
+  required TextAlign titleAlignment ,
   TextStyle? titleStyle,
   bool isReset = false,
       Function()? onResetPressed,
@@ -59,45 +59,124 @@ showBottomActionModelSheet(
             showTopLine ? const BottomSheetTopLine() : const SizedBox(),
             SizedBox(height: 20.getHeight()),
             // Title Section
-            if (title != null)
-              Row(
-                children: [
-                  if(showPrefixIcon)
-                    SvgPicture.asset(AllIcons.userIcon),
-                  if(showPrefixIcon)
-                    SizedBox(width: AppSpacing.xs.getWidth(),),
-                if(isReset)
-                  InkWell(
-                      onTap:onResetPressed ,
-                      child: Text(
-                        reset.tr,
-                        style: FontTextStyle.labelMedium.copyWith(
-                            color: AppColors.primary100,
-                            decoration: TextDecoration.underline,
-                            decorationColor: AppColors.primary100
-                        )
-                      ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      title,
-                      textAlign: titleAlignment ?? TextAlign.start,
-                      style: titleStyle ??
-                          FontTextStyle.labelX
-                              .copyWith(color: AppColors.neutral800),
+            Stack(
+              children: [
+                // Prefix icon or reset button on the leading side (RTL-aware)
+                if (showPrefixIcon || isReset)
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (showPrefixIcon)
+                          SvgPicture.asset(AllIcons.userIcon),
+                        if (showPrefixIcon)
+                          SizedBox(width: AppSpacing.xs.getWidth()),
+                        if (isReset)
+                          InkWell(
+                            onTap: onResetPressed,
+                            child: Text(
+                              reset.tr,
+                              style: FontTextStyle.labelMedium.copyWith(
+                                color: AppColors.primary100,
+                                decoration: TextDecoration.underline,
+                                decorationColor: AppColors.primary100,
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
                   ),
-                  if (showCloseIcon)
-                    CustomCloseButton(
+
+                // Title alignment based on titleAlignment
+                if (titleAlignment == TextAlign.center)
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      title ?? "f",
+                      textAlign: titleAlignment,
+                      style: titleStyle ??
+                          FontTextStyle.labelX.copyWith(
+                            color: AppColors.neutral800,
+                          ),
+                    ),
+                  ),
+                if (titleAlignment == TextAlign.start)
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 30.getWidth()),
+                      child: Text(
+                        title??"",
+                        textAlign: titleAlignment,
+                        style: titleStyle ??
+                            FontTextStyle.labelX.copyWith(
+                              color: AppColors.neutral800,
+                            ),
+                      ),
+                    ),
+                  ),
+
+                // Close button on the trailing side (RTL-aware)
+                if (showCloseIcon)
+                  Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: CustomCloseButton(
                       onClose: () {
-                        onClose != null ? onClose() : Get.back();
+                        if (onClose != null) {
+                          onClose!();
+                        } else {
+                          Get.back();
+                        }
                       },
                     ),
-                ],
-              ),
-            const SizedBox(height: 12),
+                  ),
+              ],
+            ),
+
+              // Row(
+              //   children: [
+              //     if(showPrefixIcon)
+              //       SvgPicture.asset(AllIcons.userIcon),
+              //     if(showPrefixIcon)
+              //       SizedBox(width: AppSpacing.xs.getWidth(),),
+              //   if(isReset)
+              //     InkWell(
+              //         onTap:onResetPressed ,
+              //         child: Text(
+              //           reset.tr,
+              //           style: FontTextStyle.labelMedium.copyWith(
+              //               color: AppColors.primary100,
+              //               decoration: TextDecoration.underline,
+              //               decorationColor: AppColors.primary100
+              //           )
+              //         ),
+              //     ),
+              //     Expanded(
+              //       child: Text(
+              //         title,
+              //         textAlign: titleAlignment ?? TextAlign.start,
+              //         style: titleStyle ??
+              //             FontTextStyle.labelX
+              //                 .copyWith(color: AppColors.neutral800),
+              //       ),
+              //     ),
+              //     if (showCloseIcon)
+              //       CustomCloseButton(
+              //         onClose: () {
+              //           onClose != null ? onClose() : Get.back();
+              //         },
+              //       ),
+              //   ],
+              // ),
+               SizedBox(height: AppSpacing.xl.getHeight()),
+
+
             // Content Section
-            content,
+            Padding(
+              padding: EdgeInsets.only(top: AppSpacing.m.getHeight()),
+              child: content,
+            ),
             // Button Section
             buttonSection,
           ],

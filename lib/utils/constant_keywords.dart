@@ -15,5 +15,4 @@ class ConstantKeys {
   static const String userId = "userId";
   static const String userType = "userType";
   static const String email = "email";
-  static const String statusCode = "statusCode";
 }

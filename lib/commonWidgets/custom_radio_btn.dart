@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
+import 'package:untitled3/uiHelpers/app_radius.dart';
 import 'package:untitled3/uiHelpers/font_text_style.dart';
 import 'package:untitled3/utils/constant.dart';
+
+import '../uiHelpers/app_spacing.dart';
 
 class CustomRadioButton extends StatelessWidget {
   final bool isSelected;
@@ -23,9 +26,10 @@ class CustomRadioButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+        height:56,
+        padding:  EdgeInsets.symmetric(horizontal: AppSpacing.s.getWidth()),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(AppRadius.m),
           border: Border.all(
             color: isSelected ? AppColors.brand500 : AppColors.neutral500,
             width: 1.0,

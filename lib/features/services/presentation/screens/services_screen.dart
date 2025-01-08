@@ -29,13 +29,13 @@ class ServicesScreen extends StatelessWidget {
               pinned: true,
               floating: false,
               snap: false,
-              expandedHeight: servicesController.isSearching
-                  ? Get.size.height * 0.19
-                  : Get.size.height * 0.12,
+              // expandedHeight: servicesController.isSearching
+              //     ? Get.size.height * 0.19
+              //     : Get.size.height * 0.12,
               collapsedHeight: servicesController.isSearching
                   ? Get.size.height * 0.19
                   : Get.size.height * 0.12,
-              leading: SizedBox(),
+              leading: const SizedBox(),
               flexibleSpace: Stack(
                 children: <Widget>[
                   Positioned.fill(
@@ -51,6 +51,7 @@ class ServicesScreen extends StatelessWidget {
                   Positioned.fill(
                     child: SliverAppBarContainer(
                       isSearching: servicesController.isSearching,
+                      onSearchChanged: servicesController.search,
                       onSearchIconClick: servicesController.toggleSearch,
                       title: services.tr,
                     ),
@@ -59,70 +60,83 @@ class ServicesScreen extends StatelessWidget {
               ),
             ),
             servicesController.isSearching &&
-                    servicesController.searchResult.length == 0
+                servicesController.searchResult.length == 0
                 ? SliverFillRemaining(
-                    hasScrollBody: false,
-                    // Ensures it doesn't allow internal scrolling
-                    child: StateIndicator(
-                      title: "No search results",
-                      description:
-                          "We couldn't find what you're looking for. Try using different phrases or words.",
-                      middleIcon: SvgPicture.asset(AllIcons.searchIcon,
-                          colorFilter: const ColorFilter.mode(
-                              Colors.white, BlendMode.srcIn)),
-                    ),
-                  )
-                : SliverToBoxAdapter(
-                    child: Padding(
-                        padding: EdgeInsets.only(
-                          bottom: AppSpacing.s.getHeight(),
-                          right: AppSpacing.l.getWidth(),
-                          left: AppSpacing.l.getWidth(),
-                          top: AppSpacing.l.getHeight(),
-                        ),
-                        child: Obx(
-                          () {
-                            return ServiceCategoryWidget(
-                                title: servicesController.selectedCategoryTitle.value.isEmpty
-                                    ? selectCategory.tr
-                                    : servicesController.selectedCategoryTitle.value,
-                                onTap: () {
-                                  servicesController.openCategoryBottomSheet();
-                                });
-                          },
-                        ),
-                    ),
-                  ),
+              hasScrollBody: false,
+              child: StateIndicator(
+                title: noSearchResult.tr,
+                description:
+                noSearchDesc.tr,
+                middleIcon: SvgPicture.asset(AllIcons.searchIcon,
+                    colorFilter: const ColorFilter.mode(
+                        Colors.white, BlendMode.srcIn)),
+              ),
+            )
+                : servicesController.searchQuery.isEmpty
+                ? SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  bottom: AppSpacing.s.getHeight(),
+                  right: AppSpacing.l.getWidth(),
+                  left: AppSpacing.l.getWidth(),
+                  top: AppSpacing.l.getHeight(),
+                ),
+                child: Obx(
+                      () {
+                    return ServiceCategoryWidget(
+                        title: servicesController
+                            .selectedCategoryTitle.value.isEmpty
+                            ? selectCategory.tr
+                            : servicesController
+                            .selectedCategoryTitle.value,
+                        onTap: () {
+                          servicesController
+                              .openCategoryBottomSheet();
+                        });
+                  },
+                ),
+              ),
+            )
+                : const SliverToBoxAdapter(
+              child: SizedBox.shrink(),
+            ),
             // The list of ServiceCardWidget
             servicesController.isSearching &&
-                    servicesController.searchResult.length == 0
+                servicesController.searchResult.length == 0
                 ? const SliverToBoxAdapter(
-                    child: SizedBox.shrink(),
-                  )
+              child: SizedBox.shrink(),
+            )
                 : SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) => Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: AppSpacing.m.getHeight(),
-                          horizontal: AppSpacing.l.getWidth(),
-                        ),
-                        child: ServiceCardWidget(
-                          title: servicesController.serviceList[index].title,
-                          onPress: () {
-                            servicesController.handleServicePress(index);
-                          },
-                          onFavPressed: () {},
-                          isFav: false,
-                          onShowDescriptionPress: () {
-                            servicesController
-                                .showServiceDescriptionBottomSheet(
-                                    servicesController.serviceList[index], key);
-                          },
-                        ),
-                      ),
-                      childCount: servicesController.serviceList.length,
-                    ),
+              delegate: SliverChildBuilderDelegate(
+                    (context, index) => Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: AppSpacing.m.getHeight(),
+                    horizontal: AppSpacing.l.getWidth(),
                   ),
+                  child: ServiceCardWidget(
+                    title: servicesController.searchQuery.isNotEmpty
+                        ? servicesController.searchResult[index].title
+                        : servicesController.serviceList[index].title,
+                    onPress: () {
+                      servicesController.handleServicePress(index);
+                    },
+                    onFavPressed: () {},
+                    isFav: false,
+                    onShowDescriptionPress: () {
+                      servicesController
+                          .showServiceDescriptionBottomSheet(
+                          servicesController.searchQuery.isNotEmpty
+                              ? servicesController.searchResult[index]
+                              : servicesController.serviceList[index],
+                          key);
+                    },
+                  ),
+                ),
+                childCount: servicesController.searchQuery.isNotEmpty
+                    ? servicesController.searchResult.length
+                    : servicesController.serviceList.length,
+              ),
+            ),
           ],
         ),
       ),

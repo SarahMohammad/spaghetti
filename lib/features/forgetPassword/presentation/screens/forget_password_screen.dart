@@ -107,24 +107,20 @@ class ForgetPasswordScreen extends StatelessWidget {
                       Divider(height: 1.getHeight(),color: AppColors.neutral500,),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: AppSpacing.l.getWidth(), vertical: AppSpacing.m.getHeight()),
-                        child: SizedBox(
-                          height: 52.getHeight(),
-                          width: double.infinity,
-                          child:  Obx(() =>CustomButton(
-                            key,
-                            buttonTitle: sendRequest.tr,
-                            padding: EdgeInsets.zero,
-                            onPressed: () {
-                              // forgetPasswordController.isSendRequestButtonActive.value?
+                        child: Obx(() =>CustomButton(
+                          key,
+                          buttonTitle: sendRequest.tr,
+                          padding: EdgeInsets.zero,
+                          onPressed: () {
+                            // forgetPasswordController.isSendRequestButtonActive.value?
 
-                              Get.toNamed(
-                                  RoutesConstants.createPasswordScreen);
-                              // loginController.toggleSnackBarVisibility() ;
-                            },
-                            isDisabled: forgetPasswordController.isSendRequestButtonActive.value?false:true,
-                            buttonType: ButtonType.primary,
-                          )
-                          ),
+                            Get.toNamed(
+                                RoutesConstants.createPasswordScreen);
+                            // loginController.toggleSnackBarVisibility() ;
+                          },
+                          isDisabled: forgetPasswordController.isSendRequestButtonActive.value?false:true,
+                          buttonType: ButtonType.primary,
+                        )
                         ),
                       ),
                     ],)

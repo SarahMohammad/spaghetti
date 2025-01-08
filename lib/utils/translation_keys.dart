@@ -82,6 +82,10 @@ const String showDesc ="showDesc";
 const String recentServices ="recentServices";
 const String recentSystems ="recentSystems";
 const String viewDetails ="viewDetails";
+const String search = "search";
+const String noSearchResult = "noSearchResult";
+const String noSearchDesc = "noSearchDesc";
+
 
 
 

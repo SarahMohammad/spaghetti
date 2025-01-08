@@ -83,9 +83,8 @@
     "showDesc": "Show Description",
     "recentSystems": "Recent systems",
     "recentServices": "Recent services",
-    "viewDetails" : "View details"
-
-
-
-
+    "viewDetails" : "View details",
+    "search": "Search",
+    "noSearchResult": "No search result",
+    "noSearchDesc": "We couldn't find what you're looking for. Try using different phrases or words."
 }

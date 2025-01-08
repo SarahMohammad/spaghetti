@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled3/UIHelpers/icons.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
@@ -7,6 +8,7 @@ import 'package:untitled3/utils/constant.dart';
 
 import '../../../UIHelpers/images.dart';
 import '../../../uiHelpers/font_text_style.dart';
+import '../../serviceScreens/projectRequestForm/presentation/widgets/label_value_row.dart';
 
 class RequestCard extends StatelessWidget {
   final Function()? onSettingsClick;
@@ -72,21 +74,21 @@ class RequestCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Request ID',
-                            style: FontTextStyle.paragraphLarge.copyWith(color: AppColors.neutral800),
+                          LabelValueRow(
+                              label: 'Request ID',
+                              value: requestId!,
+                              lableStyle:FontTextStyle.paragraphLarge.copyWith(color: AppColors.neutral800),
+                              valueStyle:FontTextStyle.paragraphMedium.copyWith(color: AppColors.neutral900),
+                              suffix:
+                              InkWell(
+                                onTap: (){
+                                  Clipboard.setData(ClipboardData(text: "REQ 122821"));
+
+                                },
+                                child: SvgPicture.asset(AllIcons.copyIcon),
+                              )
                           ),
-                          SizedBox(height: AppSpacing.s.getHeight()),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                requestId!,
-                                style:FontTextStyle.paragraphMedium.copyWith(color: AppColors.neutral900),
-                              ),
-                             SvgPicture.asset(AllIcons.systemSmallIcon)
-                            ],
-                          ),
+
                         ],
                       ),
                     ),
@@ -116,7 +118,7 @@ class RequestCard extends StatelessWidget {
                 ),
                 SizedBox(height: AppSpacing.l.getHeight()),
               ],
-            ) : SizedBox.shrink(),
+            ) : const SizedBox.shrink(),
 
             Container(
               padding:  EdgeInsets.symmetric(horizontal: AppSpacing.xs.getWidth(),

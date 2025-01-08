@@ -42,7 +42,7 @@ class RequestSentScreen extends StatelessWidget {
                 state: forgetPasswordController.loadingState,
                 child: SafeArea(
                     child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+                  padding:  EdgeInsets.symmetric(horizontal: AppSpacing.l.getWidth(), vertical: 8),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,40 +65,32 @@ class RequestSentScreen extends StatelessWidget {
                                 title: 'Request sent',
                               ),
                               const Spacer(),
-                              SizedBox(
-                                height: 52.getHeight(),
-                                width: double.infinity,
-                                child: CustomButton(
-                                      key,
-                                      buttonTitle: sendRequest.tr,
-                                      padding: EdgeInsets.zero,
-                                      isDisabled: false,
-                                      buttonType: ButtonType.tertiary,
-                                      onPressed: () {
-                                        // forgetPasswordController.isSendRequestButtonActive.value?
-                                        // Get.toNamed(
-                                        //     RoutesConstants.verifyIdentityScreen):
-                                        // loginController.toggleSnackBarVisibility() ;
-                                      },
-                                  child: Center(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                      SvgPicture.asset(AllIcons.outLookIcon),
-                                      SizedBox(width: AppSpacing.xs.getWidth(),),
-                                      Text(
-                                        'Open Outlook',
-                                        textAlign: TextAlign.center,
-                                        style: FontTextStyle.labelMedium.copyWith(
-                                          color: AppColors.neutral900
-                                        ),
+                              CustomButton(
+                                    key,
+                                    buttonTitle: sendRequest.tr,
+                                    padding: EdgeInsets.zero,
+                                    isDisabled: false,
+                                    buttonType: ButtonType.tertiary,
+                                    onPressed: () {
+                                       },
+                                child: Center(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                    SvgPicture.asset(AllIcons.outLookIcon),
+                                    SizedBox(width: AppSpacing.xs.getWidth(),),
+                                    Text(
+                                      'Open Outlook',
+                                      textAlign: TextAlign.center,
+                                      style: FontTextStyle.labelMedium.copyWith(
+                                        color: AppColors.neutral900
                                       ),
-
-                                    ],),
-                                  ),
                                     ),
-                              ),
+
+                                  ],),
+                                ),
+                                  ),
                               SizedBox(height: 15.getHeight()),
                               Text(
                                 'Didn’t get the link? Check your spam or ',

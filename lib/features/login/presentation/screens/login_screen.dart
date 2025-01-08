@@ -165,23 +165,19 @@ class LoginScreen extends StatelessWidget {
                       Divider(height: 1.getHeight(),color: AppColors.neutral500,),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: AppSpacing.l.getWidth(), vertical: AppSpacing.m.getHeight()),
-                        child: SizedBox(
-                          height: 52.getHeight(),
-                          width: double.infinity,
-                          child:  Obx(() =>CustomButton(
-                            key,
-                            buttonTitle: login.tr,
-                            padding: EdgeInsets.zero,
-                            onPressed: () {
-                              loginController.isLoginButtonActive.value?
-                              Get.toNamed(
-                                  RoutesConstants.verifyIdentityScreen):
-                              loginController.toggleSnackBarVisibility() ;
-                            },
-                            buttonType: ButtonType.primary,
-                            isDisabled: loginController.isLoginButtonActive.value? false : true,
-                          )
-                          ),
+                        child: Obx(() =>CustomButton(
+                          key,
+                          buttonTitle: login.tr,
+                          padding: EdgeInsets.zero,
+                          onPressed: () {
+                            loginController.isLoginButtonActive.value?
+                            Get.toNamed(
+                                RoutesConstants.verifyIdentityScreen):
+                            loginController.toggleSnackBarVisibility() ;
+                          },
+                          buttonType: ButtonType.primary,
+                          isDisabled: loginController.isLoginButtonActive.value? false : true,
+                        )
                         ),
                       ),
                     ],)
