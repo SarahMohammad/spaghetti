@@ -28,8 +28,8 @@ class ProjectRequestFormDetails extends StatelessWidget {
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: GetBuilder<RequestFormController>(
-          builder: (requestFormController) => AppStateHandlerWidget(
-            state: requestFormController.loadingState,
+          builder: (controller) => AppStateHandlerWidget(
+            state: controller.loadingState,
             child: SingleChildScrollView(
               child: IntrinsicHeight(
                 child: Column(
@@ -42,7 +42,11 @@ class ProjectRequestFormDetails extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
 
-                        ProjectStatusWidget(),
+                        ProjectStatusWidget(
+                          pendingOn: controller.request.pendingOn,
+                          role: controller.request.role,
+                          status: controller.request.status,
+                        ),
 
                         Container(
                           width: double.infinity,
@@ -50,10 +54,15 @@ class ProjectRequestFormDetails extends StatelessWidget {
                           color: AppColors.neutral100,
                         ),
 
-                       const Row(
+                        Row(
                           children: [
                             Expanded(
-                              child: ProjectRequestSummery(isCard : false),
+                              child: ProjectRequestSummery(
+                              isCard : false ,
+                              requestForVal: controller.request.requestFor,
+                              pendingOnVal : controller.request.pendingOn,
+                              requestId: controller.request.requestId,
+                              workingDays: controller.request.etaWorkingDays),
                             ),
                           ],
                         ),
@@ -65,20 +74,20 @@ class ProjectRequestFormDetails extends StatelessWidget {
                         ),
                         DetailsWidget(
                             projectLabel: "Project name",
-                            projectValue: "Emp digital exp",
+                            projectValue: controller.request.projectName,
                             columnDetails: Column(
                               children: [
                                 SizedBox(height: AppSpacing.l.getHeight()),
-                                const Row(
+                                 Row(
                                   children: [
                                     Expanded(
                                       child: LabelValueRow(
-                                          label: "Project Implementation Year", value: "2025"),
+                                          label: "Project Implementation Year", value: controller.request.projectImplementationYear),
                                     ),
-                                    SizedBox(width: 24),
+                                    SizedBox(width: AppSpacing.l.getHeight()),
                                     Expanded(
                                       child: LabelValueRow(
-                                          label: "Expected Closing Date", value: "11/12/2026"),
+                                          label: "Expected Closing Date", value: controller.request.expectedClosingDate),
                                     ),
                                   ],
                                 ),
@@ -86,12 +95,12 @@ class ProjectRequestFormDetails extends StatelessWidget {
                                 Row(
                                   children: [
                                     Expanded(
-                                      child: LabelValueRow(label: "Value", value: "Typed text"),
+                                      child: LabelValueRow(label: "Value", value: controller.request.value),
                                     ),
-                                    SizedBox(width: 24),
+                                    SizedBox(width: AppSpacing.l.getHeight()),
                                     Expanded(
                                       child: LabelValueRow(
-                                          label: "Approval Authority", value: "Typed text"),
+                                          label: "Approval Authority", value: controller.request.approvalAuthority),
                                     ),
                                   ],
                                 ),
@@ -100,12 +109,12 @@ class ProjectRequestFormDetails extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: LabelValueRow(
-                                          label: "Management Approval", value: "Typed text"),
+                                          label: "Management Approval", value: controller.request.managementApproval),
                                     ),
-                                    SizedBox(width: 24),
+                                    SizedBox(width: AppSpacing.l.getHeight()),
                                     Expanded(
                                       child: LabelValueRow(
-                                          label: "External Approval", value: "Typed text"),
+                                          label: "External Approval", value: controller.request.externalApproval),
                                     ),
                                   ],
                                 ),
@@ -117,15 +126,29 @@ class ProjectRequestFormDetails extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 16.getWidth()),
                           child: Text("Parties" , style: FontTextStyle.headingMedium,),
                         ),
-                        PartyDetailsCard(),
-                        DetailsWidget(
+                        Column(
+                          children: controller.request.parties
+                              .asMap()
+                              .entries
+                              .map((entry) => Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical:
+                                  AppSpacing.m.getHeight()),
+                              child: PartyDetailsCard(
+                                name: entry.value.name,
+                                category: entry.value.category,
+                                type: entry.value.type,
+                              ),),)
+                              .toList(),
+                        ),
 
+                        DetailsWidget(
                             columnDetails: Column(
                               children: [
                                 Row(children: [
-                                  Expanded(child: LabelValueRow(label: "Authorized Personnel", value: "Typed text")),
+                                  Expanded(child: LabelValueRow(label: "Authorized Personnel", value: controller.request.authorizedPersonal)),
                                   SizedBox(width: AppSpacing.l.getWidth()),
-                                  Expanded(child: LabelValueRow(label: "Similar Projects", value: "Typed text")),
+                                  Expanded(child: LabelValueRow(label: "Similar Projects", value: controller.request.similarProjects)),
                                 ],)
 
 
@@ -140,8 +163,8 @@ class ProjectRequestFormDetails extends StatelessWidget {
                         ),
 
 
-                        CommentsAndFeedbackWidget(commentsList : requestFormController.commentsList ,
-                        onAddCommentPressed : requestFormController.addComment),
+                        CommentsAndFeedbackWidget(commentsList : controller.commentsList ,
+                        onAddCommentPressed : controller.addComment),
                         // Feedback Section
                         FeedbackWidget()
                       ],

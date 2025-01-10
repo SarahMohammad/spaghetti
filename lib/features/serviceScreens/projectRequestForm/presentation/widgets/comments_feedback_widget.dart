@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
@@ -12,6 +13,7 @@ import '../../../../../commonWidgets/buttons/custom_button.dart';
 import '../../../../../functions/helper_classes.dart';
 import '../../../../../uiHelpers/app_spacing.dart';
 import '../../../../../utils/button_enum.dart';
+import '../../../../../utils/translation_keys.dart';
 import 'attachment_list_tile.dart';
 
 class CommentsAndFeedbackWidget extends StatelessWidget {
@@ -136,7 +138,7 @@ class CommentsAndFeedbackWidget extends StatelessWidget {
               vertical: AppSpacing.l.getHeight()),
           child: CustomButton(
             key,
-            buttonTitle: "View all",
+            buttonTitle: viewAll.tr,
             padding: EdgeInsets.zero,
             onPressed: () {},
             isDisabled: false,
@@ -214,9 +216,13 @@ class _CommentTile extends StatelessWidget {
                 .copyWith(color: AppColors.neutral800),
           ),
         ),
-        if (attachment != null) AttachmentListTile(prefixIcon: SvgPicture.asset(
+        if (attachment != null) AttachmentListTile(
+          prefixIcon: SvgPicture.asset(
             AllIcons
-                .downloadIcon),),
+                .downloadIcon),
+          fileName: "File name.pdf",
+          fileSize: "1,2MB",
+        ),
 
       ],
     );

@@ -47,7 +47,7 @@ class AllIcons {
   static const String filledHeartIcon = "assets/images/icon_heart_filled.svg";
   static const String closeIcon = "assets/images/icon_close.svg";
   static const String closeBsIcon = "assets/images/icon_bs_close.svg";
-  static const String filledStarIcon = "assets/images/icon_filled_star.svg";
   static const String emptyStarIcon = "assets/images/icon_empty_star.svg";
+  static const String filledStarIcon = "assets/images/icon_star_filled.svg";
 
 }

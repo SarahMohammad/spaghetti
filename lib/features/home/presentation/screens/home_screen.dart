@@ -107,16 +107,15 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
 
-              // Cards Positioned Above the Header (Overlap from Bottom)
               Positioned(
                 left: 16.getWidth(),
                 right: 16.getWidth(),
                 top: 210.getHeight(),
-                // Adjust this value to control the overlap
-                child: _buildCardsRow(),
+                child: _buildCardsRow(requests :homeController.requestsNumber ,
+                approvals: homeController.approvalsNumber),
               ),
 
-              // Scrollable Content: Favorites and Services (Now below the cards and header)
+              // Scrollable Content: Favorites and Services
               Positioned(
                 top: 400.getHeight(),
                 // Adjust this value so the scrollable content starts after the header and cards
@@ -171,7 +170,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCardsRow() {
+  Widget _buildCardsRow({ required int requests,
+    required int approvals }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -179,13 +179,13 @@ class HomeScreen extends StatelessWidget {
           title: myRequests.tr,
           subTitle: checkYourUpdates.tr,
           bgColor: AppColors.brand400,
-          count: "5",
+          count: requests.toString(),
           bgCountColor: AppColors.brand300,
           cardIcon: AllIcons.requestIcon,
         ),
         SquareHomeCard(
           bgColor: AppColors.brand900,
-          title: approvals.tr,
+          title: approvals.toString(),
           subTitle: pendingOnMe.tr,
           count: "12",
           bgCountColor: AppColors.darkBrown,
@@ -236,8 +236,7 @@ class HomeScreen extends StatelessWidget {
           }
           return ListView.builder(
             shrinkWrap: true,
-            // Ensures the ListView adapts to the parent's constraints
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             // Prevents independent scrolling
             itemCount: homeController.visibleItems.length,
             itemBuilder: (context, index) {
@@ -251,7 +250,7 @@ class HomeScreen extends StatelessWidget {
                         ? AppColors.darkWhite
                         : AppColors.brand100, // Alternating colors
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 1, color: AppColors.neutral500),
+                      side: const BorderSide(width: 1, color: AppColors.neutral500),
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
@@ -265,7 +264,9 @@ class HomeScreen extends StatelessWidget {
                     trailing: InkWell(
                       child: SvgPicture.asset(AllIcons.filledHeartIcon),
                       onTap: () {
-                        homeController.toggleFavoriteStatus(item, context);
+                        homeController.toggleFavoriteStatus(item,
+                            context ,
+                            isSystem: item.isSystem ?? false);
                       },
                     ),
                   ),
@@ -335,7 +336,7 @@ class HomeScreen extends StatelessWidget {
                   },
                   onFavPressed: () {
                     homeController.toggleFavoriteStatus(
-                        homeController.serviceList[index], context);
+                        homeController.serviceList[index], context , isSystem: false);
                   },
                   isFav: homeController.serviceList[index].isFavorite ?? false,
                   onShowDescriptionPress: () {
@@ -381,7 +382,13 @@ class HomeScreen extends StatelessWidget {
                   onReadMorePress: () {
                     homeController.showServiceDescriptionBottomSheet(
                         homeController.systemsList[index], key);
-                  }),
+                  }
+                  ,
+                onFavPressed:(){
+                homeController.toggleFavoriteStatus(
+                    homeController.systemsList[index], context , isSystem:true);
+              },
+              isFav: homeController.systemsList[index].isFavorite ?? false,),
             );
           },
         ),

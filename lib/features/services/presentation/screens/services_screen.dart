@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:untitled3/commonWidgets/sliver_app_bar_container.dart';
 import 'package:untitled3/features/services/presentation/controller/services_controller.dart';
@@ -8,15 +7,13 @@ import 'package:untitled3/features/services/widgets/service_card_widget.dart';
 import 'package:untitled3/uiHelpers/app_spacing.dart';
 import 'package:untitled3/utils/constant.dart';
 
-import '../../../../UIHelpers/icons.dart';
 import '../../../../UIHelpers/images.dart';
-import '../../../../commonWidgets/state_indicator.dart';
 import '../../../../core/app_states/app_state_handler_widget.dart';
 import '../../../../utils/translation_keys.dart';
 import '../../widgets/service_category_widget.dart';
 
 class ServicesScreen extends StatelessWidget {
-  ServicesScreen({Key? key}) : super(key: key);
+  const ServicesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +26,6 @@ class ServicesScreen extends StatelessWidget {
               pinned: true,
               floating: false,
               snap: false,
-              // expandedHeight: servicesController.isSearching
-              //     ? Get.size.height * 0.19
-              //     : Get.size.height * 0.12,
               collapsedHeight: servicesController.isSearching
                   ? Get.size.height * 0.19
                   : Get.size.height * 0.12,
@@ -51,7 +45,6 @@ class ServicesScreen extends StatelessWidget {
                   Positioned.fill(
                     child: SliverAppBarContainer(
                       isSearching: servicesController.isSearching,
-                      onSearchChanged: servicesController.search,
                       onSearchIconClick: servicesController.toggleSearch,
                       title: services.tr,
                     ),
@@ -59,21 +52,7 @@ class ServicesScreen extends StatelessWidget {
                 ],
               ),
             ),
-            servicesController.isSearching &&
-                servicesController.searchResult.length == 0
-                ? SliverFillRemaining(
-              hasScrollBody: false,
-              child: StateIndicator(
-                title: noSearchResult.tr,
-                description:
-                noSearchDesc.tr,
-                middleIcon: SvgPicture.asset(AllIcons.searchIcon,
-                    colorFilter: const ColorFilter.mode(
-                        Colors.white, BlendMode.srcIn)),
-              ),
-            )
-                : servicesController.searchQuery.isEmpty
-                ? SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.only(
                   bottom: AppSpacing.s.getHeight(),
@@ -87,26 +66,15 @@ class ServicesScreen extends StatelessWidget {
                         title: servicesController
                             .selectedCategoryTitle.value.isEmpty
                             ? selectCategory.tr
-                            : servicesController
-                            .selectedCategoryTitle.value,
+                            : servicesController.selectedCategoryTitle.value,
                         onTap: () {
-                          servicesController
-                              .openCategoryBottomSheet();
+                          servicesController.openCategoryBottomSheet();
                         });
                   },
                 ),
               ),
-            )
-                : const SliverToBoxAdapter(
-              child: SizedBox.shrink(),
-            ),
-            // The list of ServiceCardWidget
-            servicesController.isSearching &&
-                servicesController.searchResult.length == 0
-                ? const SliverToBoxAdapter(
-              child: SizedBox.shrink(),
-            )
-                : SliverList(
+            ), // The list of ServiceCardWidget
+            SliverList(
               delegate: SliverChildBuilderDelegate(
                     (context, index) => Padding(
                   padding: EdgeInsets.symmetric(
@@ -114,27 +82,19 @@ class ServicesScreen extends StatelessWidget {
                     horizontal: AppSpacing.l.getWidth(),
                   ),
                   child: ServiceCardWidget(
-                    title: servicesController.searchQuery.isNotEmpty
-                        ? servicesController.searchResult[index].title
-                        : servicesController.serviceList[index].title,
+                    title: servicesController.serviceList[index].title,
                     onPress: () {
                       servicesController.handleServicePress(index);
                     },
                     onFavPressed: () {},
                     isFav: false,
                     onShowDescriptionPress: () {
-                      servicesController
-                          .showServiceDescriptionBottomSheet(
-                          servicesController.searchQuery.isNotEmpty
-                              ? servicesController.searchResult[index]
-                              : servicesController.serviceList[index],
-                          key);
+                      servicesController.showServiceDescriptionBottomSheet(
+                          servicesController.serviceList[index], key);
                     },
                   ),
                 ),
-                childCount: servicesController.searchQuery.isNotEmpty
-                    ? servicesController.searchResult.length
-                    : servicesController.serviceList.length,
+                childCount: servicesController.serviceList.length,
               ),
             ),
           ],

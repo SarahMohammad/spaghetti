@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:untitled3/UIHelpers/icons.dart';
 import 'package:untitled3/uiHelpers/app_spacing.dart';
 import 'package:untitled3/uiHelpers/font_text_style.dart';
 import 'package:untitled3/utils/constant.dart';

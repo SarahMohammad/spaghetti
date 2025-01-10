@@ -48,7 +48,7 @@ class CustomButton extends StatelessWidget {
             ? AppColors.brand500
             : buttonType == ButtonType.primary && isDisabled
             ? AppColors.neutral500
-            : Colors.white,
+            : Colors.transparent,
         disabledColor: buttonType == ButtonType.primary
             ? AppColors.neutral500
             : Colors.white,

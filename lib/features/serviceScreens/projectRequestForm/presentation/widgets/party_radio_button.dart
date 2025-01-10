@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:untitled3/commonWidgets/bottomSheet/bottom_sheet_action.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
+import 'package:untitled3/uiHelpers/app_spacing.dart';
 import 'package:untitled3/uiHelpers/font_text_style.dart';
 import 'package:untitled3/utils/constant.dart';
 
@@ -24,10 +25,12 @@ class PartyRadioButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+        padding:  EdgeInsets.only(top: 12.getHeight(),
+            bottom:12.getHeight(), right: 15.getWidth()),
 
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
 
             Container(
@@ -61,10 +64,10 @@ class PartyRadioButton extends StatelessWidget {
               )
                   : null,
             ),
-            const SizedBox(width: 3.0),
+             SizedBox(width: AppSpacing.xs.getWidth()),
             Text(
                 label,
-                style: FontTextStyle.labelLarge.copyWith(
+                style: FontTextStyle.paragraphLarge.copyWith(
                   color: AppColors.neutral900,
                 )
             ),

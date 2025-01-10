@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:untitled3/commonWidgets/sliver_app_bar_container.dart';
+import 'package:untitled3/features/requestsCenter/presentation/controller/requests_center_controller.dart';
 import 'package:untitled3/features/services/presentation/controller/services_controller.dart';
 import 'package:untitled3/features/services/widgets/service_card_widget.dart';
 
@@ -13,13 +14,14 @@ import '../../../../UIHelpers/images.dart';
 import '../../../../commonWidgets/state_indicator.dart';
 import '../../../../core/app_states/app_state_handler_widget.dart';
 import '../../../../utils/translation_keys.dart';
+import '../../widgets/request_card.dart';
 
-class ServicesSearchScreen extends StatelessWidget {
-  const ServicesSearchScreen({super.key});
+class RequestCenterSearchScreen extends StatelessWidget {
+  const RequestCenterSearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ServicesController>(
+    return GetBuilder<RequestsCenterController>(
       builder: (controller) => AppStateHandlerWidget(
         state: controller.loadingState,
         child: Scaffold(
@@ -76,17 +78,17 @@ class ServicesSearchScreen extends StatelessWidget {
                       vertical: AppSpacing.m.getHeight(),
                       horizontal: AppSpacing.l.getWidth(),
                     ),
-                    child: ServiceCardWidget(
-                      title: controller.searchResult[index].title,
-                      onPress: () {
-                        controller.handleServicePress(index);
-                      },
-                      onFavPressed: () {},
-                      isFav: false,
-                      onShowDescriptionPress: () {
-                        controller.showServiceDescriptionBottomSheet(
-                            controller.searchResult[index], key);
-                      },
+                    child: RequestCard(
+                      onSettingsClick:
+                      controller.openOptionsSheet,
+                      category: controller.searchResult[index].categoryTitle,
+                      title:controller.searchResult[index].title,
+                      date: controller.searchResult[index].date,
+                      inProgress: controller.searchResult[index].state.status == "In progress",
+                      status: controller.searchResult[index].state.status,
+                      statusTime: controller.searchResult[index].state.statusTime,
+                      requestId: controller.searchResult[index].state.requestId,
+                      pendingOn: controller.searchResult[index].state.pendingOn,
                     ),
                   ),
                   childCount: controller.searchResult.length,

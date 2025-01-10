@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:untitled3/uiHelpers/app_radius.dart';
 import 'package:untitled3/uiHelpers/app_spacing.dart';
 import 'package:untitled3/uiHelpers/font_text_style.dart';
 import 'package:untitled3/utils/constant.dart';
 
 import '../uiHelpers/app_colors.dart';
 import '../uiHelpers/icons.dart';
-import '../utils/translation_keys.dart';
 
 class ErrorMsgView extends StatelessWidget {
   const ErrorMsgView({
@@ -20,11 +20,12 @@ class ErrorMsgView extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 60.getHeight(),
-      padding:  EdgeInsets.all(16),
+      padding: EdgeInsets.symmetric(horizontal: 16.getWidth(),
+      vertical: 16.getHeight()),
       decoration: ShapeDecoration(
         color: AppColors.errorMsgViewColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(AppRadius.m),
         ),
       ),
       child: Row(
@@ -37,7 +38,9 @@ class ErrorMsgView extends StatelessWidget {
               AllIcons.errorIcon,
             ),
           ),
-          SizedBox(width: AppSpacing.xs.getWidth(),),
+          SizedBox(
+            width: AppSpacing.xs.getWidth(),
+          ),
           Text(title,
               style: FontTextStyle.headingMedium.copyWith(
                 color: AppColors.errorMsgTextColor,

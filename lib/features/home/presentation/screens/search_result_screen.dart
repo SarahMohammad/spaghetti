@@ -218,8 +218,10 @@ class SearchResultScreen extends StatelessWidget {
                                     itemBuilder: (context, index) {
                                       return
                                         SystemCardWidget(
+                                          isFav: false,
                                           title :controller
                                               .filteredSystems[index].title,
+                                          onFavPressed: (){},
                                         );
                                     },
                                     separatorBuilder: (context, index) {

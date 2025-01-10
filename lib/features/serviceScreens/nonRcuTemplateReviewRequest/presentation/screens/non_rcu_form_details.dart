@@ -44,7 +44,10 @@ class NonRcuFormDetails extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
 
-                        ProjectStatusWidget(),
+                        ProjectStatusWidget(
+                        status: controller.request.status,
+                        role: controller.request.role,
+                        pendingOn: controller.request.pendingOn,),
 
                         Container(
                           width: double.infinity,
@@ -52,10 +55,15 @@ class NonRcuFormDetails extends StatelessWidget {
                           color: AppColors.neutral100,
                         ),
 
-                       const Row(
+                        Row(
                           children: [
                             Expanded(
-                              child: ProjectRequestSummery(isCard : false),
+                              child: ProjectRequestSummery(
+                                  isCard : false,
+                                  requestForVal: controller.request.requestFor,
+                                  pendingOnVal : controller.request.pendingOn,
+                                  requestId: controller.request.requestId,
+                                  workingDays: controller.request.etaWorkingDays),
                             ),
                           ],
                         ),
@@ -67,11 +75,11 @@ class NonRcuFormDetails extends StatelessWidget {
                         ),
                         DetailsWidget(
                             projectLabel: "Name",
-                            projectValue: "Emp digital exp",
+                            projectValue: controller.request.projectName,
                             columnDetails: Column(
                               children: [
                                 SizedBox(height: AppSpacing.l.getHeight()),
-                                LabelValueRow(label: "Description", value: "This service allows business domains to"),
+                                LabelValueRow(label: "Description", value: controller.request.description??""),
                                 SizedBox(height: AppSpacing.l.getHeight()),
 
                               ],
@@ -79,7 +87,9 @@ class NonRcuFormDetails extends StatelessWidget {
                         ),
                         AttachmentListTile(prefixIcon: SvgPicture.asset(
                             AllIcons
-                                .downloadIcon),),
+                                .downloadIcon),
+                        fileName: "File name.pdf",
+                        fileSize: "1,2MB",),
                         Container(
                           width: double.infinity,
                           height: 8,
@@ -87,7 +97,8 @@ class NonRcuFormDetails extends StatelessWidget {
                         ),
 
 
-                        CommentsAndFeedbackWidget(commentsList : controller.commentsList ,
+                        CommentsAndFeedbackWidget(
+                        commentsList : controller.commentsList ,
                         onAddCommentPressed : controller.addComment),
                         // Feedback Section
                         FeedbackWidget()

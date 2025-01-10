@@ -59,7 +59,8 @@ showBottomActionModelSheet(
             showTopLine ? const BottomSheetTopLine() : const SizedBox(),
             SizedBox(height: 20.getHeight()),
             // Title Section
-            Stack(
+            title==null ? const SizedBox.shrink()
+                :Stack(
               children: [
                 // Prefix icon or reset button on the leading side (RTL-aware)
                 if (showPrefixIcon || isReset)
@@ -93,7 +94,7 @@ showBottomActionModelSheet(
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      title ?? "f",
+                      title ?? "",
                       textAlign: titleAlignment,
                       style: titleStyle ??
                           FontTextStyle.labelX.copyWith(
@@ -134,42 +135,8 @@ showBottomActionModelSheet(
               ],
             ),
 
-              // Row(
-              //   children: [
-              //     if(showPrefixIcon)
-              //       SvgPicture.asset(AllIcons.userIcon),
-              //     if(showPrefixIcon)
-              //       SizedBox(width: AppSpacing.xs.getWidth(),),
-              //   if(isReset)
-              //     InkWell(
-              //         onTap:onResetPressed ,
-              //         child: Text(
-              //           reset.tr,
-              //           style: FontTextStyle.labelMedium.copyWith(
-              //               color: AppColors.primary100,
-              //               decoration: TextDecoration.underline,
-              //               decorationColor: AppColors.primary100
-              //           )
-              //         ),
-              //     ),
-              //     Expanded(
-              //       child: Text(
-              //         title,
-              //         textAlign: titleAlignment ?? TextAlign.start,
-              //         style: titleStyle ??
-              //             FontTextStyle.labelX
-              //                 .copyWith(color: AppColors.neutral800),
-              //       ),
-              //     ),
-              //     if (showCloseIcon)
-              //       CustomCloseButton(
-              //         onClose: () {
-              //           onClose != null ? onClose() : Get.back();
-              //         },
-              //       ),
-              //   ],
-              // ),
-               SizedBox(height: AppSpacing.xl.getHeight()),
+
+               title==null ? const SizedBox.shrink() :SizedBox(height: AppSpacing.xl.getHeight()),
 
 
             // Content Section

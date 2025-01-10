@@ -22,4 +22,6 @@ class RoutesConstants {
   static const nonRcuFormDetailsScreen = "/nonRcuFormDetailsScreen";
   static const newTemplateRequestFormDetails = "/newTemplateRequestFormDetails";
   static const servicesSearchScreen = "/servicesSearchScreen";
+  static const systemsSearchScreen = "/systemsSearchScreen";
+  static const requestCenterSearchScreen = "/requestCenterSearchScreen";
 }

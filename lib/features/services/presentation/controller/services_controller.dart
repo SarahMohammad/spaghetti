@@ -15,12 +15,15 @@ class ServicesController extends BaseController {
   List<Category> categories = [];
 
   var serviceList = <ServiceSystem>[];
+  List<ServiceSystem> searchResult = [];
+
 
   // RxString selectedCategoryTitle = 'human capital'.obs;
 
   loadServices() {
     final serviceItems = fetchServiceItemsFromApi();
     serviceList.addAll(serviceItems);
+    searchResult = serviceList;
   }
 
   fetchServiceItemsFromApi() {
@@ -59,11 +62,12 @@ class ServicesController extends BaseController {
 
   void toggleSearch() {
     Get.toNamed(RoutesConstants.servicesSearchScreen);
-    // isSearching = !isSearching;
-    // if (!isSearching) {
-    //   searchQuery = "";
-    // }
-    // update();
+  }
+  void closeSearch() {
+    isSearching = false;
+    searchQuery = "";
+    searchResult = serviceList;
+    Get.back();
   }
 
   loadCategories(){
@@ -93,7 +97,7 @@ class ServicesController extends BaseController {
     BottomSheetManager.showServiceSystemDescriptionBottomSheet(serviceSystem:item , key: key );
   }
 
-  var selectedCategoryTitle = "".obs; // Observable for the selected category title
+  var selectedCategoryTitle = "".obs;
 
   void openCategoryBottomSheet() {
     BottomSheetManager.openCategoryBottomSheet(
@@ -103,7 +107,6 @@ class ServicesController extends BaseController {
       },
     );
   }
-  List<ServiceSystem> searchResult = [];
   void search(String query) {
     searchQuery = query;
     searchResult = serviceList

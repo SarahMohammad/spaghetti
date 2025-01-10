@@ -13,10 +13,15 @@ import '../utils/translation_keys.dart';
 
 class SystemCardWidget extends StatelessWidget {
   final String? title;
+  final bool isFav;
   final Function()? onReadMorePress;
+  final void Function() onFavPressed;
+
 
   const SystemCardWidget({Key? key, this.title,
-  this.onReadMorePress}) : super(key: key);
+  this.onReadMorePress, required this.onFavPressed,
+    required this.isFav ,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +46,12 @@ class SystemCardWidget extends StatelessWidget {
                AllIcons.userIcon,
                fit: BoxFit.contain,
              ),
-             SvgPicture.asset(
-               AllIcons.favIcon,
-               fit: BoxFit.contain,
-             ),
+               InkWell(
+                 onTap: onFavPressed,
+                 child: isFav ?
+                 SvgPicture.asset(AllIcons.filledHeartIcon):
+                 SvgPicture.asset(AllIcons.favIcon),
+               )
            ],),
            SizedBox(height: AppSpacing.m.getHeight(),),
            Row(

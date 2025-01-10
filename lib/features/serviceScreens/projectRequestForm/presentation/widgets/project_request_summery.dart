@@ -11,46 +11,65 @@ import '../../../../../UIHelpers/images.dart';
 import '../../../../../utils/translation_keys.dart';
 import 'label_value_row.dart';
 
-
 class ProjectRequestSummery extends StatelessWidget {
   final bool isCard;
   final bool isHeaderVisibile;
-   const ProjectRequestSummery({Key? key,  this.isCard = true, this.isHeaderVisibile =true}) : super(key: key);
+  final String? requestForVal;
+  final String? pendingOnVal;
+  final String? requestId;
+  final String? workingDays;
+
+  const ProjectRequestSummery(
+      {Key? key,
+      this.isCard = true,
+      this.isHeaderVisibile = true,
+      required this.requestForVal,
+      required this.pendingOnVal,
+      required this.requestId,
+      required this.workingDays})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-
     return Container(
-      padding: EdgeInsets.symmetric(vertical: AppSpacing.l.getHeight(),
+      padding: EdgeInsets.symmetric(
+          vertical: AppSpacing.l.getHeight(),
           horizontal: AppSpacing.l.getWidth()),
       width: MediaQuery.of(context).size.width * 0.9,
-
-      decoration: isCard ? ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-      ): null,
+      decoration: isCard
+          ? ShapeDecoration(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(24),
+              ),
+            )
+          : null,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Text('Request Details',
           //     style: FontTextStyle.headingLarge),
           // Header
-          isHeaderVisibile ?Text(
-            summary.tr,
-            style: FontTextStyle.headingLarge,
-          ) :  const SizedBox.shrink() ,
-          isHeaderVisibile ? SizedBox(height: AppSpacing.xl.getHeight()):const SizedBox(),
+          isHeaderVisibile
+              ? Text(
+                  summary.tr,
+                  style: FontTextStyle.headingLarge,
+                )
+              : const SizedBox.shrink(),
+          isHeaderVisibile
+              ? SizedBox(height: AppSpacing.xl.getHeight())
+              : const SizedBox(),
 
           Row(
             children: [
               Expanded(
                 child: LabelValueRow(
                   label: requestFor.tr,
-                  value: 'Ali Al Ghafli',
-                  prefix: Image.asset(Images.avatar,height: 20,),
+                  value: requestForVal ?? "",
+                  prefix: Image.asset(
+                    Images.avatar,
+                    height: 20,
+                  ),
                 ),
               ),
               const SizedBox(width: 40),
@@ -59,8 +78,11 @@ class ProjectRequestSummery extends StatelessWidget {
               Expanded(
                 child: LabelValueRow(
                   label: pendingOn.tr,
-                  value: 'Ali Al Ghafli',
-                  prefix: Image.asset(Images.avatar,height: 20,),
+                  value: pendingOnVal ?? "",
+                  prefix: Image.asset(
+                    Images.avatar,
+                    height: 20,
+                  ),
                 ),
               ),
             ],
@@ -74,23 +96,20 @@ class ProjectRequestSummery extends StatelessWidget {
             children: [
               Expanded(
                 child: LabelValueRow(
-                  label: 'Request ID',
-                  value: 'REQ 122821',
-                  suffix:
-                  InkWell(
-                    onTap: (){
-                      Clipboard.setData(ClipboardData(text: "REQ 122821"));
-
-                    },
+                    label: 'Request ID',
+                    value: requestId ?? "",
+                    suffix: InkWell(
+                      onTap: () {
+                        Clipboard.setData(ClipboardData(text: requestId ?? ""));
+                      },
                       child: SvgPicture.asset(AllIcons.copyIcon),
-                  )
-                ),
+                    )),
               ),
-               SizedBox(width: AppSpacing.xl.getWidth()),
+              SizedBox(width: AppSpacing.xl.getWidth()),
               Expanded(
                 child: LabelValueRow(
                   label: 'ETA Working days',
-                  value: '4 business days',
+                  value: workingDays ?? "",
                 ),
               ),
             ],
@@ -100,4 +119,3 @@ class ProjectRequestSummery extends StatelessWidget {
     );
   }
 }
-

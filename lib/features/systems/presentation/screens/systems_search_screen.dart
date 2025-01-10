@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:untitled3/commonWidgets/sliver_app_bar_container.dart';
-import 'package:untitled3/features/services/presentation/controller/services_controller.dart';
-import 'package:untitled3/features/services/widgets/service_card_widget.dart';
-
 import 'package:untitled3/uiHelpers/app_spacing.dart';
 import 'package:untitled3/utils/constant.dart';
 
 import '../../../../UIHelpers/icons.dart';
 import '../../../../UIHelpers/images.dart';
+import '../../../../commonWidgets/sliver_app_bar_container.dart';
 import '../../../../commonWidgets/state_indicator.dart';
+import '../../../../commonWidgets/system_card_widget.dart';
 import '../../../../core/app_states/app_state_handler_widget.dart';
 import '../../../../utils/translation_keys.dart';
+import '../controller/systems_controller.dart';
 
-class ServicesSearchScreen extends StatelessWidget {
-  const ServicesSearchScreen({super.key});
+class SystemsSearchScreen extends StatelessWidget {
+  const SystemsSearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ServicesController>(
-      builder: (controller) => AppStateHandlerWidget(
-        state: controller.loadingState,
+    return GetBuilder<SystemsController>(
+      builder: (systemController) => AppStateHandlerWidget(
+        state: systemController.loadingState,
         child: Scaffold(
           body: CustomScrollView(
             slivers: [
@@ -48,16 +47,16 @@ class ServicesSearchScreen extends StatelessWidget {
                       child: SliverAppBarContainer(
                         isSearching: true,
                         prefixIcon: AllIcons.closeIcon,
-                        onSearchChanged: controller.search,
-                        onSearchIconClick: controller.closeSearch,
-                        title: services.tr,
+                        onSearchChanged: systemController.search,
+                        onSearchIconClick: systemController.closeSearch,
+                        title: systems.tr,
                       ),
                     ),
                   ],
                 ),
               ),
-              controller.searchQuery.isNotEmpty &&
-                  controller.searchResult.isEmpty
+              systemController.searchQuery.isNotEmpty &&
+                  systemController.searchResult.isEmpty
                   ? SliverFillRemaining(
                 hasScrollBody: false,
                 child: StateIndicator(
@@ -68,34 +67,34 @@ class ServicesSearchScreen extends StatelessWidget {
                           Colors.white, BlendMode.srcIn)),
                 ),
               )
-                  : controller.searchResult.isNotEmpty
-                  ? SliverList(
-                delegate: SliverChildBuilderDelegate(
-                      (context, index) => Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: AppSpacing.m.getHeight(),
-                      horizontal: AppSpacing.l.getWidth(),
+                  : SliverPadding(
+                padding: EdgeInsets.only(top: AppSpacing.l.getHeight()),
+                sliver: systemController.searchResult.isNotEmpty
+                    ? SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                        (context, index) => Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: AppSpacing.m.getHeight(),
+                          horizontal: AppSpacing.l.getWidth()),
+                      child: SystemCardWidget(
+                        onReadMorePress: () {
+                          systemController
+                              .showServiceDescriptionBottomSheet(
+                              systemController.searchResult[index],
+                              key);
+                        },
+                        onFavPressed: (){},
+                        title: systemController.searchResult[index].title,
+                     isFav: false,
+                      ),
                     ),
-                    child: ServiceCardWidget(
-                      title: controller.searchResult[index].title,
-                      onPress: () {
-                        controller.handleServicePress(index);
-                      },
-                      onFavPressed: () {},
-                      isFav: false,
-                      onShowDescriptionPress: () {
-                        controller.showServiceDescriptionBottomSheet(
-                            controller.searchResult[index], key);
-                      },
-                    ),
+                    childCount: systemController.searchResult.length, // Number of items in the list
                   ),
-                  childCount: controller.searchResult.length,
+                )
+                    : const SliverToBoxAdapter(
+                  child: SizedBox.shrink(),
                 ),
-              )
-                  : const SliverToBoxAdapter(
-                child: SizedBox.shrink(),
               ),
-              // The list of ServiceCardWidget
             ],
           ),
         ),

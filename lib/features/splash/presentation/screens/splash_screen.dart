@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:untitled3/UIHelpers/icons.dart';
-import 'package:untitled3/commonWidgets/bottomSheet/bottom_sheet_action.dart';
 import 'package:untitled3/features/splash/presentation/controller/splash_controller.dart';
 import 'package:untitled3/utils/constant.dart';
 

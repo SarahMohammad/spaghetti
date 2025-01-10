@@ -42,7 +42,11 @@ class NewTemplateRequestFormDetails extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
 
-                        ProjectStatusWidget(),
+                        ProjectStatusWidget(
+                        pendingOn: controller.request.pendingOn ,
+                        role: controller.request.role,
+                        status: controller.request.status,
+                        ),
 
                         Container(
                           width: double.infinity,
@@ -53,7 +57,11 @@ class NewTemplateRequestFormDetails extends StatelessWidget {
                         const Row(
                           children: [
                             Expanded(
-                              child: ProjectRequestSummery(isCard : false),
+                              child: ProjectRequestSummery(isCard : false,
+                                  requestForVal: 'Ali Al Ghafli',
+                                  pendingOnVal :'Ali Al Ghafli',
+                                  requestId: "REQ 122812",
+                                  workingDays: "4 business days"),
                             ),
                           ],
                         ),
@@ -65,7 +73,7 @@ class NewTemplateRequestFormDetails extends StatelessWidget {
                         ),
                         DetailsWidget(
                             projectLabel: "Project name",
-                            projectValue: "Emp digital exp",
+                            projectValue: controller.request.projectName,
                             columnDetails: Column(
                               children: [
                                 SizedBox(height: AppSpacing.l.getHeight()),
@@ -73,12 +81,12 @@ class NewTemplateRequestFormDetails extends StatelessWidget {
                                 Row(
                                   children: [
                                     Expanded(
-                                      child: LabelValueRow(label: "Project Duration", value: "1-3 months"),
+                                      child: LabelValueRow(label: "Project Duration", value: controller.request.projectDuration??""),
                                     ),
                                     SizedBox(width: AppSpacing.l.getWidth()),
                                     Expanded(
                                       child: LabelValueRow(
-                                          label: "Project Owner", value: "Ahmed hassan"),
+                                          label: "Project Owner", value: controller.request.projectOwner??""),
                                     ),
                                   ],
                                 ),
@@ -86,7 +94,21 @@ class NewTemplateRequestFormDetails extends StatelessWidget {
                               ],
                             )
                         ),
-                        PartyDetailsCard(),
+                        Column(
+                          children: controller.request.parties
+                              .asMap()
+                              .entries
+                              .map((entry) => Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical:
+                                AppSpacing.m.getHeight()),
+                            child: PartyDetailsCard(
+                              name: entry.value.name,
+                              category: entry.value.category,
+                              type: entry.value.type,
+                            ),),)
+                              .toList(),
+                        ),
                         DetailsWidget(
 
                             columnDetails: Column(
@@ -94,9 +116,9 @@ class NewTemplateRequestFormDetails extends StatelessWidget {
                                 SizedBox(height: AppSpacing.l.getHeight()),
                                 Row(
                                   children: [
-                                    Expanded(child: LabelValueRow(label: "value", value: "Typed text")),
+                                    Expanded(child: LabelValueRow(label: "value", value: controller.request.value)),
                                     SizedBox(width: AppSpacing.l.getWidth()),
-                                    Expanded(child: LabelValueRow(label: "payment structure", value: "Typed text")),
+                                    Expanded(child: LabelValueRow(label: "payment structure", value: controller.request.paymentStructure ??"")),
 
 
                                   ],
@@ -105,9 +127,9 @@ class NewTemplateRequestFormDetails extends StatelessWidget {
 
                                 Row(
                                   children: [
-                                    Expanded(child: LabelValueRow(label: "similar projects", value: "Typed text")),
+                                    Expanded(child: LabelValueRow(label: "similar projects", value: controller.request.similarProjects)),
                                     SizedBox(width: AppSpacing.l.getWidth()),
-                                    Expanded(child: LabelValueRow(label: "Authorized personnel", value: "Typed text")),
+                                    Expanded(child: LabelValueRow(label: "Authorized personnel", value: controller.request.authorizedPersonal)),
 
                                   ],
                                 ),

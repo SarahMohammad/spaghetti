@@ -1,29 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:untitled3/functions/bottom_sheet_manager.dart';
 import 'package:untitled3/router/routes_constants.dart';
-import 'package:untitled3/uiHelpers/app_radius.dart';
-import 'package:untitled3/uiHelpers/font_text_style.dart';
-import 'package:untitled3/utils/constant.dart';
-
-import '../../../../UIHelpers/images.dart';
-import '../../../../commonWidgets/bottomSheet/bottom_sheet_action.dart';
-
-
 import 'package:get/get.dart';
 
 import '../../../../core/base_controller.dart';
 import '../../../../functions/helper_classes.dart';
-import '../../../../uiHelpers/app_colors.dart';
-import '../../../../uiHelpers/app_spacing.dart';
-import '../../../../utils/translation_keys.dart';
 import '../../data/models/request_data.dart';
 
 
 class RequestsCenterController extends BaseController {
   // State variables
-  bool isSearching = false; // Tracks if the search bar is active
-  String searchQuery = ""; // Holds the current search query
-  List<String> searchResult = [];
+  bool isSearching = false;
+  String searchQuery = "";
+  List<RequestData> searchResult = [];
   // RxString selectedChoice = ''.obs;
   var isCommentsExpanded = false;
 
@@ -72,15 +60,52 @@ class RequestsCenterController extends BaseController {
   void onInit() {
     super.onInit();
     loadRequests();
+    getDetailsScreenData();
   }
-
-  void toggleSearch() {
-    isSearching = !isSearching;
-    if (!isSearching) {
-      searchQuery = ""; // Clear search query when exiting search mode
+  late Request request;
+  getDetailsScreenData() {
+    request = Request(
+      role: 'HR Manager',
+      paymentStructure: "Typed text",
+      projectOwner: "Ahmed hassan",
+      projectDuration: "1-3 months",
+      description: "This service allows business domains to",
+      requestFor: 'Ali Al Ghafli',
+      pendingOn: 'Ali Al Ghafli',
+      status: 'Pending',
+      requestId: 'REQ 122812',
+      managementApproval: "text",
+      approvalAuthority: "text",
+      authorizedPersonal: "text",
+      comments: [
+        Comment(attachment: "",
+            date: "Date",
+            fileSize: "1.2 MB",
+            message: "Hi mohamed, i can't approve your request."
+                "i need an attachment to further approve your request.",
+            name: "Ahmed Ammar",
+            role: "HR Manager")
+      ],
+      etaWorkingDays: "4 business days",
+      expectedClosingDate: "11/12/2026",
+      externalApproval: "text",
+      parties: [
+        Party(
+          name: "Party1",
+          category: "Tenant",
+          type: "Person",
+        )
+      ],
+      projectImplementationYear: "2025",
+      projectName: "Project name",
+      similarProjects: "text",
+      value: "text",
+    );
+  }
+    void toggleSearch() {
+      Get.toNamed(RoutesConstants.requestCenterSearchScreen);
     }
-    update();
-  }
+
 
   openOptionsSheet() {
    BottomSheetManager.openOptionsBottomSheet(approvals: approvals);
@@ -202,5 +227,21 @@ class RequestsCenterController extends BaseController {
 
   openApprovalLineSheet() {
     BottomSheetManager.openApprovalLineSheet(approvals : approvals);
+  }
+
+  void closeSearch() {
+    isSearching = false;
+    searchQuery = "";
+    searchResult = requests;
+    Get.back();
+  }
+
+  void search(String query) {
+    searchQuery = query;
+    searchResult = requests
+        .where((service) =>
+        service.title.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    update();
   }
 }

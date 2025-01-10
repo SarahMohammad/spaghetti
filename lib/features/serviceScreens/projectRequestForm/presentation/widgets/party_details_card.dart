@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:untitled3/uiHelpers/app_colors.dart';
 import 'package:untitled3/uiHelpers/font_text_style.dart';
+import 'package:untitled3/utils/constant.dart';
 
 import 'label_value_row.dart';
 
 
 class PartyDetailsCard extends StatelessWidget {
-  const PartyDetailsCard({Key? key}) : super(key: key);
+  final String name;
+  final String type;
+  final String category;
+  const PartyDetailsCard({Key? key,
+    required this.name,
+    required this.type,
+    required this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,25 +29,25 @@ class PartyDetailsCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
            Text(
-            "Party 2",
+            name,
             style: FontTextStyle.headingMedium,
           ),
-          const SizedBox(height: 16),
+           SizedBox(height: 16.getHeight()),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children:  [
               Expanded(
-                child: LabelValueRow(label: "Party Type 2", value: "Person"),
+                child: LabelValueRow(label: "Party Type 2", value: type),
               ),
-              SizedBox(width: 24),
-              Expanded(
+              SizedBox(width: 24.getWidth()),
+              const Expanded(
                 child: LabelValueRow(
                     label: "Party Type 2 Name", value: "Khalid Elhawari"),
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          LabelValueRow(label: "Category 2", value: "Tenant"),
+           SizedBox(height: 16.getHeight()),
+          LabelValueRow(label: "Category 2", value: category),
         ],
       ),
     );

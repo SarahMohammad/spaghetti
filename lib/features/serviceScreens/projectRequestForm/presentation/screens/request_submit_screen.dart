@@ -40,32 +40,37 @@ class RequestSubmitScreen extends StatelessWidget {
             builder: (requestFormController) => AppStateHandlerWidget(
               state: requestFormController.loadingState,
               child: SafeArea(
-                  child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                   // CustomBackButton(),
-                    Container(
-                      height:
-                          MediaQuery.of(context).size.height - 140.getHeight(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          StateIndicator(
-                            middleIcon: SvgPicture.asset(AllIcons.checkIcon),
-                            fillColor: AppColors.darkGreen,
-                            description: 'If your information is validated, '
-                                'a reset link will be sent to your RCU email and phone. '
-                                'Use it to reset your password.',
-                            borderColor: AppColors.lightGreen,
-                            title: requestSent.tr,
-                          ),
-                          Spacer(),
-                          ProjectRequestSummery(),
-                          const Spacer(),
-                           CustomButton(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // CustomBackButton(),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height -
+                            140.getHeight(),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            StateIndicator(
+                              middleIcon: SvgPicture.asset(AllIcons.checkIcon),
+                              fillColor: AppColors.darkGreen,
+                              description: 'If your information is validated, '
+                                  'a reset link will be sent to your RCU email and phone. '
+                                  'Use it to reset your password.',
+                              borderColor: AppColors.lightGreen,
+                              title: requestSent.tr,
+                            ),
+                            Spacer(),
+                            ProjectRequestSummery(
+                                requestForVal: 'Ali Al Ghafli',
+                                pendingOnVal: 'Ali Al Ghafli',
+                                requestId: "REQ 122812",
+                                workingDays: "4 business days"),
+                            const Spacer(),
+                            CustomButton(
                               key,
                               buttonTitle: trackRequest.tr,
                               padding: EdgeInsets.zero,
@@ -75,10 +80,11 @@ class RequestSubmitScreen extends StatelessWidget {
                               },
                               isDisabled: false,
                               buttonType: ButtonType.primary,
-
-                          ),
-                          SizedBox(height: AppSpacing.m.getHeight(),),
-                          CustomButton(
+                            ),
+                            SizedBox(
+                              height: AppSpacing.m.getHeight(),
+                            ),
+                            CustomButton(
                               key,
                               buttonTitle: goToHome.tr,
                               padding: EdgeInsets.zero,
@@ -86,13 +92,14 @@ class RequestSubmitScreen extends StatelessWidget {
                               isDisabled: false,
                               buttonType: ButtonType.secondary,
                             ),
-
-                        ],
+                            // SizedBox(height: AppSpacing.m.getHeight(),),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              )),
+              ),
             ),
           ),
         ],

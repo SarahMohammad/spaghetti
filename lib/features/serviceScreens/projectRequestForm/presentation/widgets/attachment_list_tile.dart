@@ -8,73 +8,57 @@ import '../../../../../uiHelpers/app_colors.dart';
 import '../../../../../uiHelpers/app_spacing.dart';
 import '../../../../../uiHelpers/font_text_style.dart';
 
-
 class AttachmentListTile extends StatelessWidget {
   bool isMarginRemoved;
   SvgPicture prefixIcon;
-   AttachmentListTile({super.key , this.isMarginRemoved = false,
-     required  this.prefixIcon});
+  String fileName;
+  String fileSize;
+
+  AttachmentListTile(
+      {super.key,
+      this.isMarginRemoved = false,
+      required this.prefixIcon,
+      required this.fileName,
+      required this.fileSize});
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      margin: isMarginRemoved ? EdgeInsets.zero :EdgeInsets.symmetric(
-          vertical: AppSpacing.m
-              .getHeight(),
-          horizontal: AppSpacing
-              .m
-              .getWidth()),
+    return Container(
+      margin: isMarginRemoved
+          ? EdgeInsets.zero
+          : EdgeInsets.symmetric(
+              vertical: AppSpacing.m.getHeight(),
+              horizontal: AppSpacing.m.getWidth()),
       padding: EdgeInsets.symmetric(
-          vertical: AppSpacing.m
-              .getHeight(),
-          horizontal: AppSpacing
-              .m
-              .getWidth()
-      ),
+          vertical: AppSpacing.m.getHeight(),
+          horizontal: AppSpacing.m.getWidth()),
       decoration: BoxDecoration(
-        border: Border.all(
-            color: AppColors
-                .neutral500),
-        borderRadius:
-        BorderRadius
-            .circular(8),
+        border: Border.all(color: AppColors.neutral500),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
-        mainAxisAlignment:
-        MainAxisAlignment
-            .spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
-            crossAxisAlignment:
-            CrossAxisAlignment
-                .start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "File name.pdf",
-                style: FontTextStyle
-                    .paragraphLarge
-                    .copyWith(
-                    color: AppColors
-                        .neutral900),
+                fileName,
+                style: FontTextStyle.paragraphLarge
+                    .copyWith(color: AppColors.neutral900),
               ),
               SizedBox(
-                height: AppSpacing
-                    .s
-                    .getHeight(),
+                height: AppSpacing.s.getHeight(),
               ),
               Text(
-                "1,2MB",
-                style: FontTextStyle
-                    .paragraphMedium
-                    .copyWith(
-                    color: AppColors
-                        .neutral800),
+                fileSize,
+                style: FontTextStyle.paragraphMedium
+                    .copyWith(color: AppColors.neutral800),
               ),
             ],
           ),
           GestureDetector(
-            onTap: (){
-            },
+            onTap: () {},
             child: prefixIcon,
           ),
         ],

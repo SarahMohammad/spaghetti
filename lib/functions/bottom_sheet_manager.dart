@@ -212,6 +212,7 @@ class BottomSheetManager {
              suffixIconExist: false,
              isPrefixIconVisible: true,
              prefixIconExist: true,
+             prefixIconColor:AppColors.neutral900 ,
            ),
            SizedBox(height: 15.getHeight()),
            Flexible(
@@ -563,8 +564,6 @@ class BottomSheetManager {
   static Future<void> openDatePicker({required BuildContext context ,
     required Function(DateTime) onDateSelected,
     required Rx<DateTime> selectedDateObs,}) async {
-    // final RequestFormController controller = Get.find<RequestFormController>();
-    // final DateTime currentSelectedDate = controller.dateSelected.value;
     final DateTime currentSelectedDate = selectedDateObs.value;
 
     final DateTime? selectedDate =  await showDatePickerDialog(

@@ -1,4 +1,3 @@
-import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -69,12 +68,11 @@ class RequestFormController extends BaseController {
   }
 
 
-
-
   @override
   void onInit() async {
     super.onInit();
     _initializeValidation();
+    getDetailsScreenData();
   }
 
   void _initializeValidation() {
@@ -202,6 +200,41 @@ class RequestFormController extends BaseController {
           refresh();
         });
     update();
+  }
+  late Request request;
+  getDetailsScreenData(){
+     request = Request(role: 'HR Manager',
+        requestFor : 'Ali Al Ghafli',
+        pendingOn: 'Ali Al Ghafli',
+        status: 'Pending',
+        requestId: 'REQ 122812',
+        managementApproval: "text",
+      approvalAuthority: "text",
+      authorizedPersonal: "text",
+       comments: [
+         Comment(attachment: "",
+         date: "Date",
+         fileSize: "1.2 MB",
+         message: "Hi mohamed, i can't approve your request."
+             "i need an attachment to further approve your request.",
+         name: "Ahmed Ammar",
+         role: "HR Manager" )
+       ],
+       etaWorkingDays: "4 business days",
+       expectedClosingDate: "11/12/2026",
+      externalApproval: "text",
+      parties: [
+        Party(
+          name: "Party1",
+          category: "Tenant",
+          type: "Person",
+        )
+      ],
+      projectImplementationYear: "2025",
+      projectName: "Project name",
+      similarProjects: "text",
+      value: "text",
+    );
   }
 
 }

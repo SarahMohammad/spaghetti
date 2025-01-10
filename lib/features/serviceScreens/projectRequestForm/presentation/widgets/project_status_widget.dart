@@ -12,7 +12,15 @@ import '../../../../../utils/translation_keys.dart';
 
 
 class ProjectStatusWidget extends StatelessWidget {
-  const ProjectStatusWidget({super.key});
+  final String pendingOn;
+  final String role;
+  final String status;
+
+  const ProjectStatusWidget({Key? key,  required this.pendingOn ,
+    required this.role,
+    required this.status
+  }) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +43,14 @@ class ProjectStatusWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Ali Al Ghafli',
+                    pendingOn,
                     style: FontTextStyle.labelLarge.copyWith(color: AppColors.neutral900),
                   ),
-                  Text('HR Manager',
+                  Text(role,
                       style: FontTextStyle.paragraphMedium)
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 decoration: ShapeDecoration(
@@ -53,7 +61,7 @@ class ProjectStatusWidget extends StatelessWidget {
                   padding:  EdgeInsets.symmetric(horizontal: AppSpacing.xs.getWidth(),
                   vertical: AppSpacing.xs.getHeight()),
                   child: Text(
-                    'Pending',
+                    status,
                     style: FontTextStyle.labelMedium.copyWith(color: AppColors.warning500),
                   ),
                 ),

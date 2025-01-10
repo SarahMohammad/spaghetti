@@ -189,7 +189,7 @@ class NewTemplateRequestFormScreen extends StatelessWidget {
                               SizedBox(height: AppSpacing.l.getHeight()),
                               const Spacer(),
                               SizedBox(height: AppSpacing.l.getHeight()),
-                               CustomButton(
+                              Obx(() =>  CustomButton(
                                     key,
                                     buttonTitle: submit.tr,
                                     padding: EdgeInsets.zero,
@@ -197,9 +197,10 @@ class NewTemplateRequestFormScreen extends StatelessWidget {
                                       Get.toNamed(
                                           RoutesConstants.requestSubmitScreen);
                                     },
-                                    isDisabled: false,
+                                    isDisabled: !controller
+                                        .isSubmitEnabled.value,
                                     buttonType: ButtonType.primary,
-                                  ),
+                                  )),
                               SizedBox(height: AppSpacing.m.getHeight()),
                               CustomButton(
                                     key,
@@ -209,6 +210,8 @@ class NewTemplateRequestFormScreen extends StatelessWidget {
                                     isDisabled: false,
                                     buttonType: ButtonType.tertiary,
                                   ),
+                              SizedBox(height: AppSpacing.m.getHeight()),
+
                             ],
                           ),
                         ),

@@ -11,7 +11,7 @@ class CreatePasswordController extends BaseController {
   bool hidePassword = true;
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmNewPasswordController = TextEditingController();
-  var isLoginButtonActive = false.obs;
+  var isResetButtonActive = false.obs;
 
   var errorSnackBarVisibility = false;
 
@@ -23,13 +23,20 @@ void toggleSnackBarVisibility(){
     hidePassword = !hidePassword;
     update();
   }
+
   void _validateInput() {
-    if (newPasswordController.text.trim().isNotEmpty && confirmNewPasswordController.text.trim().isNotEmpty) {
-      isLoginButtonActive.value = true;
+    final newPassword = newPasswordController.text.trim();
+    final confirmPassword = confirmNewPasswordController.text.trim();
+
+    if (newPassword.isNotEmpty &&
+        confirmPassword.isNotEmpty &&
+        newPassword == confirmPassword) {
+      isResetButtonActive.value = true;
     } else {
-      isLoginButtonActive.value = false;
+      isResetButtonActive.value = false;
     }
   }
+
   @override
   void onInit() async {
     super.onInit();

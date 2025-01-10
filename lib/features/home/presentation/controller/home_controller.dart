@@ -21,6 +21,10 @@ class HomeController extends BaseController {
   var serviceList = <ServiceSystem>[];
   var systemsList = <ServiceSystem>[];
   var categoryList = <Category>[];
+  var requestsNumber = 0;
+  var approvalsNumber = 0;
+  var selectedCategoryTitle = "".obs;
+
 
 
   List<ServiceSystem> get visibleItems {
@@ -80,19 +84,19 @@ class HomeController extends BaseController {
       ServiceSystem(
         isFavorite: false,
         isSystem: true,
-        title: "SAP Ariba",
+        title: "FAP Ariba",
         description: "Lorem ipsum dolor sit amet consectetur. Ridiculus orci gravida adipiscing venenatis accumsan enim.",
       ),
       ServiceSystem(
         isFavorite: false,
         isSystem: true,
-        title: "SAP Ariba",
+        title: "RAP Ariba",
         description: "Lorem ipsum dolor sit amet consectetur. Ridiculus orci gravida adipiscing venenatis accumsan enim.",
       ),
       ServiceSystem(
         isFavorite: false,
         isSystem: true,
-        title: "SAP Ariba",
+        title: "TAP Ariba",
         description: "Lorem ipsum dolor sit amet consectetur. Ridiculus orci gravida adipiscing venenatis accumsan enim.",
       ),
     ];
@@ -152,7 +156,14 @@ class HomeController extends BaseController {
     final categoryItems = fetchCategoriesFromAPi();
     categoryList.addAll(categoryItems);
   }
-   fetchCategoriesFromAPi(){
+
+   loadCardsData() {
+      requestsNumber = 5;
+      approvalsNumber = 12;
+   }
+
+
+  fetchCategoriesFromAPi(){
      return [
        Category(title :"Human capital"),
        Category(title :"Administrative Services"),
@@ -173,47 +184,56 @@ class HomeController extends BaseController {
     loadServices();
     loadSystems();
     loadCategories();
+    loadCardsData();
   }
 
-// Add a service to the favorites list
-  void addToFavorites(ServiceSystem service) {
-    if (!isServiceInFavorites(service, favoriteItems)) {
-      favoriteItems.add(service);
-      service.isFavorite = true;
-
-      // Update the service in the main list
-      serviceList
-          .firstWhere((s) => s.title == service.title)
-          .isFavorite = true;
-    }
-    update(); // Ensure UI reflects the change
-  }
-
-// Remove a service from the favorites list
-  void removeFromFavorites(ServiceSystem service) {
-    favoriteItems.removeWhere((item) => item.title == service.title);
-    service.isFavorite = false;
-
-    // Update the service in the main list
-    serviceList
-        .firstWhere((s) => s.title == service.title)
-        .isFavorite = false;
-    update(); // Ensure UI reflects the change
-  }
+// // Add a service to the favorites list
+//   void addToFavorites(ServiceSystem service) {
+//     if (!isServiceInFavorites(service, favoriteItems)) {
+//       favoriteItems.add(service);
+//       service.isFavorite = true;
+//
+//       // Update the service in the main list
+//       serviceList
+//           .firstWhere((s) => s.title == service.title)
+//           .isFavorite = true;
+//     }
+//     update(); // Ensure UI reflects the change
+//   }
+//
+// // Remove a service from the favorites list
+//   void removeFromFavorites(ServiceSystem service) {
+//     favoriteItems.removeWhere((item) => item.title == service.title);
+//     service.isFavorite = false;
+//
+//     // Update the service in the main list
+//     serviceList
+//         .firstWhere((s) => s.title == service.title)
+//         .isFavorite = false;
+//     update(); // Ensure UI reflects the change
+//   }
 
 // Toggle favorite status
-  void toggleFavoriteStatus(ServiceSystem service, BuildContext context) {
+
+  void toggleFavoriteStatus(ServiceSystem service, BuildContext context,
+      {required bool isSystem}) {
     // Check if the service is in favorites
     if (isServiceInFavorites(service, favoriteItems)) {
       // Remove from favorites
       favoriteItems.removeWhere((item) => item.title == service.title);
       service.isFavorite = false;
 
-      // Update in serviceList
-      serviceList
-          .firstWhere((item) => item.title == service.title)
-          .isFavorite = false;
-
+      if(isSystem){
+        // Update in systemList
+        systemsList
+            .firstWhere((item) => item.title == service.title)
+            .isFavorite = false;
+      }else {
+        // Update in serviceList
+        serviceList
+            .firstWhere((item) => item.title == service.title)
+            .isFavorite = false;
+      }
       ToastManager.showToast(
         state: ToastState.neutral,
         title: 'Service removed from favorites',
@@ -223,12 +243,17 @@ class HomeController extends BaseController {
       // Add to favorites
       favoriteItems.add(service);
       service.isFavorite = true;
-
-      // Update in serviceList
-      serviceList
-          .firstWhere((item) => item.title == service.title)
-          .isFavorite = true;
-
+      if(isSystem){
+        // Update in systemList
+        systemsList
+            .firstWhere((item) => item.title == service.title)
+            .isFavorite = true;
+      }else {
+        // Update in serviceList
+        serviceList
+            .firstWhere((item) => item.title == service.title)
+            .isFavorite = true;
+      }
       ToastManager.showToast(
         state: ToastState.positive,
         title: 'Service added to favorites',
@@ -237,7 +262,7 @@ class HomeController extends BaseController {
     }
 
     // Update visibleItems (this will automatically recalculate based on the current isExpanded state)
-    update(); // Refresh UI
+    update();
   }
 
 // Check if a service is in favorites
@@ -246,7 +271,6 @@ class HomeController extends BaseController {
   }
 
 
-  var selectedCategoryTitle = "".obs;
 
   void openCategoryBottomSheet() {
     BottomSheetManager.openCategoryBottomSheet(
@@ -260,6 +284,7 @@ class HomeController extends BaseController {
   void showServiceDescriptionBottomSheet(ServiceSystem item, Key? key) {
     BottomSheetManager.showServiceSystemDescriptionBottomSheet(serviceSystem:item , key: key );
   }
+
 
 }
 

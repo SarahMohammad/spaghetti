@@ -85,6 +85,7 @@ class PartyWidget extends StatelessWidget {
 
             // Party Type Radio Buttons
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Flexible(
                   flex: 3,

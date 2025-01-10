@@ -28,3 +28,51 @@ class Comment {
   Comment({this.name = "", this.role="",
     this.attachment="", this.date="", this.fileSize="", this.message=""});
 }
+
+class Request {
+  String role;
+  String status;
+  String requestId;
+  String etaWorkingDays;
+  String projectName;
+  String projectImplementationYear;
+  String value;
+  String managementApproval;
+  String externalApproval;
+  String approvalAuthority;
+  String expectedClosingDate;
+  String authorizedPersonal;
+  String similarProjects;
+  String requestFor ;
+  String pendingOn;
+  String? description;
+  String? projectDuration;
+  String? projectOwner;
+  String? paymentStructure;
+  List<Party> parties;
+  List<Comment> comments;
+
+  Request({
+    required this.pendingOn,
+    required this.requestFor,
+    required this.role,
+    required this.status,
+    required this.requestId,
+    required this.etaWorkingDays,
+    required this.projectName,
+    required this.projectImplementationYear,
+    required this.value,
+    required this.managementApproval,
+    required this.externalApproval,
+    required this.approvalAuthority,
+    required this.expectedClosingDate,
+    required this.authorizedPersonal,
+    required this.similarProjects,
+    required this.parties,
+    required this.comments,
+    this.description,
+    this.projectDuration,
+    this.projectOwner,
+    this.paymentStructure,
+  });
+}
